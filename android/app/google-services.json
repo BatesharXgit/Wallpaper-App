@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "768773943046",
+    "project_id": "luca-1cfb7",
+    "storage_bucket": "luca-1cfb7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768773943046:android:4548e7c83fe89680a8f887",
+        "android_client_info": {
+          "package_name": "com.example.luca_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768773943046-4vornl23l48d2jre2mf90lcs59odh49i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw9H_XjNnI1dgmtZzbaVGWXalVb6LgzEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768773943046-4vornl23l48d2jre2mf90lcs59odh49i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
