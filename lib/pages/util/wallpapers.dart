@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+
 
 class Category extends StatefulWidget {
   const Category({Key? key, required this.title}) : super(key: key);
@@ -13,18 +15,16 @@ class Category extends StatefulWidget {
 
 class CategoryState extends State<Category> {
   final List<String> categories = [
-    'Morning', //done
-    'Night',
-    'Birthday',
-    'Inspirational',
-    'Religious',
-    'Leadership',
-    'Avengers', //done
-    'Happiness',
+    'Cityscapes',
+    'Landscapes',
+    'AI',
     'Movies',
-    'Hindi',
-    'Best Wishes',
-    'Friendship',
+    'Superheroes',
+    'Space',
+    'Sports',
+    'Stock',
+    'Minimalist',
+    'Fantasy',
   ];
 
   final List<String> images = [
@@ -35,7 +35,7 @@ class CategoryState extends State<Category> {
     'assets/images/car.png', //animals
     'assets/images/car.png', // Sci-Fi
     'assets/images/car.png', //Animation
-    'assets/images/car.png', //Landscapes
+    'assets/images/car.png', //Games
   ];
 
   final List<String> numbers = [
@@ -46,7 +46,7 @@ class CategoryState extends State<Category> {
     'Animals',
     'Sci-Fi',
     'Animation',
-    'Landscapes'
+    'Games',
   ];
 
   @override
