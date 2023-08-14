@@ -6,7 +6,7 @@ import 'package:luca_ui/pages/util/live.dart';
 import 'package:luca_ui/pages/util/live_category.dart';
 import 'package:luca_ui/pages/util/wallpapers.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 

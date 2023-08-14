@@ -8,6 +8,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:async_wallpaper/async_wallpaper.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:luca_ui/pages/util/searchresult.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -85,9 +86,9 @@ class HomePageState extends State<HomePage>
           appBar: null,
           endDrawer: Drawer(
             elevation: 5,
-            backgroundColor: const Color(0xFF131321),
+            backgroundColor: Colors.black,
             width: MediaQuery.of(context).size.width * 0.75,
-            shadowColor: const Color.fromARGB(255, 213, 122, 140),
+            shadowColor: Colors.black,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10.0),
@@ -120,28 +121,6 @@ class HomePageState extends State<HomePage>
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.06,
-            width: MediaQuery.of(context).size.width * 0.13,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              image: const DecorationImage(
-                image: NetworkImage(
-                    'https://i.pinimg.com/564x/eb/ca/00/ebca00a3ab8c347ad89bb0fcf2bac859.jpg'),
-                fit: BoxFit.cover,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFFA6E738).withOpacity(0.2),
-                  blurRadius: 10,
-                  offset: const Offset(4, 6),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.03,
-          ),
           Expanded(
             child: Text(
               'LUCA',
@@ -161,7 +140,7 @@ class HomePageState extends State<HomePage>
                     ),
                     transition: Transition.fadeIn),
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.35,
+                  width: MediaQuery.of(context).size.width * 0.45,
                   height: MediaQuery.of(context).size.height * 0.05,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -181,7 +160,7 @@ class HomePageState extends State<HomePage>
                       children: [
                         Expanded(
                             child: Text(
-                          'Search for...',
+                          'Search for Magic.....',
                           style: TextStyle(
                             color: Color.fromARGB(255, 7, 119, 7),
                           ),
@@ -215,7 +194,9 @@ class HomePageState extends State<HomePage>
         physics: const BouncingScrollPhysics(),
         controller: _tabController,
         indicatorColor: Colors.white,
-        indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
+        indicatorPadding: const EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
         indicator: null,
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white,
@@ -351,24 +332,13 @@ class HomePageState extends State<HomePage>
               future: carsRef.listAll(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                      child: CircularProgressIndicator(
-                    valueColor:
-                        AlwaysStoppedAnimation<Color>(Color(0xB700FF00)),
-                    backgroundColor: Colors.black,
-                  ));
+                  return _buildCircularIndicator();
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else if (snapshot.hasData &&
                     snapshot.data!.items.isNotEmpty) {
                   if (carsRefs.isEmpty) {
-                    return Center(
-                      child: CircularProgressIndicator(
-                        valueColor:
-                            AlwaysStoppedAnimation<Color>(Color(0xB700FF00)),
-                        backgroundColor: Colors.black,
-                      ),
-                    );
+                    return _buildCircularIndicator();
                   }
 
                   return GridView.builder(
@@ -432,13 +402,7 @@ class HomePageState extends State<HomePage>
             child: CachedNetworkImage(
               imageUrl: imageUrl,
               fit: BoxFit.cover,
-              placeholder: (context, url) => Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                      Color(0xB700FF00)), // Set your desired color here
-                  backgroundColor: Colors.black,
-                ),
-              ),
+              placeholder: (context, url) => _buildCircularIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error),
             ),
           ),
@@ -448,15 +412,27 @@ class HomePageState extends State<HomePage>
   }
 
   Widget _buildPlaceholder() {
-    return Container(
-      color: Colors.black,
+    return Center(
+      child: LoadingAnimationWidget.flickr(
+          size: 35,
+          leftDotColor: const Color(0xB700FF00),
+          rightDotColor: Colors.white),
     );
   }
 
   Widget _buildErrorWidget() {
     return Container(
-      color: Colors.red,
-      child: Icon(Icons.error),
+      color: const Color(0xB700FF00),
+      child: const Icon(Icons.error),
+    );
+  }
+
+  Widget _buildCircularIndicator() {
+    return Center(
+      child: LoadingAnimationWidget.fourRotatingDots(
+        size: 35,
+        color: const Color(0xB700FF00),
+      ),
     );
   }
 
@@ -465,25 +441,13 @@ class HomePageState extends State<HomePage>
       physics: const BouncingScrollPhysics(),
       children: [
         SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-        Align(
-          alignment: Alignment.center,
-          child: Container(
-            width: 100,
-            height: 100,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                    'https://i.pinimg.com/564x/eb/ca/00/ebca00a3ab8c347ad89bb0fcf2bac859.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ),
+
         Align(
           alignment: Alignment.center,
           child: Text(
-            'Craftive',
-            style: GoogleFonts.orbitron(
+            'LUCA',
+            style: TextStyle(
+              fontFamily: 'Anurati',
               color: Colors.white,
               fontSize: 30,
               fontWeight: FontWeight.bold,
@@ -557,7 +521,7 @@ class HomePageState extends State<HomePage>
           },
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.12,
+          height: MediaQuery.of(context).size.height * 0.2,
         ),
         Align(
           alignment: Alignment.center,
