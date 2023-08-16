@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:luca_ui/pages/util/favourite.dart';
+import 'package:luca_ui/pages/util/favourites.dart';
 import 'package:luca_ui/pages/util/homepage.dart';
 import 'package:luca_ui/pages/util/live.dart';
 import 'package:luca_ui/pages/util/live_category.dart';
@@ -9,6 +11,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +45,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Category',
     ),
     LiveWallCategory(),
+    FavouritePage(),
     // LiveWallpaperPage(),
   ];
 
@@ -52,48 +56,42 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         body: _pages[_selectedIndex],
         bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-            color: Colors.black,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 20,
-                color: Colors.black.withOpacity(0.1),
-              )
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: GNav(
-                tabBorderRadius: 20,
-                tabActiveBorder: Border.all(width: 2, color: Color(0xB700FF00)),
-                gap: 5,
-                curve: Curves.easeInOutQuint, //bounceIn
-                haptic: false,
-                iconSize: 24,
-                backgroundColor: Colors.black,
-                color: Colors.white,
+          height: 72,
+          child: FlashyTabBar(
+            backgroundColor: Color(0xFF131321),
+            animationCurve: Curves.linear,
+            selectedIndex: _selectedIndex,
+            iconSize: 28,
+            // showElevation: false,
+            onItemSelected: (index) => setState(() {
+              _selectedIndex = index;
+            }),
+            items: [
+              FlashyTabBarItem(
                 activeColor: Colors.white,
-                tabBackgroundColor: Colors.black,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                duration: const Duration(milliseconds: 200),
-                tabs: const [
-                  GButton(
-                    icon: Icons.home_outlined,
-                  ),
-                  GButton(
-                    icon: Icons.wallpaper,
-                  ),
-                  GButton(
-                    icon: Icons.slideshow_outlined,
-                  ),
-                ],
-                selectedIndex: _selectedIndex,
-                onTabChange: (index) {
-                  setState(() {
-                    _selectedIndex = index;
-                  });
-                }),
+                inactiveColor: Colors.grey,
+                icon: Icon(Icons.home_outlined),
+                title: Text('Home'),
+              ),
+              FlashyTabBarItem(
+                activeColor: Colors.white,
+                inactiveColor: Colors.grey,
+                icon: Icon(Icons.wallpaper_outlined),
+                title: Text('Wallpapers'),
+              ),
+              FlashyTabBarItem(
+                activeColor: Colors.white,
+                inactiveColor: Colors.grey,
+                icon: Icon(Icons.video_collection_outlined),
+                title: Text('Live'),
+              ),
+              FlashyTabBarItem(
+                activeColor: Colors.white,
+                inactiveColor: Colors.grey,
+                icon: Icon(Icons.favorite_outline),
+                title: Text('Favourites'),
+              ),
+            ],
           ),
         ),
       ),
