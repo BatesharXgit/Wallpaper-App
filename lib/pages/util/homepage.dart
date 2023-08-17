@@ -11,6 +11,7 @@ import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:luca_ui/pages/util/searchresult.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:luca_ui/pages/util/settings.dart';
 
 final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 final FirebaseStorage storage = FirebaseStorage.instance;
@@ -29,6 +30,52 @@ final List<String> data = [
 ];
 
 int index = 0;
+
+Widget _buildAppBar() {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        IconButton(
+          icon: const Icon(
+            Icons.settings_outlined,
+            color: Colors.white,
+            size: 30,
+          ),
+          onPressed: () =>
+              Get.to(SettingsPage(), transition: Transition.fadeIn),
+        ),
+        Expanded(
+          child: Center(
+            child: Text(
+              'LUCA',
+              style: TextStyle(
+                fontFamily: 'Anurati',
+                color: Colors.white,
+                fontSize: 28,
+              ),
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () => Get.to(
+            SearchWallpaper(
+              title: '',
+            ),
+            transition: Transition.fadeIn,
+          ),
+          child: Icon(
+            Icons.search_outlined,
+            color: Colors.white,
+            size: 30,
+          ),
+        ),
+      ],
+    ),
+  );
+}
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -100,51 +147,6 @@ class HomePageState extends State<HomePage>
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildAppBar() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          IconButton(
-            icon: const Icon(
-              Icons.settings_outlined,
-              color: Colors.white,
-              size: 30,
-            ),
-            onPressed: () {},
-          ),
-          Expanded(
-            child: Center(
-              child: Text(
-                'LUCA',
-                style: TextStyle(
-                  fontFamily: 'Anurati',
-                  color: Colors.white,
-                  fontSize: 28,
-                ),
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () => Get.to(
-              SearchWallpaper(
-                title: '',
-              ),
-              transition: Transition.fadeIn,
-            ),
-            child: Icon(
-              Icons.search_outlined,
-              color: Colors.white,
-              size: 30,
-            ),
-          ),
-        ],
-      ),
     );
   }
 
@@ -377,104 +379,6 @@ class HomePageState extends State<HomePage>
         size: 35,
         color: const Color(0xB700FF00),
       ),
-    );
-  }
-
-  Widget _buildDrawerContent() {
-    return ListView(
-      physics: const BouncingScrollPhysics(),
-      children: [
-        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-
-        Align(
-          alignment: Alignment.center,
-          child: Text(
-            'LUCA',
-            style: TextStyle(
-              fontFamily: 'Anurati',
-              color: Colors.white,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        const Divider(
-          thickness: 2.5,
-          color: Colors.white,
-        ),
-        ListTile(
-          leading: const Icon(Icons.home_outlined),
-          title: const Text('Homepage'),
-          iconColor: Colors.white,
-          textColor: Colors.white,
-          onTap: () {
-            Navigator.pop(context); // Close the drawer
-          },
-        ),
-        ListTile(
-          leading: const Icon(Icons.search_outlined),
-          title: const Text('Search'),
-          iconColor: Colors.white,
-          textColor: Colors.white,
-          onTap: () {},
-        ),
-        // Get.to(const Category(), transition: Transition.fade)),
-        ListTile(
-          leading: const Icon(Icons.help_outline),
-          title: const Text('Help & Support'),
-          iconColor: Colors.white,
-          textColor: Colors.white,
-          onTap: () {
-            // Handle Help & Support menu item tap
-          },
-        ),
-        ListTile(
-          leading: const Icon(Icons.share_outlined),
-          title: const Text('Share and Feedback'),
-          iconColor: Colors.white,
-          textColor: Colors.white,
-          onTap: () {
-            // Handle Share and Feedback menu item tap
-          },
-        ),
-        ListTile(
-          leading: const Icon(Icons.featured_play_list_outlined),
-          title: const Text('App Features'),
-          iconColor: Colors.white,
-          textColor: Colors.white,
-          onTap: () {
-            // Handle App Information menu item tap
-          },
-        ),
-        ListTile(
-          leading: const Icon(Icons.info_outline),
-          title: const Text('App Information'),
-          iconColor: Colors.white,
-          textColor: Colors.white,
-          onTap: () {
-            // Handle App Information menu item tap
-          },
-        ),
-        ListTile(
-          leading: const Icon(Icons.exit_to_app_outlined),
-          title: const Text('Exit'),
-          iconColor: Colors.white,
-          textColor: Colors.white,
-          onTap: () {
-            // Handle Exit menu item tap
-          },
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.2,
-        ),
-        Align(
-          alignment: Alignment.center,
-          child: Text(
-            'Made with 💚 in India.',
-            style: GoogleFonts.kanit(color: Colors.white, fontSize: 18),
-          ),
-        )
-      ],
     );
   }
 }

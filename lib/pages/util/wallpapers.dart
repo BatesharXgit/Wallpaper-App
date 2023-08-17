@@ -67,7 +67,7 @@ class CategoryState extends State<Category> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF131321),
       body: SafeArea(
         child: AnimationLimiter(
           child: Column(
@@ -185,12 +185,12 @@ class CategoryState extends State<Category> {
                                     child: Container(
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              0.12,
+                                              0.15,
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
                                           image: NetworkImage(
                                               recommendImages[index]),
-                                          fit: BoxFit.fitWidth,
+                                          fit: BoxFit.cover,
                                         ),
                                         border: Border.all(
                                           width: 0.2,
@@ -215,11 +215,11 @@ class CategoryState extends State<Category> {
                                         gradient: LinearGradient(
                                           colors: [
                                             Colors.transparent,
-                                            Colors.black.withOpacity(0.7),
+                                            Colors.black.withOpacity(0.8),
                                           ],
                                           begin: Alignment.centerRight,
                                           end: Alignment.centerLeft,
-                                          stops: const [0.6, 0.95],
+                                          stops: const [0.5, 0.95],
                                         ),
                                       ),
                                     ),
