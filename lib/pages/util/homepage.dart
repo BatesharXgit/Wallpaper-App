@@ -112,13 +112,11 @@ class HomePageState extends State<HomePage>
         children: [
           IconButton(
             icon: const Icon(
-              Icons.menu_outlined,
+              Icons.settings_outlined,
               color: Colors.white,
               size: 30,
             ),
-            onPressed: () {
-              _scaffoldKey.currentState!.openEndDrawer();
-            },
+            onPressed: () {},
           ),
           Expanded(
             child: Center(
@@ -492,9 +490,6 @@ class FullScreenImagePage extends StatefulWidget {
 }
 
 class _FullScreenImagePageState extends State<FullScreenImagePage> {
-  double saturationLevel = 1.0;
-  double vibrancyLevel = 0.0;
-
   void showSnackbar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -511,14 +506,14 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
       bool success = await AsyncWallpaper.setWallpaper(
         url: widget.imageUrl,
         wallpaperLocation: AsyncWallpaper.HOME_SCREEN,
-        goToHome: true,
+        goToHome: false,
       );
 
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
 
       if (success) {
         Fluttertoast.showToast(
-          msg: 'Wallpaper set',
+          msg: 'Wallpaper set Successfully 😊',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.green,
@@ -553,14 +548,14 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
       bool success = await AsyncWallpaper.setWallpaper(
         url: widget.imageUrl,
         wallpaperLocation: AsyncWallpaper.LOCK_SCREEN,
-        goToHome: true,
+        goToHome: false,
       );
 
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
 
       if (success) {
         Fluttertoast.showToast(
-          msg: 'Wallpaper set',
+          msg: 'Wallpaper set Successfully 😊',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.green,
@@ -595,14 +590,14 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
       bool success = await AsyncWallpaper.setWallpaper(
         url: widget.imageUrl,
         wallpaperLocation: AsyncWallpaper.BOTH_SCREENS,
-        goToHome: true,
+        goToHome: false,
       );
 
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
 
       if (success) {
         Fluttertoast.showToast(
-          msg: 'Wallpaper set',
+          msg: 'Wallpaper set Successfully 😊',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.green,
@@ -640,44 +635,23 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
             children: [
               Hero(
                 tag: widget.imageUrl,
-                child: ColorFiltered(
-                  colorFilter: ColorFilter.matrix([
-                    // Adjust the values for saturation
-                    0.213 + 0.787 * saturationLevel,
-                    0.715 - 0.715 * saturationLevel,
-                    0.072 - 0.072 * saturationLevel,
-                    0,
-                    0,
-                    0.213 - 0.213 * saturationLevel,
-                    0.715 + 0.285 * saturationLevel,
-                    0.072 - 0.072 * saturationLevel,
-                    0,
-                    0,
-                    0.213 - 0.213 * saturationLevel,
-                    0.715 - 0.715 * saturationLevel,
-                    0.072 + 0.928 * saturationLevel,
-                    0,
-                    0,
-                    0, 0, 0, 1, 0,
-                  ]),
-                  child: Image.network(
-                    widget.imageUrl,
-                    fit: BoxFit.cover,
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    filterQuality: FilterQuality.high,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      );
-                    },
-                  ),
+                child: Image.network(
+                  widget.imageUrl,
+                  fit: BoxFit.cover,
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  filterQuality: FilterQuality.high,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  },
                 ),
               ),
               Padding(
@@ -722,14 +696,13 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                             ],
                           ),
                           child: ClipRRect(
+                            // Apply the blur effect only to the bottom sheet
                             borderRadius: const BorderRadius.vertical(
                               top: Radius.circular(16.0),
                             ),
                             child: BackdropFilter(
-                              filter: ImageFilter.blur(
-                                sigmaX: 15.0,
-                                sigmaY: 15.0,
-                              ),
+                              filter:
+                                  ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -737,8 +710,7 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                                     title: Text(
                                       'Apply to Home Screen',
                                       style: GoogleFonts.kanit(
-                                        color: Colors.white,
-                                      ),
+                                          color: Colors.white),
                                     ),
                                     onTap: () {
                                       applyHomescreen(context);
@@ -748,8 +720,7 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                                     title: Text(
                                       'Apply to Lock Screen',
                                       style: GoogleFonts.kanit(
-                                        color: Colors.white,
-                                      ),
+                                          color: Colors.white),
                                     ),
                                     onTap: () {
                                       applyLockscreen(context);
@@ -759,40 +730,11 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                                     title: Text(
                                       'Apply to Both',
                                       style: GoogleFonts.kanit(
-                                        color: Colors.white,
-                                      ),
+                                          color: Colors.white),
                                     ),
                                     onTap: () {
                                       applyBoth(context);
                                     },
-                                  ),
-                                  ListTile(
-                                    title: Text(
-                                      'Saturation',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    subtitle: Slider(
-                                      value: saturationLevel,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          saturationLevel = newValue;
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                  ListTile(
-                                    title: Text(
-                                      'Vibrancy',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    subtitle: Slider(
-                                      value: vibrancyLevel,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          vibrancyLevel = newValue;
-                                        });
-                                      },
-                                    ),
                                   ),
                                 ],
                               ),
@@ -803,29 +745,23 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                     );
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(6),
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(
-                          sigmaX: 30.0,
-                          sigmaY: 30.0,
-                        ),
-                        child: SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.05,
-                          child: Center(
-                            child: Text(
-                              'Apply Wallpaper',
-                              style: GoogleFonts.kanit(
-                                color: Colors.white,
-                                fontSize: 22,
+                      padding: const EdgeInsets.all(10.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 30.0),
+                          child: SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.05,
+                            child: Center(
+                              child: Text(
+                                'Apply Wallpaper',
+                                style: GoogleFonts.kanit(
+                                    color: Colors.white, fontSize: 22),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
+                      )),
                 ),
               ),
             ],

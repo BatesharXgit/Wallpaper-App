@@ -16,7 +16,6 @@ class CategoryState extends State<Category> {
     'Cityscapes',
     'Landscapes',
     'AI',
-    'Movies',
     'Superheroes',
     'Space',
     'Sports',
@@ -45,6 +44,18 @@ class CategoryState extends State<Category> {
     'Sci-Fi',
     'Animation',
     'Games',
+  ];
+
+  final List<String> recommendImages = [
+    'https://i.pinimg.com/236x/fb/bc/86/fbbc8631cb2b794a97dcc055332bf62c.jpg',
+    'https://i.pinimg.com/236x/ea/e3/2e/eae32e059a98fa742366e91876d4094f.jpg',
+    'https://i.pinimg.com/236x/28/76/53/2876533599b7cefd228c103a56dbd3e2.jpg',
+    'https://i.pinimg.com/236x/95/b5/13/95b51303c4140ebb54bafb8860acc7f3.jpg',
+    'https://i.pinimg.com/236x/8c/24/7f/8c247fbf0059d5877645138543a0cc71.jpg',
+    'https://i.pinimg.com/236x/ab/e5/ec/abe5ec30eee55c49bb31df37d10607bb.jpg',
+    'https://i.pinimg.com/236x/01/3e/36/013e361d223ad9f02827ca29f3a5d07c.jpg',
+    'https://i.pinimg.com/236x/29/66/c5/2966c557738e04a34d01ec0965459746.jpg',
+    'https://i.pinimg.com/236x/91/d0/9c/91d09c8624697f7931b4edbcd5fb4891.jpg'
   ];
 
   @override
@@ -168,30 +179,60 @@ class CategoryState extends State<Category> {
                           child: SlideAnimation(
                             verticalOffset: 50.0,
                             child: FadeInAnimation(
-                              child: GestureDetector(
-                                child: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.12,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xB700FF00),
-                                    border: Border.all(
-                                        width: 0.2, color: Colors.transparent),
-                                    borderRadius: BorderRadius.circular(6),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: const Color(0xB700FF00)
-                                            .withOpacity(0.1),
-                                        blurRadius: 6,
-                                        offset: const Offset(1, 2),
+                              child: Stack(
+                                children: [
+                                  GestureDetector(
+                                    child: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.12,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                              recommendImages[index]),
+                                          fit: BoxFit.fitWidth,
+                                        ),
+                                        border: Border.all(
+                                          width: 0.2,
+                                          color: Colors.transparent,
+                                        ),
+                                        borderRadius: BorderRadius.circular(6),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: const Color(0xB700FF00)
+                                                .withOpacity(0.1),
+                                            blurRadius: 6,
+                                            offset: const Offset(1, 2),
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
+                                    // onTap: () => _navigateToCategoryPage(category1),
                                   ),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      const SizedBox(width: 5),
-                                      Expanded(
+                                  Positioned.fill(
+                                    child: DecoratedBox(
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            Colors.transparent,
+                                            Colors.black.withOpacity(0.7),
+                                          ],
+                                          begin: Alignment.centerRight,
+                                          end: Alignment.centerLeft,
+                                          stops: const [0.6, 0.95],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    left: 0,
+                                    top: 0,
+                                    bottom: 0,
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16.0),
                                         child: Text(
                                           categories[index],
                                           style: GoogleFonts.kanit(
@@ -200,11 +241,9 @@ class CategoryState extends State<Category> {
                                           ),
                                         ),
                                       ),
-                                      const SizedBox(width: 10),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                                // onTap: () => _navigateToCategoryPage(category1),
+                                ],
                               ),
                             ),
                           ),
