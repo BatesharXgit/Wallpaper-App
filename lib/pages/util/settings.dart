@@ -51,16 +51,12 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 children: [
                   SizedBox(height: 20),
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        'LUCA',
-                        style: TextStyle(
-                          fontFamily: 'Anurati',
-                          color: Colors.white,
-                          fontSize: 40,
-                        ),
-                      ),
+                  Text(
+                    'LUCA',
+                    style: TextStyle(
+                      fontFamily: 'Anurati',
+                      color: Colors.white,
+                      fontSize: 40,
                     ),
                   ),
                   Text(
