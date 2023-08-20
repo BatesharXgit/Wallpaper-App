@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 150,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(6),
-                    child: Image.asset('assets/image/logo.png'),
+                    // child: Image.asset('assets/images/logo.png'),
                   ),
                 ),
 

@@ -78,16 +78,16 @@ Widget _buildAppBar() {
   );
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<HomePage> createState() => HomePageState();
+  State<MyHomePage> createState() => MyHomePageState();
 }
 
-class HomePageState extends State<HomePage>
+class MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 

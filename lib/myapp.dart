@@ -2,6 +2,7 @@ import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luca_ui/firestore_test.dart';
+import 'package:luca_ui/pages/util/homepage.dart';
 import 'package:luca_ui/pages/util/live_category.dart';
 import 'package:luca_ui/pages/util/wallpapers.dart';
 
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final colour = Colors.white;
   final List<Widget> _pages = [
-    const HomePage(
+    const MyHomePage(
       title: 'Luca Home',
     ),
     const Category(
