@@ -198,28 +198,19 @@ class MyHomePageState extends State<MyHomePage>
   }
 
   Widget _buildGridItem(Reference foryouRef) {
-    return AnimationConfiguration.staggeredGrid(
-      position: index,
-      duration: const Duration(milliseconds: 375),
-      columnCount: 2,
-      child: ScaleAnimation(
-        child: FadeInAnimation(
-          child: FutureBuilder<String>(
-            future: foryouRef.getDownloadURL(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return _buildPlaceholder();
-              } else if (snapshot.hasError) {
-                return _buildErrorWidget();
-              } else if (snapshot.hasData) {
-                return _buildImageWidget(snapshot.data!);
-              } else {
-                return Container();
-              }
-            },
-          ),
-        ),
-      ),
+    return FutureBuilder<String>(
+      future: foryouRef.getDownloadURL(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return _buildPlaceholder();
+        } else if (snapshot.hasError) {
+          return _buildErrorWidget();
+        } else if (snapshot.hasData) {
+          return _buildImageWidget(snapshot.data!);
+        } else {
+          return Container();
+        }
+      },
     );
   }
 
