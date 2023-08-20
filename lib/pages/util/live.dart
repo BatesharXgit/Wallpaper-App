@@ -13,18 +13,18 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
     with AutomaticKeepAliveClientMixin<LiveWallpaperPage> {
   PageController _pageController = PageController();
   List<String> videoUrls = [
-    // 'gs://luca-1cfb7.appspot.com/live/Pinterest_Download.mp4',
-    'gs://luca-1cfb7.appspot.com/live/3.mp4',
-    'gs://luca-1cfb7.appspot.com/live/7.mp4',
-    'gs://luca-1cfb7.appspot.com/live/6.mp4',
-    'gs://luca-1cfb7.appspot.com/live/8.mp4',
-    'gs://luca-1cfb7.appspot.com/live/5.mp4',
-    'gs://luca-1cfb7.appspot.com/live/4.mp4',
+    'gs://luca-ui.appspot.com/live/2.mp4',
+    'gs://luca-ui.appspot.com/live/3.mp4',
+    'gs://luca-ui.appspot.com/live/6.mp4',
+    'gs://luca-ui.appspot.com/live/7.mp4',
+    'gs://luca-ui.appspot.com/live/8.mp4',
+    'gs://luca-ui.appspot.com/live/be67f2ca8a93e96c88ed9415d0f229c6.mp4',
+    'gs://luca-ui.appspot.com/live/e114fef3574a6a25f713d14bf8b72f73.mp4',
   ];
   int _currentVideoIndex = 0;
   VideoPlayerController? _controller;
   bool _isPlaying = true;
-  bool _videoInitialized = false; // Track if the video player is initialized.
+  bool _videoInitialized = false;
 
   @override
   void initState() {
@@ -37,11 +37,9 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
     _controller?.dispose();
     final videoUrl = await _getVideoUrl(index);
 
-    // Check if the video is already cached
     final cachedVideo = await DefaultCacheManager().getFileFromCache(videoUrl);
 
     if (cachedVideo != null && cachedVideo.file.existsSync()) {
-      // Video is already cached, load it from the local file path
       _controller = VideoPlayerController.file(cachedVideo.file)
         ..initialize().then((_) {
           setState(() {
@@ -52,7 +50,6 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
           _isPlaying = true;
         });
     } else {
-      // Video is not cached, download and cache it first
       var file = await DefaultCacheManager().getSingleFile(videoUrl);
       _controller = VideoPlayerController.file(file)
         ..initialize().then((_) {
@@ -69,7 +66,6 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
   }
 
   Future<String> _getVideoUrl(int index) async {
-    // Fetch the video URL from Firebase Storage based on the videoUrls list.
     final ref = FirebaseStorage.instance.refFromURL(videoUrls[index]);
     final url = await ref.getDownloadURL();
     return url;
@@ -90,7 +86,6 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
         newPageIndex < videoUrls.length) {
       setState(() {
         _currentVideoIndex = newPageIndex;
-        _videoInitialized = false; // Reset the video initialization status.
       });
       _initializeVideoController(newPageIndex);
     }
@@ -114,8 +109,7 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
       final httpUrl = await _getVideoUrl(_currentVideoIndex);
 
       var file = await DefaultCacheManager().getSingleFile(httpUrl);
-      await _controller
-          ?.pause(); // Pause the video before setting the wallpaper.
+      await _controller?.pause();
       result = await AsyncWallpaper.setLiveWallpaper(
         filePath: file.path,
       )
@@ -125,7 +119,7 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
       print('Error applying live wallpaper: $e');
       result = 'Failed to set live wallpaper.';
     }
-    print(result); // You can handle the result as per your requirement
+    print(result);
   }
 
   @override
@@ -152,7 +146,7 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
                             child: VideoPlayer(_controller!),
                           ),
                         )
-                      : CircularProgressIndicator(), // Show loading indicator while video is being initialized.
+                      : CircularProgressIndicator(),
                 );
               },
             ),

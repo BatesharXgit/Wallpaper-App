@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:luca_ui/pages/util/favourite.dart';
 import 'package:luca_ui/pages/util/homepage.dart';
+import 'package:luca_ui/pages/util/live.dart';
 import 'package:luca_ui/pages/util/live_category.dart';
 import 'package:luca_ui/pages/util/wallpapers.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -41,8 +42,8 @@ class _MyAppState extends State<MyApp> {
       title: 'Category',
     ),
     LiveWallCategory(),
-    FavouritePage(),
-    // LiveWallpaperPage(),
+    // FavouritePage(),
+    LiveWallpaperPage(),
   ];
 
   @override
