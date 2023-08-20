@@ -95,7 +95,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           iconColor: Colors.white,
                           textColor: Colors.white,
                           onTap: () {
-                            _showAboutAppBottomSheet(context);
+                            _showChangelogBottomSheet(context);
                           },
                         ),
                         ListTile(
@@ -225,6 +225,9 @@ class _SettingsPageState extends State<SettingsPage> {
   void _showAboutAppBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
       builder: (BuildContext context) {
         return Container(
           color: Color(0xFF1E1E2A),
@@ -237,28 +240,125 @@ class _SettingsPageState extends State<SettingsPage> {
                 'About the App',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 18,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 16),
               Text(
-                'This is a sample app designed to demonstrate settings and animations.',
+                '🌟 Immerse yourself in the world of Luca – the ultimate wallpaper app. Discover an extensive selection of static and dynamic wallpapers across various categories, all presented through a beautifully designed and intuitive interface. Elevate your device\'s aesthetic with Luca\'s stunning visuals that cater to every mood and style. 🎨📱',
                 style: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.grey[400],
+                  fontSize: 16,
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 16),
               Text(
                 'Version: 1.0.0',
                 style: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.grey[400],
+                  fontSize: 16,
                 ),
               ),
             ],
           ),
         );
       },
+    );
+  }
+}
+
+void _showChangelogBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    builder: (BuildContext context) {
+      return Container(
+        color: Color(0xFF1E1E2A),
+        padding: EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              '🚀 Luca Initial Release Changelog',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 20),
+            ChangelogEntry(
+              version: '1.0.0',
+              date: 'October, 2023',
+              changes: [
+                '🎉 Welcome to the world of Luca - Your Ultimate Wallpaper Experience!',
+                '🖼️ Explore a captivating collection of dynamic and static wallpapers.',
+                '🎨 Immerse yourself in the beautifully designed user interface for seamless browsing.',
+              ],
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+class ChangelogEntry extends StatelessWidget {
+  final String version;
+  final String date;
+  final List<String> changes;
+
+  ChangelogEntry({
+    required this.version,
+    required this.date,
+    required this.changes,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Version $version',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 8),
+        Text(
+          'Released on $date',
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 14,
+          ),
+        ),
+        SizedBox(height: 16),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: changes.map((change) {
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('•', style: TextStyle(color: Colors.white, fontSize: 18)),
+                SizedBox(width: 8),
+                Flexible(
+                  child: Text(
+                    change,
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                ),
+              ],
+            );
+          }).toList(),
+        ),
+      ],
     );
   }
 }

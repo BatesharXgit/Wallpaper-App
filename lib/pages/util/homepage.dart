@@ -17,7 +17,7 @@ import 'package:flutter/rendering.dart';
 final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 final FirebaseStorage storage = FirebaseStorage.instance;
 final Reference wallpaperRef = storage.ref().child('wallpaper');
-final Reference carsRef = storage.ref().child('cars');
+// final Reference carsRef = storage.ref().child('cars');
 List<Reference> wallpaperRefs = [];
 List<Reference> carsRefs = [];
 
@@ -108,15 +108,15 @@ class HomePageState extends State<HomePage>
 
   Future<void> shuffleImages() async {
     final ListResult result = await wallpaperRef.listAll();
-    final ListResult carResult = await carsRef.listAll();
+    // final ListResult carResult = await carsRef.listAll();
     final List<Reference> shuffledwallpaperrefs = result.items.toList()
       ..shuffle();
-    final List<Reference> shuffledcarsrefs = carResult.items.toList()
-      ..shuffle();
+    // final List<Reference> shuffledcarsrefs = carResult.items.toList()
+    //   ..shuffle();
     if (mounted) {
       setState(() {
         wallpaperRefs = shuffledwallpaperrefs;
-        carsRefs = shuffledcarsrefs;
+        // carsRefs = shuffledcarsrefs;
       });
     }
   }
@@ -265,55 +265,61 @@ class HomePageState extends State<HomePage>
 //======================================================================================================================================
 //=========================================================  CARS   Wallpaepr ==========================================================
 //======================================================================================================================================
-          RefreshIndicator(
-            backgroundColor: Colors.black,
-            color: Color(0xB700FF00),
-            onRefresh: refreshImages,
-            child: FutureBuilder<ListResult>(
-              future: carsRef.listAll(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return _buildCircularIndicator();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else if (snapshot.hasData &&
-                    snapshot.data!.items.isNotEmpty) {
-                  if (carsRefs.isEmpty) {
-                    return _buildCircularIndicator();
-                  }
-
-                  return GridView.builder(
-                    physics: BouncingScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.65,
-                    ),
-                    itemCount: snapshot.data!.items.length,
-                    itemBuilder: (context, index) {
-                      final foryouRef = carsRefs[index];
-                      return FutureBuilder<String>(
-                        future: foryouRef.getDownloadURL(),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return _buildPlaceholder();
-                          } else if (snapshot.hasError) {
-                            return _buildErrorWidget();
-                          } else if (snapshot.hasData) {
-                            return _buildImageWidget(snapshot.data!);
-                          } else {
-                            return Container();
-                          }
-                        },
-                      );
-                    },
-                  );
-                } else {
-                  return Center(child: Text('No images available'));
-                }
-              },
+          const Center(
+            child: Text(
+              "Cars",
+              style: TextStyle(color: Colors.white),
             ),
           ),
+          // RefreshIndicator(
+          //   backgroundColor: Colors.black,
+          //   color: Color(0xB700FF00),
+          //   onRefresh: refreshImages,
+          //   child: FutureBuilder<ListResult>(
+          //     future: carsRef.listAll(),
+          //     builder: (context, snapshot) {
+          //       if (snapshot.connectionState == ConnectionState.waiting) {
+          //         return _buildCircularIndicator();
+          //       } else if (snapshot.hasError) {
+          //         return Text('Error: ${snapshot.error}');
+          //       } else if (snapshot.hasData &&
+          //           snapshot.data!.items.isNotEmpty) {
+          //         if (carsRefs.isEmpty) {
+          //           return _buildCircularIndicator();
+          //         }
+
+          //         return GridView.builder(
+          //           physics: BouncingScrollPhysics(),
+          //           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          //             crossAxisCount: 2,
+          //             childAspectRatio: 0.75,
+          //           ),
+          //           itemCount: snapshot.data!.items.length,
+          //           itemBuilder: (context, index) {
+          //             final foryouRef = carsRefs[index];
+          //             return FutureBuilder<String>(
+          //               future: foryouRef.getDownloadURL(),
+          //               builder: (context, snapshot) {
+          //                 if (snapshot.connectionState ==
+          //                     ConnectionState.waiting) {
+          //                   return _buildPlaceholder();
+          //                 } else if (snapshot.hasError) {
+          //                   return _buildErrorWidget();
+          //                 } else if (snapshot.hasData) {
+          //                   return _buildImageWidget(snapshot.data!);
+          //                 } else {
+          //                   return Container();
+          //                 }
+          //               },
+          //             );
+          //           },
+          //         );
+          //       } else {
+          //         return Center(child: Text('No images available'));
+          //       }
+          //     },
+          //   ),
+          // ),
           const Center(
             child: Text(
               "Abstract",
