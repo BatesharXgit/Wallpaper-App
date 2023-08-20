@@ -13,6 +13,8 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
     with AutomaticKeepAliveClientMixin<LiveWallpaperPage> {
   PageController _pageController = PageController();
   List<String> videoUrls = [
+    'gs://luca-ui.appspot.com/live/urus.mp4',
+    'gs://luca-ui.appspot.com/live/dodge.mp4',
     'gs://luca-ui.appspot.com/live/2.mp4',
     'gs://luca-ui.appspot.com/live/3.mp4',
     'gs://luca-ui.appspot.com/live/6.mp4',
