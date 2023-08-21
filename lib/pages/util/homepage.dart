@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:luca_ui/pages/util/parallax.dart';
 import 'package:luca_ui/pages/util/searchresult.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:luca_ui/pages/util/settings.dart';
@@ -17,7 +18,7 @@ import 'package:flutter/rendering.dart';
 final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 final FirebaseStorage storage = FirebaseStorage.instance;
 final Reference wallpaperRef = storage.ref().child('wallpaper');
-// final Reference carsRef = storage.ref().child('cars');
+final Reference carsRef = storage.ref().child('cars');
 List<Reference> wallpaperRefs = [];
 List<Reference> carsRefs = [];
 
@@ -108,15 +109,15 @@ class MyHomePageState extends State<MyHomePage>
 
   Future<void> shuffleImages() async {
     final ListResult result = await wallpaperRef.listAll();
-    // final ListResult carResult = await carsRef.listAll();
+    final ListResult carResult = await carsRef.listAll();
     final List<Reference> shuffledwallpaperrefs = result.items.toList()
       ..shuffle();
-    // final List<Reference> shuffledcarsrefs = carResult.items.toList()
-    //   ..shuffle();
+    final List<Reference> shuffledcarsrefs = carResult.items.toList()
+      ..shuffle();
     if (mounted) {
       setState(() {
         wallpaperRefs = shuffledwallpaperrefs;
-        // carsRefs = shuffledcarsrefs;
+        carsRefs = shuffledcarsrefs;
       });
     }
   }
@@ -189,31 +190,6 @@ class MyHomePageState extends State<MyHomePage>
     );
   }
 
-  Widget _buildGridView(List<Reference> items) {
-    return GridView.count(
-      childAspectRatio: 0.7,
-      crossAxisCount: 2,
-      children: items.map((item) => _buildGridItem(item)).toList(),
-    );
-  }
-
-  Widget _buildGridItem(Reference foryouRef) {
-    return FutureBuilder<String>(
-      future: foryouRef.getDownloadURL(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return _buildPlaceholder();
-        } else if (snapshot.hasError) {
-          return _buildErrorWidget();
-        } else if (snapshot.hasData) {
-          return _buildImageWidget(snapshot.data!);
-        } else {
-          return Container();
-        }
-      },
-    );
-  }
-
   Widget _buildTabViews() {
     return SizedBox(
       height: MediaQuery.of(context).size.height,
@@ -222,18 +198,47 @@ class MyHomePageState extends State<MyHomePage>
         children: [
           RefreshIndicator(
             backgroundColor: Colors.black,
-            color: const Color(0xB700FF00),
+            color: Color(0xB700FF00),
             onRefresh: refreshImages,
             child: FutureBuilder<ListResult>(
               future: wallpaperRef.listAll(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return _buildLoadingWidget();
+                  return _buildCircularIndicator();
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else if (snapshot.hasData &&
                     snapshot.data!.items.isNotEmpty) {
-                  return _buildGridView(snapshot.data!.items);
+                  if (wallpaperRefs.isEmpty) {
+                    return _buildCircularIndicator();
+                  }
+
+                  return GridView.builder(
+                    physics: BouncingScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.75,
+                    ),
+                    itemCount: snapshot.data!.items.length,
+                    itemBuilder: (context, index) {
+                      final foryou = wallpaperRefs[index];
+                      return FutureBuilder<String>(
+                        future: foryou.getDownloadURL(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return _buildPlaceholder();
+                          } else if (snapshot.hasError) {
+                            return _buildErrorWidget();
+                          } else if (snapshot.hasData) {
+                            return _buildImageWidget(snapshot.data!);
+                          } else {
+                            return Container();
+                          }
+                        },
+                      );
+                    },
+                  );
                 } else {
                   return Center(child: Text('No images available'));
                 }
@@ -256,70 +261,66 @@ class MyHomePageState extends State<MyHomePage>
 //======================================================================================================================================
 //=========================================================  CARS   Wallpaepr ==========================================================
 //======================================================================================================================================
-          const Center(
-            child: Text(
-              "Cars",
-              style: TextStyle(color: Colors.white),
+
+          RefreshIndicator(
+            backgroundColor: Colors.black,
+            color: Color(0xB700FF00),
+            onRefresh: refreshImages,
+            child: FutureBuilder<ListResult>(
+              future: carsRef.listAll(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return _buildCircularIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (snapshot.hasData &&
+                    snapshot.data!.items.isNotEmpty) {
+                  if (carsRefs.isEmpty) {
+                    return _buildCircularIndicator();
+                  }
+
+                  return GridView.builder(
+                    physics: BouncingScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.75,
+                    ),
+                    itemCount: snapshot.data!.items.length,
+                    itemBuilder: (context, index) {
+                      final foryouRef = carsRefs[index];
+                      return FutureBuilder<String>(
+                        future: foryouRef.getDownloadURL(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return _buildPlaceholder();
+                          } else if (snapshot.hasError) {
+                            return _buildErrorWidget();
+                          } else if (snapshot.hasData) {
+                            return _buildImageWidget(snapshot.data!);
+                          } else {
+                            return Container();
+                          }
+                        },
+                      );
+                    },
+                  );
+                } else {
+                  return Center(child: Text('No images available'));
+                }
+              },
             ),
           ),
-          // RefreshIndicator(
-          //   backgroundColor: Colors.black,
-          //   color: Color(0xB700FF00),
-          //   onRefresh: refreshImages,
-          //   child: FutureBuilder<ListResult>(
-          //     future: carsRef.listAll(),
-          //     builder: (context, snapshot) {
-          //       if (snapshot.connectionState == ConnectionState.waiting) {
-          //         return _buildCircularIndicator();
-          //       } else if (snapshot.hasError) {
-          //         return Text('Error: ${snapshot.error}');
-          //       } else if (snapshot.hasData &&
-          //           snapshot.data!.items.isNotEmpty) {
-          //         if (carsRefs.isEmpty) {
-          //           return _buildCircularIndicator();
-          //         }
-
-          //         return GridView.builder(
-          //           physics: BouncingScrollPhysics(),
-          //           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          //             crossAxisCount: 2,
-          //             childAspectRatio: 0.75,
-          //           ),
-          //           itemCount: snapshot.data!.items.length,
-          //           itemBuilder: (context, index) {
-          //             final foryouRef = carsRefs[index];
-          //             return FutureBuilder<String>(
-          //               future: foryouRef.getDownloadURL(),
-          //               builder: (context, snapshot) {
-          //                 if (snapshot.connectionState ==
-          //                     ConnectionState.waiting) {
-          //                   return _buildPlaceholder();
-          //                 } else if (snapshot.hasError) {
-          //                   return _buildErrorWidget();
-          //                 } else if (snapshot.hasData) {
-          //                   return _buildImageWidget(snapshot.data!);
-          //                 } else {
-          //                   return Container();
-          //                 }
-          //               },
-          //             );
-          //           },
-          //         );
-          //       } else {
-          //         return Center(child: Text('No images available'));
-          //       }
-          //     },
-          //   ),
-          // ),
           const Center(
             child: Text(
               "Abstract",
               style: TextStyle(color: Colors.white),
             ),
           ),
+
           const Center(
             child: Text(
-              "Nature",
+              "Fantasy",
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -559,17 +560,14 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                     top: MediaQuery.of(context).padding.top + 10, left: 10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_ios_new_outlined,
-                        color: Colors.white,
-                        size: 30,
-                      ),
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back_ios_new_outlined,
+                      color: Colors.white,
+                      size: 30,
                     ),
                   ),
                 ),
@@ -600,44 +598,40 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                             borderRadius: const BorderRadius.vertical(
                               top: Radius.circular(16.0),
                             ),
-                            child: BackdropFilter(
-                              filter:
-                                  ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  ListTile(
-                                    title: Text(
-                                      'Apply to Home Screen',
-                                      style: GoogleFonts.kanit(
-                                          color: Colors.white),
-                                    ),
-                                    onTap: () {
-                                      applyHomescreen(context);
-                                    },
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ListTile(
+                                  title: Text(
+                                    'Apply to Home Screen',
+                                    style:
+                                        GoogleFonts.kanit(color: Colors.white),
                                   ),
-                                  ListTile(
-                                    title: Text(
-                                      'Apply to Lock Screen',
-                                      style: GoogleFonts.kanit(
-                                          color: Colors.white),
-                                    ),
-                                    onTap: () {
-                                      applyLockscreen(context);
-                                    },
+                                  onTap: () {
+                                    applyHomescreen(context);
+                                  },
+                                ),
+                                ListTile(
+                                  title: Text(
+                                    'Apply to Lock Screen',
+                                    style:
+                                        GoogleFonts.kanit(color: Colors.white),
                                   ),
-                                  ListTile(
-                                    title: Text(
-                                      'Apply to Both',
-                                      style: GoogleFonts.kanit(
-                                          color: Colors.white),
-                                    ),
-                                    onTap: () {
-                                      applyBoth(context);
-                                    },
+                                  onTap: () {
+                                    applyLockscreen(context);
+                                  },
+                                ),
+                                ListTile(
+                                  title: Text(
+                                    'Apply to Both',
+                                    style:
+                                        GoogleFonts.kanit(color: Colors.white),
                                   ),
-                                ],
-                              ),
+                                  onTap: () {
+                                    applyBoth(context);
+                                  },
+                                ),
+                              ],
                             ),
                           ),
                         );
@@ -648,16 +642,13 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                       padding: const EdgeInsets.all(10.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(6),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 30.0),
-                          child: SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.05,
-                            child: Center(
-                              child: Text(
-                                'Apply Wallpaper',
-                                style: GoogleFonts.kanit(
-                                    color: Colors.white, fontSize: 22),
-                              ),
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          child: Center(
+                            child: Text(
+                              'Apply Wallpaper',
+                              style: GoogleFonts.kanit(
+                                  color: Colors.white, fontSize: 22),
                             ),
                           ),
                         ),
@@ -674,9 +665,9 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
 
 class LocationListItem extends StatelessWidget {
   LocationListItem({
-    super.key,
+    Key? key,
     required this.imageUrl,
-  });
+  }) : super(key: key);
 
   final String imageUrl;
 
@@ -695,187 +686,12 @@ class LocationListItem extends StatelessWidget {
         backgroundImageKey: _backgroundImageKey,
       ),
       children: [
-        Image.network(
-          height: 400,
-          imageUrl,
+        CachedNetworkImage(
+          imageUrl: imageUrl,
           key: _backgroundImageKey,
           fit: BoxFit.cover,
         ),
       ],
     );
-  }
-}
-
-class ParallaxFlowDelegate extends FlowDelegate {
-  ParallaxFlowDelegate({
-    required this.scrollable,
-    required this.listItemContext,
-    required this.backgroundImageKey,
-  }) : super(repaint: scrollable.position);
-
-  final ScrollableState scrollable;
-  final BuildContext listItemContext;
-  final GlobalKey backgroundImageKey;
-
-  @override
-  BoxConstraints getConstraintsForChild(int i, BoxConstraints constraints) {
-    return BoxConstraints.tightFor(
-      width: constraints.maxWidth,
-    );
-  }
-
-  @override
-  void paintChildren(FlowPaintingContext context) {
-    // Calculate the position of this list item within the viewport.
-    final scrollableBox = scrollable.context.findRenderObject() as RenderBox;
-    final listItemBox = listItemContext.findRenderObject() as RenderBox;
-    final listItemOffset = listItemBox.localToGlobal(
-        listItemBox.size.centerLeft(Offset.zero),
-        ancestor: scrollableBox);
-
-    // Determine the percent position of this list item within the
-    // scrollable area.
-    final viewportDimension = scrollable.position.viewportDimension;
-    final scrollFraction =
-        (listItemOffset.dy / viewportDimension).clamp(0.0, 1.0);
-
-    // Calculate the vertical alignment of the background
-    // based on the scroll percent.
-    final verticalAlignment = Alignment(0.0, scrollFraction * 2 - 1);
-
-    // Convert the background alignment into a pixel offset for
-    // painting purposes.
-    final backgroundSize =
-        (backgroundImageKey.currentContext!.findRenderObject() as RenderBox)
-            .size;
-    final listItemSize = context.size;
-    final childRect =
-        verticalAlignment.inscribe(backgroundSize, Offset.zero & listItemSize);
-
-    // Paint the background.
-    context.paintChild(
-      0,
-      transform:
-          Transform.translate(offset: Offset(0.0, childRect.top)).transform,
-    );
-  }
-
-  @override
-  bool shouldRepaint(ParallaxFlowDelegate oldDelegate) {
-    return scrollable != oldDelegate.scrollable ||
-        listItemContext != oldDelegate.listItemContext ||
-        backgroundImageKey != oldDelegate.backgroundImageKey;
-  }
-}
-
-class Parallax extends SingleChildRenderObjectWidget {
-  const Parallax({
-    super.key,
-    required Widget background,
-  }) : super(child: background);
-
-  @override
-  RenderObject createRenderObject(BuildContext context) {
-    return RenderParallax(scrollable: Scrollable.of(context));
-  }
-
-  @override
-  void updateRenderObject(
-      BuildContext context, covariant RenderParallax renderObject) {
-    renderObject.scrollable = Scrollable.of(context);
-  }
-}
-
-class ParallaxParentData extends ContainerBoxParentData<RenderBox> {}
-
-class RenderParallax extends RenderBox
-    with RenderObjectWithChildMixin<RenderBox>, RenderProxyBoxMixin {
-  RenderParallax({
-    required ScrollableState scrollable,
-  }) : _scrollable = scrollable;
-
-  ScrollableState _scrollable;
-
-  ScrollableState get scrollable => _scrollable;
-
-  set scrollable(ScrollableState value) {
-    if (value != _scrollable) {
-      if (attached) {
-        _scrollable.position.removeListener(markNeedsLayout);
-      }
-      _scrollable = value;
-      if (attached) {
-        _scrollable.position.addListener(markNeedsLayout);
-      }
-    }
-  }
-
-  @override
-  void attach(covariant PipelineOwner owner) {
-    super.attach(owner);
-    _scrollable.position.addListener(markNeedsLayout);
-  }
-
-  @override
-  void detach() {
-    _scrollable.position.removeListener(markNeedsLayout);
-    super.detach();
-  }
-
-  @override
-  void setupParentData(covariant RenderObject child) {
-    if (child.parentData is! ParallaxParentData) {
-      child.parentData = ParallaxParentData();
-    }
-  }
-
-  @override
-  void performLayout() {
-    size = constraints.biggest;
-
-    // Force the background to take up all available width
-    // and then scale its height based on the image's aspect ratio.
-    final background = child!;
-    final backgroundImageConstraints =
-        BoxConstraints.tightFor(width: size.width);
-    background.layout(backgroundImageConstraints, parentUsesSize: true);
-
-    // Set the background's local offset, which is zero.
-    (background.parentData as ParallaxParentData).offset = Offset.zero;
-  }
-
-  @override
-  void paint(PaintingContext context, Offset offset) {
-    // Get the size of the scrollable area.
-    final viewportDimension = scrollable.position.viewportDimension;
-
-    // Calculate the global position of this list item.
-    final scrollableBox = scrollable.context.findRenderObject() as RenderBox;
-    final backgroundOffset =
-        localToGlobal(size.centerLeft(Offset.zero), ancestor: scrollableBox);
-
-    // Determine the percent position of this list item within the
-    // scrollable area.
-    final scrollFraction =
-        (backgroundOffset.dy / viewportDimension).clamp(0.0, 1.0);
-
-    // Calculate the vertical alignment of the background
-    // based on the scroll percent.
-    final verticalAlignment = Alignment(0.0, scrollFraction * 2 - 1);
-
-    // Convert the background alignment into a pixel offset for
-    // painting purposes.
-    final background = child!;
-    final backgroundSize = background.size;
-    final listItemSize = size;
-    final childRect =
-        verticalAlignment.inscribe(backgroundSize, Offset.zero & listItemSize);
-
-    // Paint the background.
-    context.paintChild(
-        background,
-        (background.parentData as ParallaxParentData).offset +
-            offset +
-            Offset(0.0, childRect.top));
   }
 }
