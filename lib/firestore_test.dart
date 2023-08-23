@@ -1,78 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
-class Wallpaper {
-  final String imageUrl;
-  final String imageName;
-
-  Wallpaper({required this.imageUrl, required this.imageName});
-}
-
-class FireStoreTest extends StatefulWidget {
-  const FireStoreTest({Key? key}) : super(key: key);
-
-  @override
-  State<FireStoreTest> createState() => _FireStoreTestState();
-}
-
-class _FireStoreTestState extends State<FireStoreTest> {
-  Future<List<Wallpaper>> fetchWallpapers() async {
-    final DocumentSnapshot<Map<String, dynamic>> wallpapersDoc =
-        await FirebaseFirestore.instance
-            .collection('odin')
-            .doc('wallpapers')
-            .get();
-    print('Fetched data: ${wallpapersDoc.data()}');
-
-    final List<dynamic>? wallpaperMaps =
-        wallpapersDoc.data()?['wallpapers'] as List<dynamic>?;
-
-    if (wallpaperMaps == null) {
-      return [];
-    }
-
-    final List<Wallpaper> wallpapers = wallpaperMaps
-        .map((map) => Wallpaper(
-            imageUrl: map['imageUrl'] as String,
-            imageName: map['imageName'] as String))
-        .toList();
-
-    return wallpapers;
-  }
-
+class WallpaperGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Wallpaper App")),
-      body: FutureBuilder<List<Wallpaper>>(
-        future: fetchWallpapers(),
+      appBar: AppBar(
+        title: Text('Wallpapers'),
+      ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('odin').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            print('Error fetching data: ${snapshot.error}');
-            return Center(child: Text('Error fetching data.'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No wallpapers available.'));
-          } else {
-            List<Wallpaper> wallpapers = snapshot.data!;
-
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-              ),
-              itemCount: wallpapers.length,
-              itemBuilder: (context, index) {
-                Wallpaper wallpaper = wallpapers[index];
-                return Column(
-                  children: [
-                    Image.network(wallpaper.imageUrl),
-                    Text(wallpaper.imageName),
-                  ],
-                );
-              },
+            return Center(
+              child: CircularProgressIndicator(),
             );
           }
+
+          if (!snapshot.hasData) {
+            return Center(
+              child: Text('No wallpapers found.'),
+            );
+          }
+
+          final wallpapers = snapshot.data!.docs;
+
+          return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10.0,
+              crossAxisSpacing: 10.0,
+            ),
+            itemCount: wallpapers.length,
+            itemBuilder: (BuildContext context, int index) {
+              final data = wallpapers[index].data() as Map<String, dynamic>;
+              final imageName = data['imageName'] ?? 'Default Name';
+              final imageUrl = data['imageUrl'] ??
+                  'https://i.pinimg.com/564x/db/cf/7e/dbcf7e18e604987d019981970237774b.jpg';
+
+              return GestureDetector(
+                onTap: () {
+                  // Handle image tap event
+                },
+                child: GridTile(
+                  child: CachedNetworkImage(
+                    imageUrl: imageUrl,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                  footer: GridTileBar(
+                    backgroundColor: Colors.black45,
+                    title: Text(imageName),
+                  ),
+                ),
+              );
+            },
+          );
         },
       ),
     );

@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     LiveWallCategory(),
     // FavouritePage(),
     // LiveWallpaperPage(),
-    FireStoreTest(),
+    WallpaperGrid(),
   ];
 
   @override
