@@ -194,19 +194,19 @@ class _SettingsPageState extends State<SettingsPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Icon(
-                          Icons.share,
+                          Icons.facebook_outlined,
                           color: Colors.white,
                         ),
                         Icon(
-                          Icons.share,
+                          Icons.telegram_outlined,
                           color: Colors.white,
                         ),
                         Icon(
-                          Icons.share,
+                          Icons.web_stories_outlined,
                           color: Colors.white,
                         ),
                         Icon(
-                          Icons.share,
+                          Icons.rate_review_outlined,
                           color: Colors.white,
                         ),
                       ],
