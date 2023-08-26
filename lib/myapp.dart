@@ -2,6 +2,7 @@ import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luca_ui/firestore_test.dart';
+import 'package:luca_ui/live_grid_test.dart';
 import 'package:luca_ui/pages/util/homepage.dart';
 import 'package:luca_ui/pages/util/live_category.dart';
 import 'package:luca_ui/pages/util/wallpapers.dart';
@@ -24,10 +25,10 @@ class _HomePageState extends State<HomePage> {
     const Category(
       title: 'Category',
     ),
-    LiveWallCategory(),
+    const LiveWallCategory(),
     // FavouritePage(),
     // LiveWallpaperPage(),
-    WallpaperGrid(),
+    VideoGridScreen(),
   ];
 
   @override
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: Container(
           height: 72,
           child: FlashyTabBar(
-            backgroundColor: Color(0xFF131321),
+            backgroundColor: const Color(0xFF131321),
             animationCurve: Curves.linear,
             selectedIndex: _selectedIndex,
             iconSize: 28,
@@ -51,26 +52,26 @@ class _HomePageState extends State<HomePage> {
               FlashyTabBarItem(
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
-                icon: Icon(Icons.home_outlined),
-                title: Text('Home'),
+                icon: const Icon(Icons.home_outlined),
+                title: const Text('Home'),
               ),
               FlashyTabBarItem(
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
-                icon: Icon(Icons.wallpaper_outlined),
-                title: Text('Wallpapers'),
+                icon: const Icon(Icons.wallpaper_outlined),
+                title: const Text('Wallpapers'),
               ),
               FlashyTabBarItem(
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
-                icon: Icon(Icons.video_collection_outlined),
-                title: Text('Live'),
+                icon: const Icon(Icons.video_collection_outlined),
+                title: const Text('Live'),
               ),
               FlashyTabBarItem(
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
-                icon: Icon(Icons.favorite_outline),
-                title: Text('Favourites'),
+                icon: const Icon(Icons.favorite_outline),
+                title: const Text('Favourites'),
               ),
             ],
           ),
