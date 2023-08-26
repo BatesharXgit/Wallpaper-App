@@ -133,7 +133,6 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
         children: [
           GestureDetector(
             child: PageView.builder(
-              controller: _pageController,
               physics: BouncingScrollPhysics(),
               scrollDirection: Axis.vertical,
               padEnds: false,
@@ -177,6 +176,7 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
           Align(
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
               onPressed: () async {
                 if (_videoInitialized) {
                   await applyLiveWallpaper(videoUrls[_currentVideoIndex]);
@@ -186,7 +186,10 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
                   });
                 }
               },
-              child: Text('Apply wallpaper'),
+              child: Text(
+                'Apply wallpaper',
+                style: (TextStyle(color: Colors.black)),
+              ),
             ),
           ),
         ],

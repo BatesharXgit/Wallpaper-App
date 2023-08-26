@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:luca_ui/pages/util/live.dart';
 
 class LiveWallCategory extends StatefulWidget {
   const LiveWallCategory({super.key});
@@ -83,15 +85,18 @@ class _LiveWallCategoryState extends State<LiveWallCategory> {
                           child: FadeInAnimation(
                             child: Stack(
                               children: [
-                                Container(
-                                  height: 250,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        const Color.fromARGB(255, 24, 24, 24),
-                                    borderRadius: BorderRadius.circular(6.0),
-                                    image: DecorationImage(
-                                        image: NetworkImage(images[index]),
-                                        fit: BoxFit.cover),
+                                GestureDetector(
+                                  onTap: () => Get.to(LiveWallpaperPage()),
+                                  child: Container(
+                                    height: 250,
+                                    decoration: BoxDecoration(
+                                      color:
+                                          const Color.fromARGB(255, 24, 24, 24),
+                                      borderRadius: BorderRadius.circular(6.0),
+                                      image: DecorationImage(
+                                          image: NetworkImage(images[index]),
+                                          fit: BoxFit.cover),
+                                    ),
                                   ),
                                 ),
                                 Container(
