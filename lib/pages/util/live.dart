@@ -12,17 +12,7 @@ class LiveWallpaperPage extends StatefulWidget {
 class _LiveWallpaperPageState extends State<LiveWallpaperPage>
     with AutomaticKeepAliveClientMixin<LiveWallpaperPage> {
   PageController _pageController = PageController();
-  List<String> videoUrls = [
-    'gs://luca-ui.appspot.com/live/urus.mp4',
-    'gs://luca-ui.appspot.com/live/dodge.mp4',
-    'gs://luca-ui.appspot.com/live/2.mp4',
-    'gs://luca-ui.appspot.com/live/3.mp4',
-    'gs://luca-ui.appspot.com/live/6.mp4',
-    'gs://luca-ui.appspot.com/live/7.mp4',
-    'gs://luca-ui.appspot.com/live/8.mp4',
-    'gs://luca-ui.appspot.com/live/be67f2ca8a93e96c88ed9415d0f229c6.mp4',
-    'gs://luca-ui.appspot.com/live/e114fef3574a6a25f713d14bf8b72f73.mp4',
-  ];
+  List<String> videoUrls = [];
   int _currentVideoIndex = 0;
   VideoPlayerController? _controller;
   bool _isPlaying = true;
@@ -31,8 +21,19 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
   @override
   void initState() {
     super.initState();
-    _initializeVideoController(_currentVideoIndex);
+    _fetchVideoUrls();
     _pageController.addListener(_onPageChange);
+  }
+
+  Future<void> _fetchVideoUrls() async {
+    final storageRef = FirebaseStorage.instance.ref('live');
+    final ListResult result = await storageRef.listAll();
+
+    setState(() {
+      videoUrls = result.items.map((item) => item.fullPath).toList();
+    });
+
+    _initializeVideoController(_currentVideoIndex);
   }
 
   void _initializeVideoController(int index) async {
@@ -68,7 +69,7 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
   }
 
   Future<String> _getVideoUrl(int index) async {
-    final ref = FirebaseStorage.instance.refFromURL(videoUrls[index]);
+    final ref = FirebaseStorage.instance.ref(videoUrls[index]);
     final url = await ref.getDownloadURL();
     return url;
   }
@@ -107,7 +108,6 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
   Future<void> applyLiveWallpaper(String videoUrl) async {
     String result;
     try {
-      // Convert Firebase URL to HTTP URL
       final httpUrl = await _getVideoUrl(_currentVideoIndex);
 
       var file = await DefaultCacheManager().getSingleFile(httpUrl);
@@ -136,15 +136,27 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
               physics: BouncingScrollPhysics(),
               scrollDirection: Axis.vertical,
               padEnds: false,
+              controller: _pageController,
               itemCount: videoUrls.length,
               itemBuilder: (context, index) {
                 return Center(
-                  child: _videoInitialized
+                  child: _videoInitialized && _controller != null
                       ? AspectRatio(
                           aspectRatio: _controller!.value.aspectRatio,
                           child: Visibility(
                             visible: index == _currentVideoIndex,
-                            child: VideoPlayer(_controller!),
+                            child: AnimatedSwitcher(
+                              duration: Duration(milliseconds: 500),
+                              child: _controller!.value.isInitialized
+                                  ? VideoPlayer(_controller!)
+                                  : Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        VideoPlayer(_controller!),
+                                        CircularProgressIndicator(),
+                                      ],
+                                    ),
+                            ),
                           ),
                         )
                       : CircularProgressIndicator(),
@@ -188,7 +200,7 @@ class _LiveWallpaperPageState extends State<LiveWallpaperPage>
               },
               child: Text(
                 'Apply wallpaper',
-                style: (TextStyle(color: Colors.black)),
+                style: TextStyle(color: Colors.black),
               ),
             ),
           ),
