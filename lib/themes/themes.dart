@@ -27,6 +27,10 @@ ThemeData lightTheme = ThemeData(
     color: Color(0xFF131321),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    selectedIconTheme: IconThemeData(color: Colors.white),
+    unselectedIconTheme: IconThemeData(
+      color: Color(0xFF131321),
+    ),
     backgroundColor: Colors.white,
     selectedItemColor: Color(0xFF131321),
     unselectedItemColor: Colors.grey,
