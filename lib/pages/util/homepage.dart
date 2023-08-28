@@ -40,39 +40,49 @@ Widget _buildAppBar() {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        IconButton(
-          icon: const Icon(
-            Icons.settings_outlined,
-            color: Colors.white,
-            size: 30,
-          ),
-          onPressed: () =>
-              Get.to(SettingsPage(), transition: Transition.fadeIn),
+        Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.settings_outlined,
+                size: 30,
+              ),
+              color: Theme.of(context).iconTheme.color,
+              onPressed: () =>
+                  Get.to(SettingsPage(), transition: Transition.fadeIn),
+            );
+          },
         ),
-        Expanded(
-          child: Center(
-            child: Text(
-              'LUCA',
-              style: TextStyle(
-                fontFamily: 'Anurati',
-                color: Colors.white,
-                fontSize: 28,
+        Builder(builder: (context) {
+          return Expanded(
+            child: Center(
+              child: Text(
+                'LUCA',
+                style: TextStyle(
+                  fontFamily: 'Anurati',
+                  color: Theme.of(context).iconTheme.color,
+                  fontSize: 30,
+                ),
               ),
             ),
-          ),
-        ),
-        GestureDetector(
-          onTap: () => Get.to(
-            SearchWallpaper(
-              title: '',
-            ),
-            transition: Transition.fadeIn,
-          ),
-          child: Icon(
-            Icons.search_outlined,
-            color: Colors.white,
-            size: 30,
-          ),
+          );
+        }),
+        Builder(
+          builder: (BuildContext context) {
+            return GestureDetector(
+              onTap: () => Get.to(
+                SearchWallpaper(
+                  title: '',
+                ),
+                transition: Transition.fadeIn,
+              ),
+              child: Icon(
+                Icons.search_outlined,
+                color: Theme.of(context).iconTheme.color,
+                size: 30,
+              ),
+            );
+          },
         ),
       ],
     ),
@@ -133,8 +143,8 @@ class MyHomePageState extends State<MyHomePage>
         Scaffold(
           key: _scaffoldKey,
           appBar: null,
-
-          backgroundColor: Color(0xFF131321),
+          backgroundColor: Theme.of(context).colorScheme.background,
+          // backgroundColor: Color(0xFF131321),
           // backgroundColor: Colors.black,
           body: SafeArea(
             child: Column(
@@ -163,8 +173,8 @@ class MyHomePageState extends State<MyHomePage>
           border:
               Border(bottom: BorderSide(color: Colors.transparent, width: 0)),
         ),
-        labelColor: Colors.white,
-        unselectedLabelColor: Colors.grey,
+        labelColor: Theme.of(context).colorScheme.primary,
+        unselectedLabelColor: Theme.of(context).colorScheme.secondary,
         isScrollable: true,
         labelPadding: const EdgeInsets.symmetric(horizontal: 10),
         tabs: data.map((tab) {

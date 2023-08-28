@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:luca_ui/pages/util/homepage.dart';
 import 'package:luca_ui/pages/util/live_category.dart';
 import 'package:luca_ui/pages/util/wallpapers.dart';
-
+import 'package:luca_ui/themes/themes.dart';
 import 'pages/util/live.dart';
 
 class HomePage extends StatefulWidget {
@@ -34,6 +34,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: lightTheme,
+      darkTheme: darkTheme,
       title: 'Luca',
       home: Scaffold(
         body: _pages[_selectedIndex],

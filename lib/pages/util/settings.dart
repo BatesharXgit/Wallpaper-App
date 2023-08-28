@@ -25,17 +25,23 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Theme.of(context).colorScheme.background;
+    Color primaryColor = Theme.of(context).colorScheme.primary;
+    Color secondaryColor = Theme.of(context).colorScheme.secondary;
+    Color tertiaryColor = Theme.of(context).colorScheme.tertiary;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
         title: Text(
           'Settings',
-          style: GoogleFonts.orbitron(color: Colors.white),
+          style: GoogleFonts.orbitron(
+              color: Theme.of(context).colorScheme.primary),
         ),
         elevation: 0,
-        backgroundColor: Color(0xFF131321),
+        backgroundColor: backgroundColor,
       ),
-      backgroundColor: Color(0xFF131321),
+      backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: AnimationLimiter(
@@ -55,13 +61,13 @@ class _SettingsPageState extends State<SettingsPage> {
                     'LUCA',
                     style: TextStyle(
                       fontFamily: 'Anurati',
-                      color: Colors.white,
+                      color: primaryColor,
                       fontSize: 40,
                     ),
                   ),
                   Text(
                     'Harmonize Your Experience!',
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: secondaryColor),
                   ),
                   SizedBox(height: 20),
                   Container(
@@ -69,7 +75,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     width: 300,
                     height: 250,
                     decoration: BoxDecoration(
-                      color: Color(0xFF1E1E2A),
+                      color: tertiaryColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Column(
@@ -80,9 +86,9 @@ class _SettingsPageState extends State<SettingsPage> {
                           leading: const Icon(Icons.info_outline),
                           title: const Text('About'),
                           subtitle: Text('Find out more about Luca',
-                              style: TextStyle(color: Colors.grey)),
-                          iconColor: Colors.white,
-                          textColor: Colors.white,
+                              style: TextStyle(color: secondaryColor)),
+                          iconColor: primaryColor,
+                          textColor: primaryColor,
                           onTap: () {
                             _showAboutAppBottomSheet(context);
                           },
@@ -92,8 +98,8 @@ class _SettingsPageState extends State<SettingsPage> {
                           title: const Text('Changelog'),
                           subtitle: Text('Recent improvements and fixes',
                               style: TextStyle(color: Colors.grey)),
-                          iconColor: Colors.white,
-                          textColor: Colors.white,
+                          iconColor: primaryColor,
+                          textColor: primaryColor,
                           onTap: () {
                             _showChangelogBottomSheet(context);
                           },
@@ -103,8 +109,8 @@ class _SettingsPageState extends State<SettingsPage> {
                           title: const Text('Clear Cache'),
                           subtitle: Text('Clear all cached data',
                               style: TextStyle(color: Colors.grey)),
-                          iconColor: Colors.white,
-                          textColor: Colors.white,
+                          iconColor: primaryColor,
+                          textColor: primaryColor,
                           onTap: () {
                             _clearCache(
                                 context); // Call the function to clear cache and show snackbar
@@ -118,7 +124,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     width: 300,
                     height: 150,
                     decoration: BoxDecoration(
-                      color: Color(0xFF1E1E2A),
+                      color: tertiaryColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Column(
@@ -129,8 +135,8 @@ class _SettingsPageState extends State<SettingsPage> {
                           title: const Text('Liscenses'),
                           subtitle: Text('View open source liscenses',
                               style: TextStyle(color: Colors.grey)),
-                          iconColor: Colors.white,
-                          textColor: Colors.white,
+                          iconColor: primaryColor,
+                          textColor: primaryColor,
                           onTap: () {
                             showLicensePage(
                                 context: context); // Show the licenses page
@@ -141,8 +147,8 @@ class _SettingsPageState extends State<SettingsPage> {
                           title: const Text('Privacy Policy'),
                           subtitle: Text('Luca privacy policy',
                               style: TextStyle(color: Colors.grey)),
-                          iconColor: Colors.white,
-                          textColor: Colors.white,
+                          iconColor: primaryColor,
+                          textColor: primaryColor,
                           onTap: () {
                             // Handle App Information menu item tap
                           },
@@ -155,7 +161,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     width: 300,
                     height: 150,
                     decoration: BoxDecoration(
-                      color: Color(0xFF1E1E2A),
+                      color: tertiaryColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Column(
@@ -166,8 +172,8 @@ class _SettingsPageState extends State<SettingsPage> {
                           title: const Text('Logout'),
                           subtitle: Text('Logout of your account',
                               style: TextStyle(color: Colors.grey)),
-                          iconColor: Colors.white,
-                          textColor: Colors.white,
+                          iconColor: primaryColor,
+                          textColor: primaryColor,
                           onTap: () {
                             // Handle Share and Feedback menu item tap
                           },
@@ -178,7 +184,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           subtitle: Text('Warning! This cannot be undone',
                               style: TextStyle(color: Colors.grey)),
                           iconColor: Colors.red,
-                          textColor: Colors.white,
+                          textColor: primaryColor,
                           onTap: () {
                             // Handle App Information menu item tap
                           },
@@ -195,19 +201,19 @@ class _SettingsPageState extends State<SettingsPage> {
                       children: [
                         Icon(
                           Icons.facebook_outlined,
-                          color: Colors.white,
+                          color: primaryColor,
                         ),
                         Icon(
                           Icons.telegram_outlined,
-                          color: Colors.white,
+                          color: primaryColor,
                         ),
                         Icon(
                           Icons.web_stories_outlined,
-                          color: Colors.white,
+                          color: primaryColor,
                         ),
                         Icon(
                           Icons.rate_review_outlined,
-                          color: Colors.white,
+                          color: primaryColor,
                         ),
                       ],
                     ),
