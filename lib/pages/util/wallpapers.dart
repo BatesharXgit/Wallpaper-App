@@ -65,9 +65,13 @@ class CategoryState extends State<Category> {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Theme.of(context).colorScheme.background;
+    Color primaryColor = Theme.of(context).colorScheme.primary;
+    Color secondaryColor = Theme.of(context).colorScheme.secondary;
+    Color tertiaryColor = Theme.of(context).colorScheme.tertiary;
     return Scaffold(
       appBar: null,
-      backgroundColor: Color(0xFF131321),
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: AnimationLimiter(
           child: Column(
@@ -81,14 +85,17 @@ class CategoryState extends State<Category> {
                   Text(
                     'Category',
                     style: GoogleFonts.orbitron(
-                      color: Colors.white,
+                      color: primaryColor,
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-              const Divider(thickness: 2),
+              const Divider(
+                thickness: 2,
+                color: Colors.transparent,
+              ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.20,
                 child: ListView.builder(
@@ -159,14 +166,17 @@ class CategoryState extends State<Category> {
                   Text(
                     'Recommend',
                     style: GoogleFonts.orbitron(
-                      color: Colors.white,
+                      color: primaryColor,
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-              const Divider(thickness: 2),
+              const Divider(
+                thickness: 2,
+                color: Colors.transparent,
+              ),
               Expanded(
                 child: ListView.builder(
                     itemCount: categories.length,
@@ -197,14 +207,14 @@ class CategoryState extends State<Category> {
                                           color: Colors.transparent,
                                         ),
                                         borderRadius: BorderRadius.circular(6),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: const Color(0xB700FF00)
-                                                .withOpacity(0.1),
-                                            blurRadius: 6,
-                                            offset: const Offset(1, 2),
-                                          ),
-                                        ],
+                                        // boxShadow: [
+                                        //   BoxShadow(
+                                        //     color: const Color(0xB700FF00)
+                                        //         .withOpacity(0.1),
+                                        //     blurRadius: 6,
+                                        //     offset: const Offset(1, 2),
+                                        //   ),
+                                        // ],
                                       ),
                                     ),
                                     // onTap: () => _navigateToCategoryPage(category1),
