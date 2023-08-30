@@ -24,28 +24,6 @@ class CategoryState extends State<Category> {
     'Fantasy',
   ];
 
-  final List<String> images = [
-    'assets/images/car.png', // nature
-    'assets/images/car.png', // abstract
-    'assets/images/car.png', //cars
-    'assets/images/car.png', // Illustrations
-    'assets/images/car.png', //animals
-    'assets/images/car.png', // Sci-Fi
-    'assets/images/car.png', //Animation
-    'assets/images/car.png', //Games
-  ];
-
-  final List<String> numbers = [
-    'Nature',
-    'Abstract',
-    'Cars',
-    'Illustrations',
-    'Animals',
-    'Sci-Fi',
-    'Animation',
-    'Games',
-  ];
-
   final List<String> recommendImages = [
     'https://i.pinimg.com/236x/fb/bc/86/fbbc8631cb2b794a97dcc055332bf62c.jpg',
     'https://i.pinimg.com/236x/ea/e3/2e/eae32e059a98fa742366e91876d4094f.jpg',
@@ -84,87 +62,6 @@ class CategoryState extends State<Category> {
                   const SizedBox(width: 20),
                   Text(
                     'Category',
-                    style: GoogleFonts.orbitron(
-                      color: primaryColor,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              const Divider(
-                thickness: 2,
-                color: Colors.transparent,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.20,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: images.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: AnimationConfiguration.staggeredList(
-                        position: index,
-                        duration: const Duration(milliseconds: 375),
-                        child: SlideAnimation(
-                          verticalOffset: 50.0,
-                          child: FadeInAnimation(
-                            child: Stack(
-                              children: [
-                                Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.50,
-                                  decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                    border: Border.all(
-                                        width: 0.2, color: Colors.transparent),
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 0,
-                                  child: Container(
-                                    height: 100,
-                                    width: MediaQuery.of(context).size.width *
-                                        0.55,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          const Color.fromARGB(255, 24, 24, 24),
-                                      borderRadius: BorderRadius.circular(6.0),
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: -30,
-                                  left: 10,
-                                  right: 10,
-                                  child: Image.asset(images[index]),
-                                ),
-                                Positioned(
-                                  bottom: 10,
-                                  left: 10,
-                                  right: 10,
-                                  child: Text(
-                                    numbers[index],
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(height: 15),
-              Row(
-                children: [
-                  const SizedBox(width: 20),
-                  Text(
-                    'Recommend',
                     style: GoogleFonts.orbitron(
                       color: primaryColor,
                       fontSize: 22,
