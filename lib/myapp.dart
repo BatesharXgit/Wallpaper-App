@@ -40,41 +40,44 @@ class _HomePageState extends State<HomePage> {
       title: 'Luca',
       home: Scaffold(
         body: _pages[_selectedIndex],
-        bottomNavigationBar: FlashyTabBar(
-          backgroundColor: const Color(0xFF131321),
-          animationCurve: Curves.linear,
-          selectedIndex: _selectedIndex,
-          iconSize: 28,
-          // showElevation: false,
-          onItemSelected: (index) => setState(() {
-            _selectedIndex = index;
-          }),
-          items: [
-            FlashyTabBarItem(
-              activeColor: Colors.white,
-              inactiveColor: Colors.grey,
-              icon: const Icon(Icons.home_outlined),
-              title: const Text('Home'),
-            ),
-            FlashyTabBarItem(
-              activeColor: Colors.white,
-              inactiveColor: Colors.grey,
-              icon: const Icon(Icons.wallpaper_outlined),
-              title: const Text('Wallpapers'),
-            ),
-            FlashyTabBarItem(
-              activeColor: Colors.white,
-              inactiveColor: Colors.grey,
-              icon: const Icon(Icons.video_collection_outlined),
-              title: const Text('Live'),
-            ),
-            FlashyTabBarItem(
-              activeColor: Colors.white,
-              inactiveColor: Colors.grey,
-              icon: const Icon(Icons.favorite_outline),
-              title: const Text('Favourites'),
-            ),
-          ],
+        bottomNavigationBar: SizedBox(
+          height: 62,
+          child: FlashyTabBar(
+            backgroundColor: const Color(0xFF131321),
+            animationCurve: Curves.linear,
+            selectedIndex: _selectedIndex,
+            iconSize: 22,
+            // showElevation: false,
+            onItemSelected: (index) => setState(() {
+              _selectedIndex = index;
+            }),
+            items: [
+              FlashyTabBarItem(
+                activeColor: Colors.white,
+                inactiveColor: Colors.grey,
+                icon: const Icon(Icons.home_outlined),
+                title: const Text('Home'),
+              ),
+              FlashyTabBarItem(
+                activeColor: Colors.white,
+                inactiveColor: Colors.grey,
+                icon: const Icon(Icons.wallpaper_outlined),
+                title: const Text('Wallpapers'),
+              ),
+              FlashyTabBarItem(
+                activeColor: Colors.white,
+                inactiveColor: Colors.grey,
+                icon: const Icon(Icons.video_collection_outlined),
+                title: const Text('Live'),
+              ),
+              FlashyTabBarItem(
+                activeColor: Colors.white,
+                inactiveColor: Colors.grey,
+                icon: const Icon(Icons.favorite_outline),
+                title: const Text('Favourites'),
+              ),
+            ],
+          ),
         ),
       ),
     );

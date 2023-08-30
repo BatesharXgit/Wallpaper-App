@@ -352,7 +352,7 @@ class MyHomePageState extends State<MyHomePage>
       child: Hero(
         tag: imageUrl,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+          padding: const EdgeInsets.all(8.0),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: LocationListItem(

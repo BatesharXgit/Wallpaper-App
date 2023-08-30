@@ -32,8 +32,7 @@ dependencies:
   firebase_auth: ^4.7.2
   google_sign_in: ^6.1.4
   provider: ^6.0.5
-  flutter_ffmpeg: ^0.4.2
-  video_thumbnail: ^0.5.3
+  chewie: ^1.7.0
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart'; // Add this line
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -12,13 +12,13 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   void _clearCache(BuildContext context) async {
-    await DefaultCacheManager().emptyCache(); // Clear the cache
+    await DefaultCacheManager().emptyCache();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Color(0xFF1E1E2A),
         content: Text('Cache cleared successfully 😊',
             style: GoogleFonts.kanit(color: Colors.white)),
-        duration: Duration(seconds: 3), // Adjust the duration as needed
+        duration: Duration(seconds: 3),
       ),
     );
   }
