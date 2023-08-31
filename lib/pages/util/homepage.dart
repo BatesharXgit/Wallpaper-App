@@ -15,81 +15,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:luca_ui/pages/util/settings.dart';
 import 'package:flutter/rendering.dart';
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 final FirebaseStorage storage = FirebaseStorage.instance;
 final Reference wallpaperRef = storage.ref().child('wallpaper');
 final Reference abstractRef = storage.ref().child('abstract');
 final Reference carsRef = storage.ref().child('cars');
-List<Reference> wallpaperRefs = [];
-List<Reference> carsRefs = [];
-List<Reference> abstractRefs = [];
-
-final List<String> data = [
-  "For You",
-  "AI",
-  "Illustration",
-  "Cars",
-  "Abstract",
-  "Fantasy",
-];
-
-int index = 0;
-
-Widget _buildAppBar() {
-  return Padding(
-    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(
-                Icons.settings_outlined,
-                size: 30,
-              ),
-              color: Theme.of(context).iconTheme.color,
-              onPressed: () =>
-                  Get.to(SettingsPage(), transition: Transition.fadeIn),
-            );
-          },
-        ),
-        Builder(builder: (context) {
-          return Expanded(
-            child: Center(
-              child: Text(
-                'LUCA',
-                style: TextStyle(
-                  fontFamily: 'Anurati',
-                  color: Theme.of(context).iconTheme.color,
-                  fontSize: 30,
-                ),
-              ),
-            ),
-          );
-        }),
-        Builder(
-          builder: (BuildContext context) {
-            return GestureDetector(
-              onTap: () => Get.to(
-                SearchWallpaper(
-                  title: '',
-                ),
-                transition: Transition.fadeIn,
-              ),
-              child: Icon(
-                Icons.search_outlined,
-                color: Theme.of(context).iconTheme.color,
-                size: 30,
-              ),
-            );
-          },
-        ),
-      ],
-    ),
-  );
-}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -104,13 +33,27 @@ class MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
-  final Set<String> imageUrls = {};
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  List<Reference> wallpaperRefs = [];
+  List<Reference> carsRefs = [];
+  List<Reference> abstractRefs = [];
+
+  int index = 0;
+  final List<String> data = [
+    "For You",
+    "AI",
+    "Illustration",
+    "Cars",
+    "Abstract",
+    "Fantasy",
+  ];
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: data.length, vsync: this);
-    shuffleImages();
+    LoadImages();
   }
 
   @override
@@ -119,19 +62,15 @@ class MyHomePageState extends State<MyHomePage>
     super.dispose();
   }
 
-  Future<void> shuffleImages() async {
+  Future<void> LoadImages() async {
     final ListResult result = await wallpaperRef.listAll();
     final ListResult carResult = await carsRef.listAll();
-    final ListResult abstractResult = await carsRef.listAll();
-    final List<Reference> wallpaperRefs = result.items.toList();
-    final List<Reference> abstractRefs = abstractResult.items.toList();
-    final List<Reference> carsRefs = carResult.items.toList();
+    final ListResult abstractResult = await abstractRef.listAll();
+    wallpaperRefs = result.items.toList();
+    carsRefs = carResult.items.toList();
+    abstractRefs = abstractResult.items.toList();
     if (mounted) {
-      setState(() {
-        wallpaperRefs;
-        carsRefs;
-        abstractRefs;
-      });
+      setState(() {});
     }
   }
 
@@ -158,6 +97,62 @@ class MyHomePageState extends State<MyHomePage>
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildAppBar() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(
+                  Icons.settings_outlined,
+                  size: 30,
+                ),
+                color: Theme.of(context).iconTheme.color,
+                onPressed: () =>
+                    Get.to(SettingsPage(), transition: Transition.fadeIn),
+              );
+            },
+          ),
+          Builder(builder: (context) {
+            return Expanded(
+              child: Center(
+                child: Text(
+                  'LUCA',
+                  style: TextStyle(
+                    fontFamily: 'Anurati',
+                    color: Theme.of(context).iconTheme.color,
+                    fontSize: 30,
+                  ),
+                ),
+              ),
+            );
+          }),
+          Builder(
+            builder: (BuildContext context) {
+              return GestureDetector(
+                onTap: () => Get.to(
+                  SearchWallpaper(
+                    title: '',
+                  ),
+                  transition: Transition.fadeIn,
+                ),
+                child: Icon(
+                  Icons.search_outlined,
+                  color: Theme.of(context).iconTheme.color,
+                  size: 30,
+                ),
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 
