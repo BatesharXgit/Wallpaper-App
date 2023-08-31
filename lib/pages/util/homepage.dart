@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+  ScrollController scrollController = ScrollController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   List<Reference> wallpaperRefs = [];
@@ -382,6 +382,7 @@ class MyHomePageState extends State<MyHomePage>
             borderRadius: BorderRadius.circular(20),
             child: LocationListItem(
               imageUrl: imageUrl,
+              scrollController: scrollController,
             ),
           ),
         ),
@@ -426,6 +427,15 @@ class FullScreenImagePage extends StatefulWidget {
 }
 
 class _FullScreenImagePageState extends State<FullScreenImagePage> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+
+    super.dispose();
+  }
+
   void showSnackbar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -629,7 +639,6 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                             ],
                           ),
                           child: ClipRRect(
-                            // Apply the blur effect only to the bottom sheet
                             borderRadius: const BorderRadius.vertical(
                               top: Radius.circular(16.0),
                             ),
@@ -702,9 +711,11 @@ class LocationListItem extends StatelessWidget {
   LocationListItem({
     Key? key,
     required this.imageUrl,
+    required this.scrollController,
   }) : super(key: key);
 
   final String imageUrl;
+  final ScrollController scrollController;
 
   final GlobalKey _backgroundImageKey = GlobalKey();
 
