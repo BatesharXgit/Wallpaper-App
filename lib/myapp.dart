@@ -6,6 +6,7 @@ import 'package:luca_ui/pages/util/live_category.dart';
 import 'package:luca_ui/pages/util/wallpapers.dart';
 import 'package:luca_ui/themes/themes.dart';
 import 'pages/util/live.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -41,12 +42,12 @@ class _HomePageState extends State<HomePage> {
       home: Scaffold(
         body: _pages[_selectedIndex],
         bottomNavigationBar: SizedBox(
-          height: 62,
+          height: 64,
           child: FlashyTabBar(
             backgroundColor: const Color(0xFF131321),
             animationCurve: Curves.linear,
             selectedIndex: _selectedIndex,
-            iconSize: 22,
+            iconSize: 24,
             // showElevation: false,
             onItemSelected: (index) => setState(() {
               _selectedIndex = index;
@@ -55,25 +56,34 @@ class _HomePageState extends State<HomePage> {
               FlashyTabBarItem(
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
-                icon: const Icon(Icons.home_outlined),
+                icon: const Icon(FluentIcons.home_12_regular),
                 title: const Text('Home'),
               ),
               FlashyTabBarItem(
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
-                icon: const Icon(Icons.wallpaper_outlined),
+                icon: const Icon(
+                  FluentIcons.image_16_regular,
+                  size: 25,
+                ),
                 title: const Text('Wallpapers'),
               ),
               FlashyTabBarItem(
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
-                icon: const Icon(Icons.video_collection_outlined),
+                icon: const Icon(
+                  FluentIcons.video_clip_16_regular,
+                  size: 25,
+                ),
                 title: const Text('Live'),
               ),
               FlashyTabBarItem(
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
-                icon: const Icon(Icons.favorite_outline),
+                icon: const Icon(
+                  FluentIcons.heart_12_regular,
+                  size: 25,
+                ),
                 title: const Text('Favourites'),
               ),
             ],
