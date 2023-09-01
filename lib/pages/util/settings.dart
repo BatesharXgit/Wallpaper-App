@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -83,7 +84,10 @@ class _SettingsPageState extends State<SettingsPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ListTile(
-                          leading: const Icon(Icons.info_outline),
+                          leading: const Icon(
+                            FluentIcons.info_12_regular,
+                            size: 28,
+                          ),
                           title: const Text('About'),
                           subtitle: Text('Find out more about Luca',
                               style: TextStyle(color: secondaryColor)),
@@ -94,7 +98,10 @@ class _SettingsPageState extends State<SettingsPage> {
                           },
                         ),
                         ListTile(
-                          leading: const Icon(Icons.list_outlined),
+                          leading: const Icon(
+                            FluentIcons.apps_list_20_regular,
+                            size: 28,
+                          ),
                           title: const Text('Changelog'),
                           subtitle: Text('Recent improvements and fixes',
                               style: TextStyle(color: Colors.grey)),
@@ -105,7 +112,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           },
                         ),
                         ListTile(
-                          leading: const Icon(Icons.delete_outline),
+                          leading: const Icon(FluentIcons.delete_12_regular),
                           title: const Text('Clear Cache'),
                           subtitle: Text('Clear all cached data',
                               style: TextStyle(color: Colors.grey)),
@@ -131,7 +138,10 @@ class _SettingsPageState extends State<SettingsPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ListTile(
-                          leading: const Icon(Icons.workspace_premium_outlined),
+                          leading: const Icon(
+                            FluentIcons.bookmark_16_regular,
+                            size: 28,
+                          ),
                           title: const Text('Liscenses'),
                           subtitle: Text('View open source liscenses',
                               style: TextStyle(color: Colors.grey)),

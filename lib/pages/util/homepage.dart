@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -113,8 +114,8 @@ class MyHomePageState extends State<MyHomePage>
             builder: (BuildContext context) {
               return IconButton(
                 icon: const Icon(
-                  Icons.settings_outlined,
-                  size: 30,
+                  FluentIcons.settings_16_regular,
+                  size: 32,
                 ),
                 color: Theme.of(context).iconTheme.color,
                 onPressed: () =>
@@ -146,9 +147,9 @@ class MyHomePageState extends State<MyHomePage>
                   transition: Transition.fadeIn,
                 ),
                 child: Icon(
-                  Icons.search_outlined,
+                  FluentIcons.search_16_regular,
                   color: Theme.of(context).iconTheme.color,
-                  size: 30,
+                  size: 32,
                 ),
               );
             },
