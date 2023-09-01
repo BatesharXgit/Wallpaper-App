@@ -51,6 +51,8 @@ class CategoryState extends State<Category> {
     // Color tertiaryColor = Theme.of(context).colorScheme.tertiary;
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
         title: Text(
           'Categories',
           style: GoogleFonts.orbitron(
