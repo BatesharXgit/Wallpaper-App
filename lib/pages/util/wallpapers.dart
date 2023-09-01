@@ -53,11 +53,12 @@ class CategoryState extends State<Category> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
+        backgroundColor: backgroundColor,
         title: Text(
           'Categories',
           style: GoogleFonts.orbitron(
             color: primaryColor,
-            fontSize: 30,
+            fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -67,9 +68,6 @@ class CategoryState extends State<Category> {
         child: AnimationLimiter(
           child: Column(
             children: [
-              const SizedBox(
-                height: 15,
-              ),
               Expanded(
                 child: ListView.builder(
                     itemCount: categories.length,
