@@ -32,7 +32,6 @@ dependencies:
   firebase_auth: ^4.7.2
   google_sign_in: ^6.1.4
   provider: ^6.0.5
-  blurhash: ^1.1.1
   fluentui_system_icons: ^1.1.211
 
 dev_dependencies:
