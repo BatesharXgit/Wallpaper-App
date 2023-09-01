@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                   FluentIcons.image_16_regular,
                   size: 25,
                 ),
-                title: const Text('Wallpapers'),
+                title: const Text('Category'),
               ),
               FlashyTabBarItem(
                 activeColor: Colors.white,
