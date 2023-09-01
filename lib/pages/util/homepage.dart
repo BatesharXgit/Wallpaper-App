@@ -14,6 +14,7 @@ import 'package:luca_ui/pages/util/searchresult.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:luca_ui/pages/util/settings.dart';
 import 'package:flutter/rendering.dart';
+import 'package:blurhash/blurhash.dart';
 
 final FirebaseStorage storage = FirebaseStorage.instance;
 final Reference wallpaperRef = storage.ref().child('wallpaper');
@@ -38,6 +39,7 @@ class MyHomePageState extends State<MyHomePage>
   List<Reference> wallpaperRefs = [];
   List<Reference> carsRefs = [];
   List<Reference> abstractRefs = [];
+  List<String> blurHashPlaceholders = [];
 
   int index = 0;
   final List<String> data = [
