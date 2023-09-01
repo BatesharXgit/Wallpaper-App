@@ -15,13 +15,14 @@ class CategoryState extends State<Category> {
   final List<String> categories = [
     'Cityscapes',
     'Landscapes',
-    'AI',
-    'Superheroes',
+    'Amoled',
     'Space',
-    'Sports',
     'Stock',
     'Minimalist',
-    'Fantasy',
+    'Nature',
+    'Animals',
+    'Sci-Fi',
+    'Games',
   ];
 
   final List<String> recommendImages = [
@@ -33,7 +34,8 @@ class CategoryState extends State<Category> {
     'https://i.pinimg.com/236x/ab/e5/ec/abe5ec30eee55c49bb31df37d10607bb.jpg',
     'https://i.pinimg.com/236x/01/3e/36/013e361d223ad9f02827ca29f3a5d07c.jpg',
     'https://i.pinimg.com/236x/29/66/c5/2966c557738e04a34d01ec0965459746.jpg',
-    'https://i.pinimg.com/236x/91/d0/9c/91d09c8624697f7931b4edbcd5fb4891.jpg'
+    'https://i.pinimg.com/236x/91/d0/9c/91d09c8624697f7931b4edbcd5fb4891.jpg',
+    'https://i.pinimg.com/236x/91/d0/9c/91d09c8624697f7931b4edbcd5fb4891.jpg',
   ];
 
   @override
@@ -48,7 +50,16 @@ class CategoryState extends State<Category> {
     // Color secondaryColor = Theme.of(context).colorScheme.secondary;
     // Color tertiaryColor = Theme.of(context).colorScheme.tertiary;
     return Scaffold(
-      appBar: null,
+      appBar: AppBar(
+        title: Text(
+          'Categories',
+          style: GoogleFonts.orbitron(
+            color: primaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       backgroundColor: backgroundColor,
       body: SafeArea(
         child: AnimationLimiter(
@@ -56,23 +67,6 @@ class CategoryState extends State<Category> {
             children: [
               const SizedBox(
                 height: 15,
-              ),
-              Row(
-                children: [
-                  const SizedBox(width: 20),
-                  Text(
-                    'Category',
-                    style: GoogleFonts.orbitron(
-                      color: primaryColor,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              const Divider(
-                thickness: 2,
-                color: Colors.transparent,
               ),
               Expanded(
                 child: ListView.builder(
