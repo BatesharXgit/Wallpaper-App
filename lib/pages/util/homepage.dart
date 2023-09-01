@@ -196,171 +196,65 @@ class MyHomePageState extends State<MyHomePage>
     );
   }
 
+  Widget _buildImageGridFromRef(Reference imageRef) {
+    return FutureBuilder<ListResult>(
+      future: imageRef.listAll(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return _buildPlaceholder();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else if (snapshot.hasData && snapshot.data!.items.isNotEmpty) {
+          List<Reference> imageRefs = snapshot.data!.items;
+
+          return GridView.builder(
+            physics: BouncingScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.75,
+            ),
+            itemCount: imageRefs.length,
+            itemBuilder: (context, index) {
+              final foryouRef = imageRefs[index];
+              return FutureBuilder<String>(
+                future: foryouRef.getDownloadURL(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return _buildCircularIndicator();
+                  } else if (snapshot.hasError) {
+                    return _buildErrorWidget();
+                  } else if (snapshot.hasData) {
+                    return _buildImageWidget(snapshot.data!);
+                  } else {
+                    return Container();
+                  }
+                },
+              );
+            },
+          );
+        } else {
+          return Center(child: Text('No images available'));
+        }
+      },
+    );
+  }
+
   Widget _buildTabViews() {
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: TabBarView(
         controller: _tabController,
         children: [
-          FutureBuilder<ListResult>(
-            future: wallpaperRef.listAll(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return _buildCircularIndicator();
-              } else if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
-              } else if (snapshot.hasData && snapshot.data!.items.isNotEmpty) {
-                if (wallpaperRefs.isEmpty) {
-                  return _buildCircularIndicator();
-                }
-
-                return GridView.builder(
-                  physics: BouncingScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.75,
-                  ),
-                  itemCount: snapshot.data!.items.length,
-                  itemBuilder: (context, index) {
-                    final foryou = wallpaperRefs[index];
-                    return FutureBuilder<String>(
-                      future: foryou.getDownloadURL(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return _buildPlaceholder();
-                        } else if (snapshot.hasError) {
-                          return _buildErrorWidget();
-                        } else if (snapshot.hasData) {
-                          return _buildImageWidget(snapshot.data!);
-                        } else {
-                          return Container();
-                        }
-                      },
-                    );
-                  },
-                );
-              } else {
-                return Center(child: Text('No images available'));
-              }
-            },
-          ),
+          _buildImageGridFromRef(wallpaperRef),
           const Center(
-            child: Text(
-              "AI",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
+              child: Text("AI", style: TextStyle(color: Colors.white))),
           const Center(
-            child: Text(
-              "Illustration",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          //======================================================================================================================================
-//======================================================================================================================================
-//=========================================================  CARS   Wallpaepr ==========================================================
-//======================================================================================================================================
-
-          FutureBuilder<ListResult>(
-            future: carsRef.listAll(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return _buildCircularIndicator();
-              } else if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
-              } else if (snapshot.hasData && snapshot.data!.items.isNotEmpty) {
-                if (carsRefs.isEmpty) {
-                  return _buildCircularIndicator();
-                }
-
-                return GridView.builder(
-                  physics: BouncingScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.75,
-                  ),
-                  itemCount: snapshot.data!.items.length,
-                  itemBuilder: (context, index) {
-                    final foryouRef = carsRefs[index];
-                    return FutureBuilder<String>(
-                      future: foryouRef.getDownloadURL(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return _buildPlaceholder();
-                        } else if (snapshot.hasError) {
-                          return _buildErrorWidget();
-                        } else if (snapshot.hasData) {
-                          return _buildImageWidget(snapshot.data!);
-                        } else {
-                          return Container();
-                        }
-                      },
-                    );
-                  },
-                );
-              } else {
-                return Center(child: Text('No images available'));
-              }
-            },
-          ),
-
-          //======================================================================================================================================
-//======================================================================================================================================
-//=========================================================  Abstract  Wallpaepr ==========================================================
-//======================================================================================================================================
-
-          FutureBuilder<ListResult>(
-            future: abstractRef.listAll(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return _buildCircularIndicator();
-              } else if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
-              } else if (snapshot.hasData && snapshot.data!.items.isNotEmpty) {
-                if (abstractRefs.isEmpty) {
-                  return _buildCircularIndicator();
-                }
-
-                return GridView.builder(
-                  physics: BouncingScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.75,
-                  ),
-                  itemCount: snapshot.data!.items.length,
-                  itemBuilder: (context, index) {
-                    final abstrRef = abstractRefs[index];
-                    return FutureBuilder<String>(
-                      future: abstrRef.getDownloadURL(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return _buildPlaceholder();
-                        } else if (snapshot.hasError) {
-                          return _buildErrorWidget();
-                        } else if (snapshot.hasData) {
-                          return _buildImageWidget(snapshot.data!);
-                        } else {
-                          return Container();
-                        }
-                      },
-                    );
-                  },
-                );
-              } else {
-                return Center(child: Text('No images available'));
-              }
-            },
-          ),
-
+              child:
+                  Text("Illustration", style: TextStyle(color: Colors.white))),
+          _buildImageGridFromRef(carsRef),
+          _buildImageGridFromRef(abstractRef),
           const Center(
-            child: Text(
-              "Fantasy",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
+              child: Text("Fantasy", style: TextStyle(color: Colors.white))),
         ],
       ),
     );
@@ -394,25 +288,28 @@ class MyHomePageState extends State<MyHomePage>
 
   Widget _buildPlaceholder() {
     return Center(
-      child: LoadingAnimationWidget.flickr(
-          size: 35,
-          leftDotColor: const Color(0xB700FF00),
-          rightDotColor: Colors.white),
+      child: LoadingAnimationWidget.newtonCradle(
+        size: 35,
+        color: Theme.of(context).colorScheme.primary,
+      ),
     );
   }
 
   Widget _buildErrorWidget() {
     return Container(
-      color: const Color(0xB700FF00),
-      child: const Icon(Icons.error),
+      color: Colors.transparent,
+      child: const Icon(
+        Icons.error,
+        color: Colors.red,
+      ),
     );
   }
 
   Widget _buildCircularIndicator() {
     return Center(
-      child: LoadingAnimationWidget.fourRotatingDots(
+      child: LoadingAnimationWidget.fallingDot(
         size: 35,
-        color: const Color(0xB700FF00),
+        color: Theme.of(context).colorScheme.primary,
       ),
     );
   }
