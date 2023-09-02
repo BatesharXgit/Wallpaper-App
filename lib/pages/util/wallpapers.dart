@@ -68,6 +68,39 @@ class CategoryState extends State<Category> {
       body: SafeArea(
         child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Amoled",
+                    style: GoogleFonts.kanit(fontSize: 18),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        showAllImages = !showAllImages;
+                      });
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Show more",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(width: 10),
+                        Icon(
+                          Icons.more,
+                          size: 20,
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
             SizedBox(
               height: 200,
               child: ListView.builder(
@@ -88,14 +121,6 @@ class CategoryState extends State<Category> {
                 },
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  showAllImages = !showAllImages;
-                });
-              },
-              child: Text(showAllImages ? 'Show Less' : 'See All'),
-            )
           ],
         ),
       ),
