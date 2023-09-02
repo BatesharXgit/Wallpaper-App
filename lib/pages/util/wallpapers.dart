@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Category extends StatefulWidget {
@@ -43,6 +42,8 @@ class CategoryState extends State<Category> {
     super.initState();
   }
 
+  bool showAllImages = false;
+
   @override
   Widget build(BuildContext context) {
     Color backgroundColor = Theme.of(context).colorScheme.background;
@@ -68,24 +69,33 @@ class CategoryState extends State<Category> {
         child: Column(
           children: [
             SizedBox(
-              height: 180,
+              height: 200,
               child: ListView.builder(
-                  itemCount: categories.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(recommendImages[index]),
-                                fit: BoxFit.cover),
-                            color: Colors.black),
+                itemCount: showAllImages ? recommendImages.length : 5,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.network(
+                        recommendImages[index],
+                        width: 120,
+                        fit: BoxFit.cover,
                       ),
-                    );
-                  }),
+                    ),
+                  );
+                },
+              ),
             ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  showAllImages = !showAllImages;
+                });
+              },
+              child: Text(showAllImages ? 'Show Less' : 'See All'),
+            )
           ],
         ),
       ),
