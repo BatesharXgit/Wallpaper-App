@@ -91,14 +91,10 @@ class CategoryState extends State<Category> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Show more",
-                            // style: TextStyle(color: Colors.white),
+                            "See All",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
                           ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.more,
-                            size: 20,
-                          )
                         ],
                       ),
                     )
@@ -149,14 +145,10 @@ class CategoryState extends State<Category> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Show more",
-                            // style: TextStyle(color: Colors.white),
+                            "See All",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
                           ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.more,
-                            size: 20,
-                          )
                         ],
                       ),
                     )
@@ -207,14 +199,10 @@ class CategoryState extends State<Category> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Show more",
-                            // style: TextStyle(color: Colors.white),
+                            "See All",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
                           ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.more,
-                            size: 20,
-                          )
                         ],
                       ),
                     )
@@ -265,14 +253,10 @@ class CategoryState extends State<Category> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Show more",
-                            // style: TextStyle(color: Colors.white),
+                            "See All",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
                           ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.more,
-                            size: 20,
-                          )
                         ],
                       ),
                     )
@@ -323,14 +307,10 @@ class CategoryState extends State<Category> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Show more",
-                            // style: TextStyle(color: Colors.white),
+                            "See All",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
                           ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.more,
-                            size: 20,
-                          )
                         ],
                       ),
                     )
@@ -381,14 +361,10 @@ class CategoryState extends State<Category> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Show more",
-                            // style: TextStyle(color: Colors.white),
+                            "See All",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
                           ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.more,
-                            size: 20,
-                          )
                         ],
                       ),
                     )
@@ -439,14 +415,10 @@ class CategoryState extends State<Category> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Show more",
-                            // style: TextStyle(color: Colors.white),
+                            "See All",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
                           ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.more,
-                            size: 20,
-                          )
                         ],
                       ),
                     )
@@ -497,14 +469,10 @@ class CategoryState extends State<Category> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Show more",
-                            // style: TextStyle(color: Colors.white),
+                            "See All",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
                           ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.more,
-                            size: 20,
-                          )
                         ],
                       ),
                     )
@@ -555,14 +523,10 @@ class CategoryState extends State<Category> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Show more",
-                            // style: TextStyle(color: Colors.white),
+                            "See All",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
                           ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.more,
-                            size: 20,
-                          )
                         ],
                       ),
                     )
@@ -613,14 +577,10 @@ class CategoryState extends State<Category> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Show more",
-                            // style: TextStyle(color: Colors.white),
+                            "See All",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
                           ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.more,
-                            size: 20,
-                          )
                         ],
                       ),
                     )
