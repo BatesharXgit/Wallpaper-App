@@ -1,5 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
+final FirebaseStorage storage = FirebaseStorage.instance;
+final Reference amoledRef = storage.ref().child('wallpaper');
+final Reference landscapesRef = storage.ref().child('wallpaper');
+final Reference cityscapesRef = storage.ref().child('wallpaper');
+final Reference spaceRef = storage.ref().child('wallpaper');
+final Reference stockRef = storage.ref().child('wallpaper');
+final Reference minimalistRef = storage.ref().child('wallpaper');
+final Reference natureRef = storage.ref().child('wallpaper');
+final Reference animalsRef = storage.ref().child('wallpaper');
+final Reference scifiRef = storage.ref().child('wallpaper');
+final Reference gamesRef = storage.ref().child('wallpaper');
 
 class Category extends StatefulWidget {
   const Category({Key? key, required this.title}) : super(key: key);
@@ -11,6 +24,17 @@ class Category extends StatefulWidget {
 }
 
 class CategoryState extends State<Category> {
+  List<Reference> amoledRefs = [];
+  List<Reference> landscapesRefs = [];
+  List<Reference> cityscapesRefs = [];
+  List<Reference> spaceRefs = [];
+  List<Reference> stockRefs = [];
+  List<Reference> minimalistRefs = [];
+  List<Reference> natureRefs = [];
+  List<Reference> animalsRefs = [];
+  List<Reference> scifiRefs = [];
+  List<Reference> gamesRefs = [];
+
   final List<String> categories = [
     'Amoled',
     'Landscapes',
@@ -40,6 +64,96 @@ class CategoryState extends State<Category> {
   @override
   void initState() {
     super.initState();
+    loadamoledImages();
+    loadlandscapesImages();
+    loadcityscapesImages();
+    loadspaceImages();
+    loadstockImages();
+    loadminimalistImages();
+    loadnatureImages();
+    loadanimalsmages();
+    loadscifiImages();
+    loadgamesImages();
+  }
+
+  Future<void> loadamoledImages() async {
+    final ListResult result = await amoledRef.listAll();
+    amoledRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadlandscapesImages() async {
+    final ListResult result = await landscapesRef.listAll();
+    landscapesRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadcityscapesImages() async {
+    final ListResult result = await cityscapesRef.listAll();
+    cityscapesRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadspaceImages() async {
+    final ListResult result = await spaceRef.listAll();
+    spaceRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadstockImages() async {
+    final ListResult result = await stockRef.listAll();
+    stockRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadminimalistImages() async {
+    final ListResult result = await minimalistRef.listAll();
+    minimalistRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadnatureImages() async {
+    final ListResult result = await natureRef.listAll();
+    natureRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadanimalsmages() async {
+    final ListResult result = await animalsRef.listAll();
+    animalsRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadscifiImages() async {
+    final ListResult result = await scifiRef.listAll();
+    scifiRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadgamesImages() async {
+    final ListResult result = await gamesRef.listAll();
+    gamesRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   bool showAllImages = false;
@@ -616,6 +730,7 @@ class CategoryState extends State<Category> {
       ),
     );
   }
+  
 }
 
 // void _navigateToCategoryPage(String category) {
