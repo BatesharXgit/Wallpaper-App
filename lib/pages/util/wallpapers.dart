@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 final FirebaseStorage storage = FirebaseStorage.instance;
 final Reference amoledRef = storage.ref().child('wallpaper');
@@ -227,10 +228,26 @@ class CategoryState extends State<Category> {
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            recommendImages[index],
-                            width: 120,
-                            fit: BoxFit.cover,
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return _buildCircularIndicator();
+                              }
+                              if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              }
+                              if (!snapshot.hasData || snapshot.data == null) {
+                                return Text('No Data');
+                              }
+
+                              return Image.network(
+                                snapshot.data.toString(),
+                                width: 120,
+                                fit: BoxFit.cover,
+                              );
+                            },
                           ),
                         ),
                       );
@@ -281,10 +298,26 @@ class CategoryState extends State<Category> {
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            recommendImages[index],
-                            width: 120,
-                            fit: BoxFit.cover,
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return _buildCircularIndicator();
+                              }
+                              if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              }
+                              if (!snapshot.hasData || snapshot.data == null) {
+                                return Text('No Data');
+                              }
+
+                              return Image.network(
+                                snapshot.data.toString(),
+                                width: 120,
+                                fit: BoxFit.cover,
+                              );
+                            },
                           ),
                         ),
                       );
@@ -335,10 +368,26 @@ class CategoryState extends State<Category> {
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            recommendImages[index],
-                            width: 120,
-                            fit: BoxFit.cover,
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return _buildCircularIndicator();
+                              }
+                              if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              }
+                              if (!snapshot.hasData || snapshot.data == null) {
+                                return Text('No Data');
+                              }
+
+                              return Image.network(
+                                snapshot.data.toString(),
+                                width: 120,
+                                fit: BoxFit.cover,
+                              );
+                            },
                           ),
                         ),
                       );
@@ -389,10 +438,26 @@ class CategoryState extends State<Category> {
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            recommendImages[index],
-                            width: 120,
-                            fit: BoxFit.cover,
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return _buildCircularIndicator();
+                              }
+                              if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              }
+                              if (!snapshot.hasData || snapshot.data == null) {
+                                return Text('No Data');
+                              }
+
+                              return Image.network(
+                                snapshot.data.toString(),
+                                width: 120,
+                                fit: BoxFit.cover,
+                              );
+                            },
                           ),
                         ),
                       );
@@ -443,10 +508,26 @@ class CategoryState extends State<Category> {
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            recommendImages[index],
-                            width: 120,
-                            fit: BoxFit.cover,
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return _buildCircularIndicator();
+                              }
+                              if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              }
+                              if (!snapshot.hasData || snapshot.data == null) {
+                                return Text('No Data');
+                              }
+
+                              return Image.network(
+                                snapshot.data.toString(),
+                                width: 120,
+                                fit: BoxFit.cover,
+                              );
+                            },
                           ),
                         ),
                       );
@@ -497,10 +578,26 @@ class CategoryState extends State<Category> {
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            recommendImages[index],
-                            width: 120,
-                            fit: BoxFit.cover,
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return _buildCircularIndicator();
+                              }
+                              if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              }
+                              if (!snapshot.hasData || snapshot.data == null) {
+                                return Text('No Data');
+                              }
+
+                              return Image.network(
+                                snapshot.data.toString(),
+                                width: 120,
+                                fit: BoxFit.cover,
+                              );
+                            },
                           ),
                         ),
                       );
@@ -551,10 +648,26 @@ class CategoryState extends State<Category> {
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            recommendImages[index],
-                            width: 120,
-                            fit: BoxFit.cover,
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return _buildCircularIndicator();
+                              }
+                              if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              }
+                              if (!snapshot.hasData || snapshot.data == null) {
+                                return Text('No Data');
+                              }
+
+                              return Image.network(
+                                snapshot.data.toString(),
+                                width: 120,
+                                fit: BoxFit.cover,
+                              );
+                            },
                           ),
                         ),
                       );
@@ -605,10 +718,26 @@ class CategoryState extends State<Category> {
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            recommendImages[index],
-                            width: 120,
-                            fit: BoxFit.cover,
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return _buildCircularIndicator();
+                              }
+                              if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              }
+                              if (!snapshot.hasData || snapshot.data == null) {
+                                return Text('No Data');
+                              }
+
+                              return Image.network(
+                                snapshot.data.toString(),
+                                width: 120,
+                                fit: BoxFit.cover,
+                              );
+                            },
                           ),
                         ),
                       );
@@ -659,10 +788,26 @@ class CategoryState extends State<Category> {
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            recommendImages[index],
-                            width: 120,
-                            fit: BoxFit.cover,
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return _buildCircularIndicator();
+                              }
+                              if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              }
+                              if (!snapshot.hasData || snapshot.data == null) {
+                                return Text('No Data');
+                              }
+
+                              return Image.network(
+                                snapshot.data.toString(),
+                                width: 120,
+                                fit: BoxFit.cover,
+                              );
+                            },
                           ),
                         ),
                       );
@@ -713,10 +858,26 @@ class CategoryState extends State<Category> {
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            recommendImages[index],
-                            width: 120,
-                            fit: BoxFit.cover,
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return _buildCircularIndicator();
+                              }
+                              if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              }
+                              if (!snapshot.hasData || snapshot.data == null) {
+                                return Text('No Data');
+                              }
+
+                              return Image.network(
+                                snapshot.data.toString(),
+                                width: 120,
+                                fit: BoxFit.cover,
+                              );
+                            },
                           ),
                         ),
                       );
@@ -727,6 +888,15 @@ class CategoryState extends State<Category> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildCircularIndicator() {
+    return Center(
+      child: LoadingAnimationWidget.fallingDot(
+        size: 35,
+        color: Theme.of(context).colorScheme.primary,
       ),
     );
   }
