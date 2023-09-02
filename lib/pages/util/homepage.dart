@@ -55,7 +55,9 @@ class MyHomePageState extends State<MyHomePage>
   void initState() {
     super.initState();
     _tabController = TabController(length: data.length, vsync: this);
-    LoadImages();
+    loadWallpaperImages();
+    loadCarsImages();
+    loadAbstractImages();
   }
 
   @override
@@ -64,12 +66,24 @@ class MyHomePageState extends State<MyHomePage>
     super.dispose();
   }
 
-  Future<void> LoadImages() async {
+  Future<void> loadWallpaperImages() async {
     final ListResult result = await wallpaperRef.listAll();
-    final ListResult carResult = await carsRef.listAll();
-    final ListResult abstractResult = await abstractRef.listAll();
     wallpaperRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadCarsImages() async {
+    final ListResult carResult = await carsRef.listAll();
     carsRefs = carResult.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadAbstractImages() async {
+    final ListResult abstractResult = await abstractRef.listAll();
     abstractRefs = abstractResult.items.toList();
     if (mounted) {
       setState(() {});
@@ -215,9 +229,9 @@ class MyHomePageState extends State<MyHomePage>
             ),
             itemCount: imageRefs.length,
             itemBuilder: (context, index) {
-              final foryouRef = imageRefs[index];
+              final imageRef = imageRefs[index];
               return FutureBuilder<String>(
-                future: foryouRef.getDownloadURL(),
+                future: imageRef.getDownloadURL(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return _buildCircularIndicator();

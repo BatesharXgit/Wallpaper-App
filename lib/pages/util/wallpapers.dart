@@ -65,95 +65,76 @@ class CategoryState extends State<Category> {
       ),
       backgroundColor: backgroundColor,
       body: SafeArea(
-        child: AnimationLimiter(
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                    itemCount: categories.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: AnimationConfiguration.staggeredList(
-                          position: index,
-                          duration: const Duration(milliseconds: 375),
-                          child: SlideAnimation(
-                            verticalOffset: 50.0,
-                            child: FadeInAnimation(
-                              child: Stack(
-                                children: [
-                                  GestureDetector(
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.15,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                              recommendImages[index]),
-                                          fit: BoxFit.cover,
-                                        ),
-                                        border: Border.all(
-                                          width: 0.2,
-                                          color: Colors.transparent,
-                                        ),
-                                        borderRadius: BorderRadius.circular(6),
-                                        // boxShadow: [
-                                        //   BoxShadow(
-                                        //     color: const Color(0xB700FF00)
-                                        //         .withOpacity(0.1),
-                                        //     blurRadius: 6,
-                                        //     offset: const Offset(1, 2),
-                                        //   ),
-                                        // ],
-                                      ),
-                                    ),
-                                    // onTap: () => _navigateToCategoryPage(category1),
-                                  ),
-                                  Positioned.fill(
-                                    child: DecoratedBox(
-                                      decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            Colors.transparent,
-                                            Colors.black.withOpacity(0.8),
-                                          ],
-                                          begin: Alignment.centerRight,
-                                          end: Alignment.centerLeft,
-                                          stops: const [0.5, 0.95],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    left: 0,
-                                    top: 0,
-                                    bottom: 0,
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 16.0),
-                                        child: Text(
-                                          categories[index],
-                                          style: GoogleFonts.kanit(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                  itemCount: categories.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Stack(
+                        children: [
+                          GestureDetector(
+                            child: Container(
+                              height:
+                                  MediaQuery.of(context).size.height *
+                                      0.15,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                      recommendImages[index]),
+                                  fit: BoxFit.cover,
+                                ),
+                                border: Border.all(
+                                  width: 0.2,
+                                  color: Colors.transparent,
+                                ),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                            ),
+                            // onTap: () => _navigateToCategoryPage(category1),
+                          ),
+                          Positioned.fill(
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Colors.transparent,
+                                    Colors.black.withOpacity(0.8),
+                                  ],
+                                  begin: Alignment.centerRight,
+                                  end: Alignment.centerLeft,
+                                  stops: const [0.5, 0.95],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    }),
-              ),
-            ],
-          ),
+                          Positioned(
+                            left: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0),
+                                child: Text(
+                                  categories[index],
+                                  style: GoogleFonts.kanit(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+            ),
+          ],
         ),
       ),
     );
