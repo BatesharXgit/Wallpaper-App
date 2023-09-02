@@ -221,6 +221,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     itemCount: showAllImages ? recommendImages.length : 5,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
@@ -291,6 +292,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     itemCount: showAllImages ? recommendImages.length : 5,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
@@ -361,6 +363,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     itemCount: showAllImages ? recommendImages.length : 5,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
@@ -431,6 +434,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     itemCount: showAllImages ? recommendImages.length : 5,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
@@ -501,6 +505,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     itemCount: showAllImages ? recommendImages.length : 5,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
@@ -571,6 +576,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     itemCount: showAllImages ? recommendImages.length : 5,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
@@ -641,6 +647,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     itemCount: showAllImages ? recommendImages.length : 5,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
@@ -711,6 +718,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     itemCount: showAllImages ? recommendImages.length : 5,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
@@ -781,6 +789,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     itemCount: showAllImages ? recommendImages.length : 5,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
@@ -851,6 +860,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     itemCount: showAllImages ? recommendImages.length : 5,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
