@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -47,19 +49,6 @@ class CategoryState extends State<Category> {
     'Animals',
     'Sci-Fi',
     'Games',
-  ];
-
-  final List<String> recommendImages = [
-    'https://i.pinimg.com/236x/fb/bc/86/fbbc8631cb2b794a97dcc055332bf62c.jpg',
-    'https://i.pinimg.com/236x/ea/e3/2e/eae32e059a98fa742366e91876d4094f.jpg',
-    'https://i.pinimg.com/236x/28/76/53/2876533599b7cefd228c103a56dbd3e2.jpg',
-    'https://i.pinimg.com/236x/95/b5/13/95b51303c4140ebb54bafb8860acc7f3.jpg',
-    'https://i.pinimg.com/236x/8c/24/7f/8c247fbf0059d5877645138543a0cc71.jpg',
-    'https://i.pinimg.com/236x/ab/e5/ec/abe5ec30eee55c49bb31df37d10607bb.jpg',
-    'https://i.pinimg.com/236x/01/3e/36/013e361d223ad9f02827ca29f3a5d07c.jpg',
-    'https://i.pinimg.com/236x/29/66/c5/2966c557738e04a34d01ec0965459746.jpg',
-    'https://i.pinimg.com/236x/91/d0/9c/91d09c8624697f7931b4edbcd5fb4891.jpg',
-    'https://i.pinimg.com/236x/91/d0/9c/91d09c8624697f7931b4edbcd5fb4891.jpg',
   ];
 
   @override
@@ -222,15 +211,16 @@ class CategoryState extends State<Category> {
                   height: 200,
                   child: ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: showAllImages ? recommendImages.length : 5,
+                    itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
+                    itemBuilder: (context, index) {
+                      final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
+                          child: FutureBuilder<String>(
+                            future: imageRef.getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -293,15 +283,16 @@ class CategoryState extends State<Category> {
                   height: 200,
                   child: ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: showAllImages ? recommendImages.length : 5,
+                    itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
+                    itemBuilder: (context, index) {
+                      final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
+                          child: FutureBuilder<String>(
+                            future: imageRef.getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -364,15 +355,16 @@ class CategoryState extends State<Category> {
                   height: 200,
                   child: ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: showAllImages ? recommendImages.length : 5,
+                    itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
+                    itemBuilder: (context, index) {
+                      final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
+                          child: FutureBuilder<String>(
+                            future: imageRef.getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -435,15 +427,16 @@ class CategoryState extends State<Category> {
                   height: 200,
                   child: ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: showAllImages ? recommendImages.length : 5,
+                    itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
+                    itemBuilder: (context, index) {
+                      final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
+                          child: FutureBuilder<String>(
+                            future: imageRef.getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -506,15 +499,16 @@ class CategoryState extends State<Category> {
                   height: 200,
                   child: ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: showAllImages ? recommendImages.length : 5,
+                    itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
+                    itemBuilder: (context, index) {
+                      final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
+                          child: FutureBuilder<String>(
+                            future: imageRef.getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -577,15 +571,16 @@ class CategoryState extends State<Category> {
                   height: 200,
                   child: ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: showAllImages ? recommendImages.length : 5,
+                    itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
+                    itemBuilder: (context, index) {
+                      final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
+                          child: FutureBuilder<String>(
+                            future: imageRef.getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -648,15 +643,16 @@ class CategoryState extends State<Category> {
                   height: 200,
                   child: ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: showAllImages ? recommendImages.length : 5,
+                    itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
+                    itemBuilder: (context, index) {
+                      final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
+                          child: FutureBuilder<String>(
+                            future: imageRef.getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -719,15 +715,16 @@ class CategoryState extends State<Category> {
                   height: 200,
                   child: ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: showAllImages ? recommendImages.length : 5,
+                    itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
+                    itemBuilder: (context, index) {
+                      final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
+                          child: FutureBuilder<String>(
+                            future: imageRef.getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -790,15 +787,16 @@ class CategoryState extends State<Category> {
                   height: 200,
                   child: ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: showAllImages ? recommendImages.length : 5,
+                    itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
+                    itemBuilder: (context, index) {
+                      final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
+                          child: FutureBuilder<String>(
+                            future: imageRef.getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -861,15 +859,16 @@ class CategoryState extends State<Category> {
                   height: 200,
                   child: ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: showAllImages ? recommendImages.length : 5,
+                    itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
+                    itemBuilder: (context, index) {
+                      final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
+                          child: FutureBuilder<String>(
+                            future: imageRef.getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
