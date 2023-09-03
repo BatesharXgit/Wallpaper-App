@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -172,752 +173,773 @@ class CategoryState extends State<Category> {
       ),
       backgroundColor: backgroundColor,
       body: SafeArea(
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Amoled",
-                      style: GoogleFonts.kanit(
-                        fontSize: 18,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(AmoledWallpaper());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "See All",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
+        child: AnimationLimiter(
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Column(
+              children: AnimationConfiguration.toStaggeredList(
+                duration: const Duration(milliseconds: 375),
+                childAnimationBuilder: (widget) => SlideAnimation(
+                  horizontalOffset: 50.0,
+                  child: FadeInAnimation(
+                    child: widget,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                child: SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: min(8, amoledRefs.length),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      // final imageRef = amoledRefs[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Container(
-                                  width: 120,
-                                  child: _buildCircularIndicator(),
-                                );
-                              }
-                              if (snapshot.hasError) {
-                                return Text('Error: ${snapshot.error}');
-                              }
-                              if (!snapshot.hasData || snapshot.data == null) {
-                                return Text('No Data');
-                              }
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Amoled",
+                          style: GoogleFonts.kanit(
+                            fontSize: 18,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(AmoledWallpaper());
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "See All",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    child: SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: min(8, amoledRefs.length),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          // final imageRef = amoledRefs[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: FutureBuilder(
+                                future: amoledRefs[index].getDownloadURL(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Container(
+                                      width: 120,
+                                      child: _buildCircularIndicator(),
+                                    );
+                                  }
+                                  if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  }
+                                  if (!snapshot.hasData ||
+                                      snapshot.data == null) {
+                                    return Text('No Data');
+                                  }
 
-                              return Container(
-                                width: 120,
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data.toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Landscapes",
-                      style: GoogleFonts.kanit(
-                        fontSize: 18,
+                                  return Container(
+                                    width: 120,
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot.data.toString(),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(LandscapesWallpaper());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "See All",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                child: SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: min(8, amoledRefs.length),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      // final imageRef = amoledRefs[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Container(
-                                  width: 120,
-                                  child: _buildCircularIndicator(),
-                                );
-                              }
-                              if (snapshot.hasError) {
-                                return Text('Error: ${snapshot.error}');
-                              }
-                              if (!snapshot.hasData || snapshot.data == null) {
-                                return Text('No Data');
-                              }
-                              return Container(
-                                width: 120,
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data.toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Landscapes",
+                          style: GoogleFonts.kanit(
+                            fontSize: 18,
                           ),
                         ),
-                      );
-                    },
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(LandscapesWallpaper());
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "See All",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Cityscapes",
-                      style: GoogleFonts.kanit(
-                        fontSize: 18,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    child: SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: min(8, amoledRefs.length),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          // final imageRef = amoledRefs[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: FutureBuilder(
+                                future: amoledRefs[index].getDownloadURL(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Container(
+                                      width: 120,
+                                      child: _buildCircularIndicator(),
+                                    );
+                                  }
+                                  if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  }
+                                  if (!snapshot.hasData ||
+                                      snapshot.data == null) {
+                                    return Text('No Data');
+                                  }
+                                  return Container(
+                                    width: 120,
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot.data.toString(),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(CityscapesWallpaper());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "See All",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                child: SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: min(8, amoledRefs.length),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      // final imageRef = amoledRefs[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Container(
-                                  width: 120,
-                                  child: _buildCircularIndicator(),
-                                );
-                              }
-                              if (snapshot.hasError) {
-                                return Text('Error: ${snapshot.error}');
-                              }
-                              if (!snapshot.hasData || snapshot.data == null) {
-                                return Text('No Data');
-                              }
-                              return Container(
-                                width: 120,
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data.toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Cityscapes",
+                          style: GoogleFonts.kanit(
+                            fontSize: 18,
                           ),
                         ),
-                      );
-                    },
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(CityscapesWallpaper());
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "See All",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Space",
-                      style: GoogleFonts.kanit(
-                        fontSize: 18,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    child: SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: min(8, amoledRefs.length),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          // final imageRef = amoledRefs[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: FutureBuilder(
+                                future: amoledRefs[index].getDownloadURL(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Container(
+                                      width: 120,
+                                      child: _buildCircularIndicator(),
+                                    );
+                                  }
+                                  if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  }
+                                  if (!snapshot.hasData ||
+                                      snapshot.data == null) {
+                                    return Text('No Data');
+                                  }
+                                  return Container(
+                                    width: 120,
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot.data.toString(),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(SpaceWallpaper());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "See All",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                child: SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: min(8, amoledRefs.length),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      // final imageRef = amoledRefs[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Container(
-                                  width: 120,
-                                  child: _buildCircularIndicator(),
-                                );
-                              }
-                              if (snapshot.hasError) {
-                                return Text('Error: ${snapshot.error}');
-                              }
-                              if (!snapshot.hasData || snapshot.data == null) {
-                                return Text('No Data');
-                              }
-                              return Container(
-                                width: 120,
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data.toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Space",
+                          style: GoogleFonts.kanit(
+                            fontSize: 18,
                           ),
                         ),
-                      );
-                    },
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(SpaceWallpaper());
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "See All",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Stock",
-                      style: GoogleFonts.kanit(
-                        fontSize: 18,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    child: SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: min(8, amoledRefs.length),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          // final imageRef = amoledRefs[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: FutureBuilder(
+                                future: amoledRefs[index].getDownloadURL(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Container(
+                                      width: 120,
+                                      child: _buildCircularIndicator(),
+                                    );
+                                  }
+                                  if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  }
+                                  if (!snapshot.hasData ||
+                                      snapshot.data == null) {
+                                    return Text('No Data');
+                                  }
+                                  return Container(
+                                    width: 120,
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot.data.toString(),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(StockWallpapers());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "See All",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                child: SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: min(8, amoledRefs.length),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      // final imageRef = amoledRefs[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Container(
-                                  width: 120,
-                                  child: _buildCircularIndicator(),
-                                );
-                              }
-                              if (snapshot.hasError) {
-                                return Text('Error: ${snapshot.error}');
-                              }
-                              if (!snapshot.hasData || snapshot.data == null) {
-                                return Text('No Data');
-                              }
-                              return Container(
-                                width: 120,
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data.toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Stock",
+                          style: GoogleFonts.kanit(
+                            fontSize: 18,
                           ),
                         ),
-                      );
-                    },
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(StockWallpapers());
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "See All",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Minimalist",
-                      style: GoogleFonts.kanit(
-                        fontSize: 18,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    child: SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: min(8, amoledRefs.length),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          // final imageRef = amoledRefs[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: FutureBuilder(
+                                future: amoledRefs[index].getDownloadURL(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Container(
+                                      width: 120,
+                                      child: _buildCircularIndicator(),
+                                    );
+                                  }
+                                  if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  }
+                                  if (!snapshot.hasData ||
+                                      snapshot.data == null) {
+                                    return Text('No Data');
+                                  }
+                                  return Container(
+                                    width: 120,
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot.data.toString(),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(MinimalistWallpaper());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "See All",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                child: SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: min(8, amoledRefs.length),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      // final imageRef = amoledRefs[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Container(
-                                  width: 120,
-                                  child: _buildCircularIndicator(),
-                                );
-                              }
-                              if (snapshot.hasError) {
-                                return Text('Error: ${snapshot.error}');
-                              }
-                              if (!snapshot.hasData || snapshot.data == null) {
-                                return Text('No Data');
-                              }
-                              return Container(
-                                width: 120,
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data.toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Minimalist",
+                          style: GoogleFonts.kanit(
+                            fontSize: 18,
                           ),
                         ),
-                      );
-                    },
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(MinimalistWallpaper());
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "See All",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Nature",
-                      style: GoogleFonts.kanit(
-                        fontSize: 18,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    child: SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: min(8, amoledRefs.length),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          // final imageRef = amoledRefs[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: FutureBuilder(
+                                future: amoledRefs[index].getDownloadURL(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Container(
+                                      width: 120,
+                                      child: _buildCircularIndicator(),
+                                    );
+                                  }
+                                  if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  }
+                                  if (!snapshot.hasData ||
+                                      snapshot.data == null) {
+                                    return Text('No Data');
+                                  }
+                                  return Container(
+                                    width: 120,
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot.data.toString(),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(NatureWallpaper());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "See All",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                child: SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: min(8, amoledRefs.length),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      // final imageRef = amoledRefs[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Container(
-                                  width: 120,
-                                  child: _buildCircularIndicator(),
-                                );
-                              }
-                              if (snapshot.hasError) {
-                                return Text('Error: ${snapshot.error}');
-                              }
-                              if (!snapshot.hasData || snapshot.data == null) {
-                                return Text('No Data');
-                              }
-                              return Container(
-                                width: 120,
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data.toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Nature",
+                          style: GoogleFonts.kanit(
+                            fontSize: 18,
                           ),
                         ),
-                      );
-                    },
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(NatureWallpaper());
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "See All",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Animals",
-                      style: GoogleFonts.kanit(
-                        fontSize: 18,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    child: SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: min(8, amoledRefs.length),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          // final imageRef = amoledRefs[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: FutureBuilder(
+                                future: amoledRefs[index].getDownloadURL(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Container(
+                                      width: 120,
+                                      child: _buildCircularIndicator(),
+                                    );
+                                  }
+                                  if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  }
+                                  if (!snapshot.hasData ||
+                                      snapshot.data == null) {
+                                    return Text('No Data');
+                                  }
+                                  return Container(
+                                    width: 120,
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot.data.toString(),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(AnimalsWallpaper());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "See All",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                child: SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: min(8, amoledRefs.length),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      // final imageRef = amoledRefs[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Container(
-                                  width: 120,
-                                  child: _buildCircularIndicator(),
-                                );
-                              }
-                              if (snapshot.hasError) {
-                                return Text('Error: ${snapshot.error}');
-                              }
-                              if (!snapshot.hasData || snapshot.data == null) {
-                                return Text('No Data');
-                              }
-                              return Container(
-                                width: 120,
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data.toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Animals",
+                          style: GoogleFonts.kanit(
+                            fontSize: 18,
                           ),
                         ),
-                      );
-                    },
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(AnimalsWallpaper());
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "See All",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Sci-Fi",
-                      style: GoogleFonts.kanit(
-                        fontSize: 18,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    child: SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: min(8, amoledRefs.length),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          // final imageRef = amoledRefs[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: FutureBuilder(
+                                future: amoledRefs[index].getDownloadURL(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Container(
+                                      width: 120,
+                                      child: _buildCircularIndicator(),
+                                    );
+                                  }
+                                  if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  }
+                                  if (!snapshot.hasData ||
+                                      snapshot.data == null) {
+                                    return Text('No Data');
+                                  }
+                                  return Container(
+                                    width: 120,
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot.data.toString(),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(ScifiWallpaper());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "See All",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                child: SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: min(8, amoledRefs.length),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      // final imageRef = amoledRefs[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Container(
-                                  width: 120,
-                                  child: _buildCircularIndicator(),
-                                );
-                              }
-                              if (snapshot.hasError) {
-                                return Text('Error: ${snapshot.error}');
-                              }
-                              if (!snapshot.hasData || snapshot.data == null) {
-                                return Text('No Data');
-                              }
-                              return Container(
-                                width: 120,
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data.toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Sci-Fi",
+                          style: GoogleFonts.kanit(
+                            fontSize: 18,
                           ),
                         ),
-                      );
-                    },
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(ScifiWallpaper());
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "See All",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Games",
-                      style: GoogleFonts.kanit(
-                        fontSize: 18,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    child: SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: min(8, amoledRefs.length),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          // final imageRef = amoledRefs[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: FutureBuilder(
+                                future: amoledRefs[index].getDownloadURL(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Container(
+                                      width: 120,
+                                      child: _buildCircularIndicator(),
+                                    );
+                                  }
+                                  if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  }
+                                  if (!snapshot.hasData ||
+                                      snapshot.data == null) {
+                                    return Text('No Data');
+                                  }
+                                  return Container(
+                                    width: 120,
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot.data.toString(),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(GamesWallpaper());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "See All",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                child: SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: min(8, amoledRefs.length),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      // final imageRef = amoledRefs[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder(
-                            future: amoledRefs[index].getDownloadURL(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Container(
-                                  width: 120,
-                                  child: _buildCircularIndicator(),
-                                );
-                              }
-                              if (snapshot.hasError) {
-                                return Text('Error: ${snapshot.error}');
-                              }
-                              if (!snapshot.hasData || snapshot.data == null) {
-                                return Text('No Data');
-                              }
-                              return Container(
-                                width: 120,
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data.toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Games",
+                          style: GoogleFonts.kanit(
+                            fontSize: 18,
                           ),
                         ),
-                      );
-                    },
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(GamesWallpaper());
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "See All",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    child: SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: min(8, amoledRefs.length),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          // final imageRef = amoledRefs[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: FutureBuilder(
+                                future: amoledRefs[index].getDownloadURL(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Container(
+                                      width: 120,
+                                      child: _buildCircularIndicator(),
+                                    );
+                                  }
+                                  if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  }
+                                  if (!snapshot.hasData ||
+                                      snapshot.data == null) {
+                                    return Text('No Data');
+                                  }
+                                  return Container(
+                                    width: 120,
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot.data.toString(),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
