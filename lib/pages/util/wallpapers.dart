@@ -211,7 +211,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    // physics: NeverScrollableScrollPhysics(),
+                    physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -288,7 +288,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    // physics: BouncingScrollPhysics(),
+                    physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -364,7 +364,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    // physics: BouncingScrollPhysics(),
+                    physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -440,7 +440,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    // physics: BouncingScrollPhysics(),
+                    physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -516,7 +516,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    // physics: BouncingScrollPhysics(),
+                    physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -592,7 +592,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    // physics: BouncingScrollPhysics(),
+                    physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -668,7 +668,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    // physics: BouncingScrollPhysics(),
+                    physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -744,7 +744,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    // physics: BouncingScrollPhysics(),
+                    physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -820,7 +820,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    // physics: BouncingScrollPhysics(),
+                    physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -896,7 +896,7 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    // physics: BouncingScrollPhysics(),
+                    physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
