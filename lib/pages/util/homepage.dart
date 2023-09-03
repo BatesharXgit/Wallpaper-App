@@ -271,9 +271,7 @@ class MyHomePageState extends State<MyHomePage>
           _buildImageGridFromRef(wallpaperRef),
           const Center(
               child: Text("AI", style: TextStyle(color: Colors.white))),
-          const Center(
-              child:
-                  Text("Illustration", style: TextStyle(color: Colors.white))),
+          _buildImageGridFromRef(illustrationRef),
           _buildImageGridFromRef(carsRef),
           _buildImageGridFromRef(abstractRef),
           const Center(
