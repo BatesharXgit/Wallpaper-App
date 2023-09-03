@@ -2,9 +2,12 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+
+import 'walls_category.dart';
 
 final FirebaseStorage storage = FirebaseStorage.instance;
 final Reference amoledRef = storage.ref().child('wallpaper');
@@ -147,8 +150,6 @@ class CategoryState extends State<Category> {
     }
   }
 
-  bool showAllImages = false;
-
   @override
   Widget build(BuildContext context) {
     Color backgroundColor = Theme.of(context).colorScheme.background;
@@ -188,9 +189,7 @@ class CategoryState extends State<Category> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          showAllImages = !showAllImages;
-                        });
+                        Get.to(AmoledWallpaper());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -265,9 +264,7 @@ class CategoryState extends State<Category> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          showAllImages = !showAllImages;
-                        });
+                        Get.to(LandscapesWallpaper());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -341,9 +338,7 @@ class CategoryState extends State<Category> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          showAllImages = !showAllImages;
-                        });
+                        Get.to(CityscapesWallpaper());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -417,9 +412,7 @@ class CategoryState extends State<Category> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          showAllImages = !showAllImages;
-                        });
+                        Get.to(SpaceWallpaper());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -493,9 +486,7 @@ class CategoryState extends State<Category> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          showAllImages = !showAllImages;
-                        });
+                        Get.to(StockWallpapers());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -569,9 +560,7 @@ class CategoryState extends State<Category> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          showAllImages = !showAllImages;
-                        });
+                        Get.to(MinimalistWallpaper());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -645,9 +634,7 @@ class CategoryState extends State<Category> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          showAllImages = !showAllImages;
-                        });
+                        Get.to(NatureWallpaper());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -721,9 +708,7 @@ class CategoryState extends State<Category> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          showAllImages = !showAllImages;
-                        });
+                        Get.to(AnimalsWallpaper());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -797,9 +782,7 @@ class CategoryState extends State<Category> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          showAllImages = !showAllImages;
-                        });
+                        Get.to(ScifiWallpaper());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -873,9 +856,7 @@ class CategoryState extends State<Category> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          showAllImages = !showAllImages;
-                        });
+                        Get.to(GamesWallpaper());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
