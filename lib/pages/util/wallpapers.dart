@@ -225,7 +225,10 @@ class CategoryState extends State<Category> {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return _buildCircularIndicator();
+                                return Container(
+                                  width: 120,
+                                  child: _buildCircularIndicator(),
+                                );
                               }
                               if (snapshot.hasError) {
                                 return Text('Error: ${snapshot.error}');
@@ -234,10 +237,12 @@ class CategoryState extends State<Category> {
                                 return Text('No Data');
                               }
 
-                              return CachedNetworkImage(
-                                imageUrl: snapshot.data.toString(),
+                              return Container(
                                 width: 120,
-                                fit: BoxFit.cover,
+                                child: CachedNetworkImage(
+                                  imageUrl: snapshot.data.toString(),
+                                  fit: BoxFit.cover,
+                                ),
                               );
                             },
                           ),
@@ -297,7 +302,10 @@ class CategoryState extends State<Category> {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return _buildCircularIndicator();
+                                return Container(
+                                  width: 120,
+                                  child: _buildCircularIndicator(),
+                                );
                               }
                               if (snapshot.hasError) {
                                 return Text('Error: ${snapshot.error}');
@@ -305,11 +313,12 @@ class CategoryState extends State<Category> {
                               if (!snapshot.hasData || snapshot.data == null) {
                                 return Text('No Data');
                               }
-
-                              return CachedNetworkImage(
-                                imageUrl: snapshot.data.toString(),
+                              return Container(
                                 width: 120,
-                                fit: BoxFit.cover,
+                                child: CachedNetworkImage(
+                                  imageUrl: snapshot.data.toString(),
+                                  fit: BoxFit.cover,
+                                ),
                               );
                             },
                           ),
@@ -369,7 +378,10 @@ class CategoryState extends State<Category> {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return _buildCircularIndicator();
+                                return Container(
+                                  width: 120,
+                                  child: _buildCircularIndicator(),
+                                );
                               }
                               if (snapshot.hasError) {
                                 return Text('Error: ${snapshot.error}');
@@ -377,11 +389,12 @@ class CategoryState extends State<Category> {
                               if (!snapshot.hasData || snapshot.data == null) {
                                 return Text('No Data');
                               }
-
-                              return CachedNetworkImage(
-                                imageUrl: snapshot.data.toString(),
+                              return Container(
                                 width: 120,
-                                fit: BoxFit.cover,
+                                child: CachedNetworkImage(
+                                  imageUrl: snapshot.data.toString(),
+                                  fit: BoxFit.cover,
+                                ),
                               );
                             },
                           ),
@@ -441,7 +454,10 @@ class CategoryState extends State<Category> {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return _buildCircularIndicator();
+                                return Container(
+                                  width: 120,
+                                  child: _buildCircularIndicator(),
+                                );
                               }
                               if (snapshot.hasError) {
                                 return Text('Error: ${snapshot.error}');
@@ -449,11 +465,12 @@ class CategoryState extends State<Category> {
                               if (!snapshot.hasData || snapshot.data == null) {
                                 return Text('No Data');
                               }
-
-                              return CachedNetworkImage(
-                                imageUrl: snapshot.data.toString(),
+                              return Container(
                                 width: 120,
-                                fit: BoxFit.cover,
+                                child: CachedNetworkImage(
+                                  imageUrl: snapshot.data.toString(),
+                                  fit: BoxFit.cover,
+                                ),
                               );
                             },
                           ),
@@ -513,7 +530,10 @@ class CategoryState extends State<Category> {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return _buildCircularIndicator();
+                                return Container(
+                                  width: 120,
+                                  child: _buildCircularIndicator(),
+                                );
                               }
                               if (snapshot.hasError) {
                                 return Text('Error: ${snapshot.error}');
@@ -521,11 +541,12 @@ class CategoryState extends State<Category> {
                               if (!snapshot.hasData || snapshot.data == null) {
                                 return Text('No Data');
                               }
-
-                              return CachedNetworkImage(
-                                imageUrl: snapshot.data.toString(),
+                              return Container(
                                 width: 120,
-                                fit: BoxFit.cover,
+                                child: CachedNetworkImage(
+                                  imageUrl: snapshot.data.toString(),
+                                  fit: BoxFit.cover,
+                                ),
                               );
                             },
                           ),
@@ -585,7 +606,10 @@ class CategoryState extends State<Category> {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return _buildCircularIndicator();
+                                return Container(
+                                  width: 120,
+                                  child: _buildCircularIndicator(),
+                                );
                               }
                               if (snapshot.hasError) {
                                 return Text('Error: ${snapshot.error}');
@@ -593,11 +617,12 @@ class CategoryState extends State<Category> {
                               if (!snapshot.hasData || snapshot.data == null) {
                                 return Text('No Data');
                               }
-
-                              return CachedNetworkImage(
-                                imageUrl: snapshot.data.toString(),
+                              return Container(
                                 width: 120,
-                                fit: BoxFit.cover,
+                                child: CachedNetworkImage(
+                                  imageUrl: snapshot.data.toString(),
+                                  fit: BoxFit.cover,
+                                ),
                               );
                             },
                           ),
@@ -657,7 +682,10 @@ class CategoryState extends State<Category> {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return _buildCircularIndicator();
+                                return Container(
+                                  width: 120,
+                                  child: _buildCircularIndicator(),
+                                );
                               }
                               if (snapshot.hasError) {
                                 return Text('Error: ${snapshot.error}');
@@ -665,11 +693,12 @@ class CategoryState extends State<Category> {
                               if (!snapshot.hasData || snapshot.data == null) {
                                 return Text('No Data');
                               }
-
-                              return CachedNetworkImage(
-                                imageUrl: snapshot.data.toString(),
+                              return Container(
                                 width: 120,
-                                fit: BoxFit.cover,
+                                child: CachedNetworkImage(
+                                  imageUrl: snapshot.data.toString(),
+                                  fit: BoxFit.cover,
+                                ),
                               );
                             },
                           ),
@@ -729,7 +758,10 @@ class CategoryState extends State<Category> {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return _buildCircularIndicator();
+                                return Container(
+                                  width: 120,
+                                  child: _buildCircularIndicator(),
+                                );
                               }
                               if (snapshot.hasError) {
                                 return Text('Error: ${snapshot.error}');
@@ -737,11 +769,12 @@ class CategoryState extends State<Category> {
                               if (!snapshot.hasData || snapshot.data == null) {
                                 return Text('No Data');
                               }
-
-                              return CachedNetworkImage(
-                                imageUrl: snapshot.data.toString(),
+                              return Container(
                                 width: 120,
-                                fit: BoxFit.cover,
+                                child: CachedNetworkImage(
+                                  imageUrl: snapshot.data.toString(),
+                                  fit: BoxFit.cover,
+                                ),
                               );
                             },
                           ),
@@ -801,7 +834,10 @@ class CategoryState extends State<Category> {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return _buildCircularIndicator();
+                                return Container(
+                                  width: 120,
+                                  child: _buildCircularIndicator(),
+                                );
                               }
                               if (snapshot.hasError) {
                                 return Text('Error: ${snapshot.error}');
@@ -809,11 +845,12 @@ class CategoryState extends State<Category> {
                               if (!snapshot.hasData || snapshot.data == null) {
                                 return Text('No Data');
                               }
-
-                              return CachedNetworkImage(
-                                imageUrl: snapshot.data.toString(),
+                              return Container(
                                 width: 120,
-                                fit: BoxFit.cover,
+                                child: CachedNetworkImage(
+                                  imageUrl: snapshot.data.toString(),
+                                  fit: BoxFit.cover,
+                                ),
                               );
                             },
                           ),
@@ -873,7 +910,10 @@ class CategoryState extends State<Category> {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return _buildCircularIndicator();
+                                return Container(
+                                  width: 120,
+                                  child: _buildCircularIndicator(),
+                                );
                               }
                               if (snapshot.hasError) {
                                 return Text('Error: ${snapshot.error}');
@@ -881,11 +921,12 @@ class CategoryState extends State<Category> {
                               if (!snapshot.hasData || snapshot.data == null) {
                                 return Text('No Data');
                               }
-
-                              return CachedNetworkImage(
-                                imageUrl: snapshot.data.toString(),
+                              return Container(
                                 width: 120,
-                                fit: BoxFit.cover,
+                                child: CachedNetworkImage(
+                                  imageUrl: snapshot.data.toString(),
+                                  fit: BoxFit.cover,
+                                ),
                               );
                             },
                           ),
