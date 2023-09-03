@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -233,8 +234,8 @@ class CategoryState extends State<Category> {
                                 return Text('No Data');
                               }
 
-                              return Image.network(
-                                snapshot.data.toString(),
+                              return CachedNetworkImage(
+                                imageUrl: snapshot.data.toString(),
                                 width: 120,
                                 fit: BoxFit.cover,
                               );
