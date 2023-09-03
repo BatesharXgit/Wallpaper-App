@@ -211,17 +211,17 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
+                    // physics: NeverScrollableScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      final imageRef = amoledRefs[index];
+                      // final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder<String>(
-                            future: imageRef.getDownloadURL(),
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -283,17 +283,17 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
+                    // physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      final imageRef = amoledRefs[index];
+                      // final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder<String>(
-                            future: imageRef.getDownloadURL(),
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -306,8 +306,8 @@ class CategoryState extends State<Category> {
                                 return Text('No Data');
                               }
 
-                              return Image.network(
-                                snapshot.data.toString(),
+                              return CachedNetworkImage(
+                                imageUrl: snapshot.data.toString(),
                                 width: 120,
                                 fit: BoxFit.cover,
                               );
@@ -355,17 +355,17 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
+                    // physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      final imageRef = amoledRefs[index];
+                      // final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder<String>(
-                            future: imageRef.getDownloadURL(),
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -378,8 +378,8 @@ class CategoryState extends State<Category> {
                                 return Text('No Data');
                               }
 
-                              return Image.network(
-                                snapshot.data.toString(),
+                              return CachedNetworkImage(
+                                imageUrl: snapshot.data.toString(),
                                 width: 120,
                                 fit: BoxFit.cover,
                               );
@@ -427,17 +427,17 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
+                    // physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      final imageRef = amoledRefs[index];
+                      // final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder<String>(
-                            future: imageRef.getDownloadURL(),
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -450,8 +450,8 @@ class CategoryState extends State<Category> {
                                 return Text('No Data');
                               }
 
-                              return Image.network(
-                                snapshot.data.toString(),
+                              return CachedNetworkImage(
+                                imageUrl: snapshot.data.toString(),
                                 width: 120,
                                 fit: BoxFit.cover,
                               );
@@ -499,17 +499,17 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
+                    // physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      final imageRef = amoledRefs[index];
+                      // final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder<String>(
-                            future: imageRef.getDownloadURL(),
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -522,8 +522,8 @@ class CategoryState extends State<Category> {
                                 return Text('No Data');
                               }
 
-                              return Image.network(
-                                snapshot.data.toString(),
+                              return CachedNetworkImage(
+                                imageUrl: snapshot.data.toString(),
                                 width: 120,
                                 fit: BoxFit.cover,
                               );
@@ -571,17 +571,17 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
+                    // physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      final imageRef = amoledRefs[index];
+                      // final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder<String>(
-                            future: imageRef.getDownloadURL(),
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -594,8 +594,8 @@ class CategoryState extends State<Category> {
                                 return Text('No Data');
                               }
 
-                              return Image.network(
-                                snapshot.data.toString(),
+                              return CachedNetworkImage(
+                                imageUrl: snapshot.data.toString(),
                                 width: 120,
                                 fit: BoxFit.cover,
                               );
@@ -643,17 +643,17 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
+                    // physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      final imageRef = amoledRefs[index];
+                      // final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder<String>(
-                            future: imageRef.getDownloadURL(),
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -666,8 +666,8 @@ class CategoryState extends State<Category> {
                                 return Text('No Data');
                               }
 
-                              return Image.network(
-                                snapshot.data.toString(),
+                              return CachedNetworkImage(
+                                imageUrl: snapshot.data.toString(),
                                 width: 120,
                                 fit: BoxFit.cover,
                               );
@@ -715,17 +715,17 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
+                    // physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      final imageRef = amoledRefs[index];
+                      // final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder<String>(
-                            future: imageRef.getDownloadURL(),
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -738,8 +738,8 @@ class CategoryState extends State<Category> {
                                 return Text('No Data');
                               }
 
-                              return Image.network(
-                                snapshot.data.toString(),
+                              return CachedNetworkImage(
+                                imageUrl: snapshot.data.toString(),
                                 width: 120,
                                 fit: BoxFit.cover,
                               );
@@ -787,17 +787,17 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
+                    // physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      final imageRef = amoledRefs[index];
+                      // final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder<String>(
-                            future: imageRef.getDownloadURL(),
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -810,8 +810,8 @@ class CategoryState extends State<Category> {
                                 return Text('No Data');
                               }
 
-                              return Image.network(
-                                snapshot.data.toString(),
+                              return CachedNetworkImage(
+                                imageUrl: snapshot.data.toString(),
                                 width: 120,
                                 fit: BoxFit.cover,
                               );
@@ -859,17 +859,17 @@ class CategoryState extends State<Category> {
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
+                    // physics: BouncingScrollPhysics(),
                     itemCount: min(8, amoledRefs.length),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      final imageRef = amoledRefs[index];
+                      // final imageRef = amoledRefs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: FutureBuilder<String>(
-                            future: imageRef.getDownloadURL(),
+                          child: FutureBuilder(
+                            future: amoledRefs[index].getDownloadURL(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -882,8 +882,8 @@ class CategoryState extends State<Category> {
                                 return Text('No Data');
                               }
 
-                              return Image.network(
-                                snapshot.data.toString(),
+                              return CachedNetworkImage(
+                                imageUrl: snapshot.data.toString(),
                                 width: 120,
                                 fit: BoxFit.cover,
                               );
