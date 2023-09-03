@@ -6,8 +6,6 @@ import 'package:luca_ui/pages/util/homepage.dart';
 
 final FirebaseStorage storage = FirebaseStorage.instance;
 final Reference amoledRef = storage.ref().child('wallpaper');
-final Reference landscapesRef = storage.ref().child('wallpaper');
-final Reference cityscapesRef = storage.ref().child('wallpaper');
 final Reference spaceRef = storage.ref().child('wallpaper');
 final Reference stockRef = storage.ref().child('wallpaper');
 final Reference minimalistRef = storage.ref().child('wallpaper');
@@ -17,8 +15,6 @@ final Reference scifiRef = storage.ref().child('wallpaper');
 final Reference gamesRef = storage.ref().child('wallpaper');
 
 List<Reference> amoledRefs = [];
-List<Reference> landscapesRefs = [];
-List<Reference> cityscapesRefs = [];
 List<Reference> spaceRefs = [];
 List<Reference> stockRefs = [];
 List<Reference> minimalistRefs = [];
@@ -180,40 +176,6 @@ class _AmoledWallpaperState extends State<AmoledWallpaper> {
         color: Theme.of(context).colorScheme.primary,
       ),
     );
-  }
-}
-
-//=====================================================================================================================
-//===============================================  Landscpes Wallpaper ===================================================
-//=====================================================================================================================
-class LandscapesWallpaper extends StatefulWidget {
-  const LandscapesWallpaper({super.key});
-
-  @override
-  State<LandscapesWallpaper> createState() => _LandscapesWallpaperState();
-}
-
-class _LandscapesWallpaperState extends State<LandscapesWallpaper> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-//=====================================================================================================================
-//===============================================  Cityscapes Wallpaper ===================================================
-//=====================================================================================================================
-class CityscapesWallpaper extends StatefulWidget {
-  const CityscapesWallpaper({super.key});
-
-  @override
-  State<CityscapesWallpaper> createState() => _CityscapesStateWallpaper();
-}
-
-class _CityscapesStateWallpaper extends State<CityscapesWallpaper> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }
 
