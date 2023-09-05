@@ -13,7 +13,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:luca_ui/pages/util/parallax.dart';
 import 'package:luca_ui/pages/util/searchresult.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:luca_ui/pages/util/settings.dart';
+import 'package:luca_ui/pages/settings.dart';
 import 'package:flutter/rendering.dart';
 
 final FirebaseStorage storage = FirebaseStorage.instance;

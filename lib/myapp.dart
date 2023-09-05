@@ -1,7 +1,7 @@
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:luca_ui/pages/util/homepage.dart';
+import 'package:luca_ui/pages/homepage.dart';
 import 'package:luca_ui/pages/util/live_category.dart';
 import 'package:luca_ui/pages/util/wallpapers.dart';
 import 'package:luca_ui/themes/themes.dart';

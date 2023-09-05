@@ -2,7 +2,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:luca_ui/pages/util/homepage.dart';
+import 'package:luca_ui/pages/homepage.dart';
 
 final FirebaseStorage storage = FirebaseStorage.instance;
 final Reference amoledRef = storage.ref().child('wallpaper');
