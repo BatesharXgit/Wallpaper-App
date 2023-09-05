@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luca_ui/pages/homepage.dart';
 import 'package:luca_ui/pages/util/live_category.dart';
-import 'package:luca_ui/pages/util/wallpapers.dart';
+import 'package:luca_ui/pages/wallpapers.dart';
 import 'package:luca_ui/themes/themes.dart';
 import 'pages/util/live.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
