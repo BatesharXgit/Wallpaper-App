@@ -520,22 +520,50 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                   },
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).padding.top + 10, left: 10),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background,
-                    borderRadius: BorderRadius.circular(30),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).padding.top + 10, left: 10),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.background,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.close_outlined,
+                        color: Theme.of(context).iconTheme.color,
+                        size: 30,
+                      ),
+                    ),
                   ),
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      Icons.close_outlined,
-                      color: Theme.of(context).iconTheme.color,
-                      size: 30,
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).padding.top + 10,
+                    right: 10,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.background,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.info_outline,
+                        color: Theme.of(context).iconTheme.color,
+                        size: 30,
+                      ),
                     ),
                   ),
                 ),
