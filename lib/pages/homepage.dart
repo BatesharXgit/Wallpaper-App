@@ -576,30 +576,26 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
-                      backgroundColor: Theme.of(context).colorScheme.background,
                       builder: (BuildContext context) {
                         return Container(
                           decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                blurRadius: 10.0,
-                                spreadRadius: 2.0,
-                              ),
-                            ],
+                            color: Theme.of(context).colorScheme.background,
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              ListTile(
-                                title: Text(
-                                  'Apply to Home Screen',
-                                  style: GoogleFonts.kanit(color: Colors.white),
+                              Align(
+                                alignment: Alignment.center,
+                                child: ListTile(
+                                  title: Text(
+                                    'Apply to Home Screen',
+                                    style:
+                                        GoogleFonts.kanit(color: Colors.white),
+                                  ),
+                                  onTap: () {
+                                    applyHomescreen(context);
+                                  },
                                 ),
-                                onTap: () {
-                                  applyHomescreen(context);
-                                },
                               ),
                               ListTile(
                                 title: Text(
@@ -640,7 +636,8 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                             child: Text(
                               'Apply Wallpaper',
                               style: GoogleFonts.kanit(
-                                  color: Colors.white, fontSize: 22),
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 22),
                             ),
                           ),
                         )),
