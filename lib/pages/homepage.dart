@@ -576,7 +576,7 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
-                      backgroundColor: Colors.transparent,
+                      backgroundColor: Theme.of(context).colorScheme.background,
                       builder: (BuildContext context) {
                         return Container(
                           decoration: BoxDecoration(
@@ -589,65 +589,62 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                               ),
                             ],
                           ),
-                          child: ClipRRect(
-                            borderRadius: const BorderRadius.vertical(
-                              top: Radius.circular(16.0),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                ListTile(
-                                  title: Text(
-                                    'Apply to Home Screen',
-                                    style:
-                                        GoogleFonts.kanit(color: Colors.white),
-                                  ),
-                                  onTap: () {
-                                    applyHomescreen(context);
-                                  },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ListTile(
+                                title: Text(
+                                  'Apply to Home Screen',
+                                  style: GoogleFonts.kanit(color: Colors.white),
                                 ),
-                                ListTile(
-                                  title: Text(
-                                    'Apply to Lock Screen',
-                                    style:
-                                        GoogleFonts.kanit(color: Colors.white),
-                                  ),
-                                  onTap: () {
-                                    applyLockscreen(context);
-                                  },
+                                onTap: () {
+                                  applyHomescreen(context);
+                                },
+                              ),
+                              ListTile(
+                                title: Text(
+                                  'Apply to Lock Screen',
+                                  style: GoogleFonts.kanit(color: Colors.white),
                                 ),
-                                ListTile(
-                                  title: Text(
-                                    'Apply to Both',
-                                    style:
-                                        GoogleFonts.kanit(color: Colors.white),
-                                  ),
-                                  onTap: () {
-                                    applyBoth(context);
-                                  },
+                                onTap: () {
+                                  applyLockscreen(context);
+                                },
+                              ),
+                              ListTile(
+                                title: Text(
+                                  'Apply to Both',
+                                  style: GoogleFonts.kanit(color: Colors.white),
                                 ),
-                              ],
-                            ),
+                                onTap: () {
+                                  applyBoth(context);
+                                },
+                              ),
+                            ],
                           ),
                         );
                       },
                     );
                   },
-                  child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6),
-                        child: SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.05,
-                          child: Center(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                          height: 50,
+                          width: 200,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Align(
+                            alignment: Alignment.center,
                             child: Text(
                               'Apply Wallpaper',
                               style: GoogleFonts.kanit(
                                   color: Colors.white, fontSize: 22),
                             ),
                           ),
-                        ),
-                      )),
+                        )),
+                  ),
                 ),
               ),
             ],
