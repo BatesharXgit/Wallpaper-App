@@ -523,15 +523,18 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
               Padding(
                 padding: EdgeInsets.only(
                     top: MediaQuery.of(context).padding.top + 10, left: 10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.background,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                   child: IconButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: const Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      color: Colors.white,
+                    icon: Icon(
+                      Icons.close_outlined,
+                      color: Theme.of(context).iconTheme.color,
                       size: 30,
                     ),
                   ),
