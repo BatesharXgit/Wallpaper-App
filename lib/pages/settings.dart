@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:iconsax/iconsax.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -85,7 +86,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       children: [
                         ListTile(
                           leading: const Icon(
-                            FluentIcons.info_12_regular,
+                            Iconsax.info_circle,
                             size: 28,
                           ),
                           title: const Text('About'),
@@ -99,7 +100,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         ListTile(
                           leading: const Icon(
-                            FluentIcons.apps_list_20_regular,
+                            Iconsax.activity,
                             size: 28,
                           ),
                           title: const Text('Changelog'),
@@ -112,7 +113,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           },
                         ),
                         ListTile(
-                          leading: const Icon(FluentIcons.delete_12_regular),
+                          leading: const Icon(Iconsax.trash),
                           title: const Text('Clear Cache'),
                           subtitle: Text('Clear all cached data',
                               style: TextStyle(color: Colors.grey)),
@@ -178,7 +179,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ListTile(
-                          leading: const Icon(Icons.logout_outlined),
+                          leading: const Icon(Iconsax.logout),
                           title: const Text('Logout'),
                           subtitle: Text('Logout of your account',
                               style: TextStyle(color: Colors.grey)),
@@ -189,7 +190,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           },
                         ),
                         ListTile(
-                          leading: const Icon(Icons.delete_outline),
+                          leading: const Icon(Iconsax.trash),
                           title: const Text('Delete Account'),
                           subtitle: Text('Warning! This cannot be undone',
                               style: TextStyle(color: Colors.grey)),

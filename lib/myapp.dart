@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
               FlashyTabBarItem(
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
-                icon: const Icon(Iconsax.home_1),
+                icon: const Icon(Iconsax.home_2),
                 title: const Text('Home'),
               ),
               FlashyTabBarItem(
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
                 icon: const Icon(
-                  Iconsax.like,
+                  Iconsax.heart,
                   size: 25,
                 ),
                 title: const Text('Favourites'),

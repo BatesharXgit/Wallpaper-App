@@ -9,6 +9,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:async_wallpaper/async_wallpaper.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:luca_ui/pages/util/parallax.dart';
 import 'package:luca_ui/pages/util/searchresult.dart';
@@ -136,8 +137,8 @@ class MyHomePageState extends State<MyHomePage>
             builder: (BuildContext context) {
               return IconButton(
                 icon: const Icon(
-                  FluentIcons.settings_16_regular,
-                  size: 32,
+                  Iconsax.setting_2,
+                  size: 30,
                 ),
                 color: Theme.of(context).iconTheme.color,
                 onPressed: () =>
@@ -169,9 +170,9 @@ class MyHomePageState extends State<MyHomePage>
                   transition: Transition.fadeIn,
                 ),
                 child: Icon(
-                  FluentIcons.search_16_regular,
+                  Iconsax.search_normal_1,
                   color: Theme.of(context).iconTheme.color,
-                  size: 32,
+                  size: 30,
                 ),
               );
             },
