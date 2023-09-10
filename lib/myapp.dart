@@ -1,6 +1,7 @@
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:luca_ui/pages/homepage.dart';
 import 'package:luca_ui/pages/util/live_category.dart';
 import 'package:luca_ui/pages/wallpapers.dart';
@@ -56,14 +57,14 @@ class _HomePageState extends State<HomePage> {
               FlashyTabBarItem(
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
-                icon: const Icon(FluentIcons.home_12_regular),
+                icon: const Icon(Iconsax.home_1),
                 title: const Text('Home'),
               ),
               FlashyTabBarItem(
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
                 icon: const Icon(
-                  FluentIcons.image_16_regular,
+                  Iconsax.image4,
                   size: 25,
                 ),
                 title: const Text('Category'),
@@ -72,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
                 icon: const Icon(
-                  FluentIcons.video_clip_16_regular,
+                  Iconsax.video_vertical,
                   size: 25,
                 ),
                 title: const Text('Live'),
@@ -81,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
                 icon: const Icon(
-                  FluentIcons.heart_12_regular,
+                  Iconsax.like,
                   size: 25,
                 ),
                 title: const Text('Favourites'),
