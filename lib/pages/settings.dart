@@ -1,4 +1,3 @@
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -140,7 +139,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       children: [
                         ListTile(
                           leading: const Icon(
-                            FluentIcons.bookmark_16_regular,
+                            Iconsax.bookmark,
                             size: 28,
                           ),
                           title: const Text('Liscenses'),
