@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:luca_ui/components/my_button.dart';
 import 'package:luca_ui/components/square_tile.dart';
 import 'package:luca_ui/authentication/services/auth_service.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-class RegisterPage extends StatefulWidget {
+class PrivacyPolicyPage extends StatefulWidget {
   final Function()? onTap;
-  const RegisterPage({super.key, required this.onTap});
+  const PrivacyPolicyPage({super.key, required this.onTap});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<PrivacyPolicyPage> createState() => _PrivacyPolicyPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

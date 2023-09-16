@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:luca_ui/authentication/auth%20pages/login_page.dart';
-import 'package:luca_ui/authentication/auth%20pages/register_page.dart';
 
 class LoginOrRegisterPage extends StatefulWidget {
   const LoginOrRegisterPage({super.key});
@@ -20,12 +19,8 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (showLoginPage) {
-      return LoginPage(
-        onTap: togglePages,
-      );
-    } else {
-      return RegisterPage(onTap: togglePages);
-    }
+    return LoginPage(
+      onTap: togglePages,
+    );
   }
 }

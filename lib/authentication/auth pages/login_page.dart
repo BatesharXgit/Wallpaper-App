@@ -109,14 +109,14 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Not a member?',
+                    'I agree with Luca',
                     style: TextStyle(color: Colors.grey[500]),
                   ),
                   const SizedBox(width: 4),
                   GestureDetector(
                     onTap: widget.onTap,
                     child: const Text(
-                      'Register now',
+                      'Privacy Policy',
                       style: TextStyle(
                         color: Color(0xFFFE5163),
                         fontWeight: FontWeight.bold,
