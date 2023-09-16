@@ -16,73 +16,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  // text editing controllers
-  final emailController = TextEditingController();
-
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
-
-  // sign user in method
-  Future<void> signUserUp() async {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return Center(
-            child: LoadingAnimationWidget.fourRotatingDots(
-                color: const Color(0xFFFE5163), size: 35),
-          );
-        });
-    try {
-      if (passwordController.text == confirmPasswordController.text) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
-        );
-      } else {
-        showErrorMessage("Password don't match!");
-      }
-
-      // ignore: use_build_context_synchronously
-      Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-      showErrorMessage(e.code);
-    }
-  }
-
-  void serviceUnavailable() {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const AlertDialog(
-            backgroundColor: Color(0xFF131321),
-            title: Center(
-              child: Text(
-                'Oops, something went wrong. We\'re on it!',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          );
-        });
-  }
-
-  void showErrorMessage(String message) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: const Color(0xFF131321),
-          title: Center(
-            child: Text(
-              message,
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,38 +50,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: MediaQuery.of(context).size.height * 0.035),
 
                 // username textfield
-                MyTextField(
-                  controller: emailController,
-                  hintText: 'Email',
-                  obscureText: false,
-                ),
-
-                const SizedBox(height: 10),
-
-                // password textfield
-                MyTextField(
-                  controller: passwordController,
-                  hintText: 'Password',
-                  obscureText: true,
-                ),
-
-                const SizedBox(height: 10),
-
-                MyTextField(
-                  controller: confirmPasswordController,
-                  hintText: 'Confirm Password',
-                  obscureText: true,
-                ),
 
                 // forgot password?
 
-                const SizedBox(height: 15),
-
-                // sign in button
-                MyButton(
-                  onTap: signUserUp,
-                  text: 'Sign Up',
-                ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.035),
 
                 // or continue with
@@ -191,9 +95,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     const SizedBox(width: 25),
 
                     // apple button
-                    SquareTile(
-                        onTap: serviceUnavailable,
-                        imagePath: 'lib/images/apple.png')
                   ],
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.030),

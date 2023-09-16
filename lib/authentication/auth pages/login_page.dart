@@ -78,14 +78,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
 
-              const SizedBox(height: 25),
-
-              // sign in button
-              MyButton(
-                onTap: () {},
-                text: 'Sign In',
-              ),
-
               SizedBox(height: MediaQuery.of(context).size.height * 0.035),
 
               // or continue with
