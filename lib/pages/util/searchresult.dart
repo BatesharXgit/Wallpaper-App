@@ -81,7 +81,7 @@ class SearchWallpaperState extends State<SearchWallpaper> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.015,
               ),
-              buildSearchBox(),
+              buildSearchBox(context),
               const Divider(
                 thickness: 2.5,
                 color: Color(0xFF131321),
@@ -93,7 +93,7 @@ class SearchWallpaperState extends State<SearchWallpaper> {
                         ? Center(
                             child: Text(
                               'Unleash the magic of search.',
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: primaryColor),
                             ),
                           )
                         : MasonryGridView.builder(
@@ -144,14 +144,15 @@ class SearchWallpaperState extends State<SearchWallpaper> {
     );
   }
 
-  Widget buildSearchBox() {
+  Widget buildSearchBox(BuildContext context) {
+    Color primaryColor = Theme.of(context).colorScheme.primary;
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.85,
         height: MediaQuery.of(context).size.height * 0.055,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: primaryColor,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -172,12 +173,12 @@ class SearchWallpaperState extends State<SearchWallpaper> {
                   onChanged: (query) => _debouncedSearch(query),
                   style: GoogleFonts.kanit(
                     fontSize: 18,
-                    color: const Color(0xFF84DD3E),
+                    color: primaryColor,
                   ),
                   decoration: InputDecoration(
                     hintText: 'What you are looking for...',
                     hintStyle: GoogleFonts.kanit(
-                      color: const Color(0xFF84DD3E).withOpacity(0.8),
+                      color: primaryColor.withOpacity(0.8),
                       fontSize: 16,
                     ),
                     border: InputBorder.none,
@@ -189,7 +190,7 @@ class SearchWallpaperState extends State<SearchWallpaper> {
                       onPressed: () {},
                     ),
                   ),
-                  cursorColor: const Color(0xFF84DD3E),
+                  cursorColor: primaryColor,
                   cursorRadius: const Radius.circular(20),
                   cursorWidth: 3,
                 ),
