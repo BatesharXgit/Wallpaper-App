@@ -88,7 +88,9 @@ class SearchWallpaperState extends State<SearchWallpaper> {
               ),
               Expanded(
                 child: _isLoading
-                    ? Center(child: CircularProgressIndicator())
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
                     : _images.isEmpty
                         ? Center(
                             child: Text(

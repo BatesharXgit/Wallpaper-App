@@ -14,7 +14,7 @@ class AuthPage extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return const HomePage(
-                title: 'Inspirio',
+                title: 'Luca',
               );
             } else {
               return const LoginOrRegisterPage();

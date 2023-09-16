@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,6 +23,10 @@ class _SettingsPageState extends State<SettingsPage> {
         duration: Duration(seconds: 3),
       ),
     );
+  }
+
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
   }
 
   @override
@@ -184,9 +189,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               style: TextStyle(color: Colors.grey)),
                           iconColor: primaryColor,
                           textColor: primaryColor,
-                          onTap: () {
-                            // Handle Share and Feedback menu item tap
-                          },
+                          onTap: signUserOut,
                         ),
                         ListTile(
                           leading: const Icon(Iconsax.trash),
