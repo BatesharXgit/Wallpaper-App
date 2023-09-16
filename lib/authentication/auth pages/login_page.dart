@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:luca_ui/components/my_button.dart';
-import 'package:luca_ui/components/my_textfield.dart';
 import 'package:luca_ui/components/square_tile.dart';
-import 'package:luca_ui/authentication/auth%20pages/forgot_password.dart';
 import 'package:luca_ui/authentication/services/auth_service.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -57,26 +55,6 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 10),
 
               // forgot password?
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const ForgotPasswordPage();
-                        }));
-                      },
-                      child: const Text(
-                        'Forgot Password?',
-                        style: TextStyle(color: Color(0xFFFE5163)),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
 
               SizedBox(height: MediaQuery.of(context).size.height * 0.035),
 

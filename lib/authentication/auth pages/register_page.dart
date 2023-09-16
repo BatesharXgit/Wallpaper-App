@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:luca_ui/components/my_button.dart';
-import 'package:luca_ui/components/my_textfield.dart';
 import 'package:luca_ui/components/square_tile.dart';
 import 'package:luca_ui/authentication/services/auth_service.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
