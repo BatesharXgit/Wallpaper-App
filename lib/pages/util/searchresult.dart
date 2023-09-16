@@ -67,9 +67,13 @@ class SearchWallpaperState extends State<SearchWallpaper> {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Theme.of(context).colorScheme.background;
+    Color primaryColor = Theme.of(context).colorScheme.primary;
+    Color secondaryColor = Theme.of(context).colorScheme.secondary;
+    Color tertiaryColor = Theme.of(context).colorScheme.tertiary;
     return Scaffold(
       appBar: null,
-      backgroundColor: Color(0xFF131321),
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: Center(
           child: Column(
