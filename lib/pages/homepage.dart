@@ -10,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:luca_ui/pages/util/location_list.dart';
 import 'package:luca_ui/pages/util/parallax.dart';
 import 'package:luca_ui/pages/util/searchresult.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -656,7 +657,7 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                           Navigator.pop(context);
                         },
                         icon: Icon(
-                          Iconsax.close_circle,
+                          Iconsax.close_circle1,
                           color: Theme.of(context).iconTheme.color,
                           size: 30,
                         ),
@@ -755,37 +756,3 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
   }
 }
 
-class LocationListItem extends StatelessWidget {
-  LocationListItem({
-    Key? key,
-    required this.imageUrl,
-    required this.scrollController,
-  }) : super(key: key);
-
-  final String imageUrl;
-  final ScrollController scrollController;
-
-  final GlobalKey _backgroundImageKey = GlobalKey();
-
-  @override
-  Widget build(BuildContext context) {
-    return _buildParallaxBackground(context);
-  }
-
-  Widget _buildParallaxBackground(BuildContext context) {
-    return Flow(
-      delegate: ParallaxFlowDelegate(
-        scrollable: Scrollable.of(context),
-        listItemContext: context,
-        backgroundImageKey: _backgroundImageKey,
-      ),
-      children: [
-        CachedNetworkImage(
-          imageUrl: imageUrl,
-          key: _backgroundImageKey,
-          fit: BoxFit.cover,
-        ),
-      ],
-    );
-  }
-}
