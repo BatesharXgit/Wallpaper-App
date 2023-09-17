@@ -18,8 +18,10 @@ class _SettingsPageState extends State<SettingsPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Color(0xFF1E1E2A),
-        content: Text('Cache cleared successfully 😊',
-            style: GoogleFonts.kanit(color: Colors.white)),
+        content: Text(
+          'Cache cleared successfully 😊',
+          style: GoogleFonts.kanit(color: Colors.white),
+        ),
         duration: Duration(seconds: 3),
       ),
     );

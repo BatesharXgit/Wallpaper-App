@@ -18,10 +18,13 @@ import 'package:luca_ui/pages/settings.dart';
 import 'package:flutter/rendering.dart';
 
 final FirebaseStorage storage = FirebaseStorage.instance;
+
 final Reference wallpaperRef = storage.ref().child('wallpaper');
+final Reference aiRef = storage.ref().child('wallpaper');
 final Reference abstractRef = storage.ref().child('abstract');
 final Reference carsRef = storage.ref().child('cars');
 final Reference illustrationRef = storage.ref().child('illustration');
+final Reference fantasyRef = storage.ref().child('illustration');
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -39,9 +42,11 @@ class MyHomePageState extends State<MyHomePage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   List<Reference> wallpaperRefs = [];
+  List<Reference> aiRefs = [];
   List<Reference> carsRefs = [];
   List<Reference> abstractRefs = [];
   List<Reference> illustrationRefs = [];
+  List<Reference> fantasyRefs = [];
 
   int index = 0;
   final List<String> data = [
@@ -60,6 +65,8 @@ class MyHomePageState extends State<MyHomePage>
     loadWallpaperImages();
     loadCarsImages();
     loadAbstractImages();
+    loadaiImages();
+    loadfantasyImages();
   }
 
   @override
@@ -71,6 +78,14 @@ class MyHomePageState extends State<MyHomePage>
   Future<void> loadWallpaperImages() async {
     final ListResult result = await wallpaperRef.listAll();
     wallpaperRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadaiImages() async {
+    final ListResult result = await aiRef.listAll();
+    aiRefs = result.items.toList();
     if (mounted) {
       setState(() {});
     }
@@ -95,6 +110,14 @@ class MyHomePageState extends State<MyHomePage>
   Future<void> loadAbstractImages() async {
     final ListResult abstractResult = await abstractRef.listAll();
     abstractRefs = abstractResult.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadfantasyImages() async {
+    final ListResult result = await fantasyRef.listAll();
+    fantasyRefs = result.items.toList();
     if (mounted) {
       setState(() {});
     }
@@ -755,4 +778,3 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
     );
   }
 }
-
