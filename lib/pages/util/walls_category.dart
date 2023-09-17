@@ -51,62 +51,6 @@ class _AmoledWallpaperState extends State<AmoledWallpaper> {
     }
   }
 
-  Future<void> loadspaceImages() async {
-    final ListResult result = await spaceRef.listAll();
-    spaceRefs = result.items.toList();
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  Future<void> loadstockImages() async {
-    final ListResult result = await stockRef.listAll();
-    stockRefs = result.items.toList();
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  Future<void> loadminimalistImages() async {
-    final ListResult result = await minimalistRef.listAll();
-    minimalistRefs = result.items.toList();
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  Future<void> loadnatureImages() async {
-    final ListResult result = await natureRef.listAll();
-    natureRefs = result.items.toList();
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  Future<void> loadanimalsImages() async {
-    final ListResult result = await animalsRef.listAll();
-    animalsRefs = result.items.toList();
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  Future<void> loadscifiImages() async {
-    final ListResult result = await scifiRef.listAll();
-    scifiRefs = result.items.toList();
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  Future<void> loadgamesImages() async {
-    final ListResult result = await gamesRef.listAll();
-    gamesRefs = result.items.toList();
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     Color backgroundColor = Theme.of(context).colorScheme.background;
@@ -248,6 +192,20 @@ class SpaceWallpaper extends StatefulWidget {
 
 class _SpaceWallpaperState extends State<SpaceWallpaper> {
   @override
+  void initState() {
+    super.initState();
+    loadspaceImages();
+  }
+
+  Future<void> loadspaceImages() async {
+    final ListResult result = await spaceRef.listAll();
+    spaceRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return const Placeholder();
   }
@@ -266,6 +224,20 @@ class StockWallpapers extends StatefulWidget {
 
 class _StockWallpapersState extends State<StockWallpapers> {
   @override
+  void initState() {
+    super.initState();
+    loadstockImages();
+  }
+
+  Future<void> loadstockImages() async {
+    final ListResult result = await stockRef.listAll();
+    stockRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return const Placeholder();
   }
@@ -282,6 +254,20 @@ class MinimalistWallpaper extends StatefulWidget {
 }
 
 class _MinimalistWallpaperState extends State<MinimalistWallpaper> {
+  @override
+  void initState() {
+    super.initState();
+    loadminimalistImages();
+  }
+
+  Future<void> loadminimalistImages() async {
+    final ListResult result = await minimalistRef.listAll();
+    minimalistRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
@@ -301,6 +287,20 @@ class NatureWallpaper extends StatefulWidget {
 
 class _NatureWallpaperState extends State<NatureWallpaper> {
   @override
+  void initState() {
+    super.initState();
+    loadnatureImages();
+  }
+
+  Future<void> loadnatureImages() async {
+    final ListResult result = await natureRef.listAll();
+    natureRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return const Placeholder();
   }
@@ -318,6 +318,21 @@ class AnimalsWallpaper extends StatefulWidget {
 }
 
 class _AnimalsWallpaperState extends State<AnimalsWallpaper> {
+  @override
+  void initState() {
+    super.initState();
+    loadanimalsImages();
+  }
+
+  Future<void> loadanimalsImages() async {
+    final ListResult result = await animalsRef.listAll();
+    animalsRefs = result.items.toList();
+
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
@@ -337,6 +352,20 @@ class ScifiWallpaper extends StatefulWidget {
 
 class _ScifiWallpaperState extends State<ScifiWallpaper> {
   @override
+  void initState() {
+    super.initState();
+    loadscifiImages();
+  }
+
+  Future<void> loadscifiImages() async {
+    final ListResult result = await scifiRef.listAll();
+    scifiRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return const Placeholder();
   }
@@ -354,6 +383,20 @@ class GamesWallpaper extends StatefulWidget {
 }
 
 class _GamesWallpaperState extends State<GamesWallpaper> {
+  @override
+  void initState() {
+    super.initState();
+    loadgamesImages();
+  }
+
+  Future<void> loadgamesImages() async {
+    final ListResult result = await gamesRef.listAll();
+    gamesRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
