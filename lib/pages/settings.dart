@@ -1,3 +1,4 @@
+import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -277,20 +278,24 @@ class _SettingsPageState extends State<SettingsPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Icon(
-                          Icons.facebook_outlined,
+                          BootstrapIcons.google_play,
                           color: primaryColor,
+                          size: 34,
                         ),
                         Icon(
-                          Icons.telegram_outlined,
+                          BootstrapIcons.instagram,
                           color: primaryColor,
+                          size: 34,
                         ),
                         Icon(
-                          Icons.web_stories_outlined,
+                          BootstrapIcons.twitter,
                           color: primaryColor,
+                          size: 34,
                         ),
                         Icon(
-                          Icons.rate_review_outlined,
+                          BootstrapIcons.github,
                           color: primaryColor,
+                          size: 34,
                         ),
                       ],
                     ),

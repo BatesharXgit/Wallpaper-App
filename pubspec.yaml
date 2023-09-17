@@ -33,6 +33,7 @@ dependencies:
   google_sign_in: ^6.1.4
   provider: ^6.0.5
   iconsax: ^0.0.8
+  bootstrap_icons: ^1.11.0
 
 dev_dependencies:
   flutter_test:

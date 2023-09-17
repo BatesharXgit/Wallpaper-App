@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  bootstrap_icons:
+    dependency: "direct main"
+    description:
+      name: bootstrap_icons
+      sha256: "26d358491d5add387960c0a50f6bb8fc750cdb15a25ffce2c69297e82cb874f6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.11.0"
   cached_network_image:
     dependency: "direct main"
     description:
