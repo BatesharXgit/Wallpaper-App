@@ -678,7 +678,7 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                           Navigator.pop(context);
                         },
                         icon: Icon(
-                          Iconsax.close_circle1,
+                          Iconsax.close_circle,
                           color: Theme.of(context).iconTheme.color,
                           size: 30,
                         ),

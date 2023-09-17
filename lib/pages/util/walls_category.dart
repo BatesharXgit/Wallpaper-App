@@ -207,6 +207,8 @@ class _SpaceWallpaperState extends State<SpaceWallpaper> {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Theme.of(context).colorScheme.background;
+    Color primaryColor = Theme.of(context).colorScheme.primary;
     return const Placeholder();
   }
 }
@@ -239,6 +241,8 @@ class _StockWallpapersState extends State<StockWallpapers> {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Theme.of(context).colorScheme.background;
+    Color primaryColor = Theme.of(context).colorScheme.primary;
     return const Placeholder();
   }
 }
@@ -270,6 +274,8 @@ class _MinimalistWallpaperState extends State<MinimalistWallpaper> {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Theme.of(context).colorScheme.background;
+    Color primaryColor = Theme.of(context).colorScheme.primary;
     return const Placeholder();
   }
 }
@@ -302,6 +308,8 @@ class _NatureWallpaperState extends State<NatureWallpaper> {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Theme.of(context).colorScheme.background;
+    Color primaryColor = Theme.of(context).colorScheme.primary;
     return const Placeholder();
   }
 }
@@ -335,6 +343,8 @@ class _AnimalsWallpaperState extends State<AnimalsWallpaper> {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Theme.of(context).colorScheme.background;
+    Color primaryColor = Theme.of(context).colorScheme.primary;
     return const Placeholder();
   }
 }
@@ -367,6 +377,8 @@ class _ScifiWallpaperState extends State<ScifiWallpaper> {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Theme.of(context).colorScheme.background;
+    Color primaryColor = Theme.of(context).colorScheme.primary;
     return const Placeholder();
   }
 }
@@ -399,6 +411,8 @@ class _GamesWallpaperState extends State<GamesWallpaper> {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Theme.of(context).colorScheme.background;
+    Color primaryColor = Theme.of(context).colorScheme.primary;
     return const Placeholder();
   }
 }
