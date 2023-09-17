@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF131321),
+      backgroundColor: Color(0xFF131321),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -34,24 +34,15 @@ class _LoginPageState extends State<LoginPage> {
 
               SizedBox(height: MediaQuery.of(context).size.height * 0.035),
 
-              // welcome back, you've been missed!
-              Text(
-                'Welcome back you\'ve been missed!',
-                style: TextStyle(
-                  color: Colors.grey[500],
-                  fontSize: 16,
-                ),
-              ),
-
-              const SizedBox(height: 25),
+              // const SizedBox(height: 25),
 
               // username textfield
 
-              const SizedBox(height: 10),
+              // const SizedBox(height: 10),
 
               // password textfield
 
-              const SizedBox(height: 10),
+              // const SizedBox(height: 10),
 
               // forgot password?
 
@@ -89,11 +80,11 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   GestureDetector(
                     onTap: () {},
-                    child: const Text(
+                    child: Text(
                       'Privacy Policy',
                       style: TextStyle(
                         decoration: TextDecoration.underline,
-                        color: Color(0xFFFE5163),
+                        color: Color(0xFFE6EDFF),
                         fontWeight: FontWeight.bold,
                         fontSize: 14,
                       ),

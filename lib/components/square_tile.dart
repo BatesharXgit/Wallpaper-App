@@ -14,7 +14,7 @@ class SquareTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30.0),
-          color: Colors.grey[200],
+          color: Color(0xFFE6EDFF),
         ),
         child: Row(
           children: [
@@ -25,9 +25,7 @@ class SquareTile extends StatelessWidget {
             SizedBox(width: 10),
             Text(
               'Sign In with Google',
-              style: GoogleFonts.kanit(
-                fontSize: 20,
-              ),
+              style: GoogleFonts.kanit(fontSize: 20, color: Color(0xFF1E1E2A)),
             ),
           ],
         ),
