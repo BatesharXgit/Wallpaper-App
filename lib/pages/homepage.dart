@@ -640,33 +640,6 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                 duration: Duration(milliseconds: 500),
                 opacity: isWidgetsVisible ? 1.0 : 0.0,
                 child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).padding.top + 10, left: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.background,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(
-                          Icons.close_outlined,
-                          color: Theme.of(context).iconTheme.color,
-                          size: 30,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              AnimatedOpacity(
-                duration: Duration(milliseconds: 500),
-                opacity: isWidgetsVisible ? 1.0 : 0.0,
-                child: Align(
                   alignment: Alignment.topRight,
                   child: Padding(
                     padding: EdgeInsets.only(
@@ -683,7 +656,7 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                           Navigator.pop(context);
                         },
                         icon: Icon(
-                          Icons.info_outline,
+                          Iconsax.close_circle,
                           color: Theme.of(context).iconTheme.color,
                           size: 30,
                         ),
