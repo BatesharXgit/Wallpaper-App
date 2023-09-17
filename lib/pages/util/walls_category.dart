@@ -51,6 +51,62 @@ class _AmoledWallpaperState extends State<AmoledWallpaper> {
     }
   }
 
+  Future<void> loadspaceImages() async {
+    final ListResult result = await spaceRef.listAll();
+    spaceRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadstockImages() async {
+    final ListResult result = await stockRef.listAll();
+    stockRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadminimalistImages() async {
+    final ListResult result = await minimalistRef.listAll();
+    minimalistRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadnatureImages() async {
+    final ListResult result = await natureRef.listAll();
+    natureRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadanimalsImages() async {
+    final ListResult result = await animalsRef.listAll();
+    animalsRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadscifiImages() async {
+    final ListResult result = await scifiRef.listAll();
+    scifiRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> loadgamesImages() async {
+    final ListResult result = await gamesRef.listAll();
+    gamesRefs = result.items.toList();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Color backgroundColor = Theme.of(context).colorScheme.background;
