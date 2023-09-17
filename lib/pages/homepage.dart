@@ -293,13 +293,11 @@ class MyHomePageState extends State<MyHomePage>
         controller: _tabController,
         children: [
           _buildImageGridFromRef(wallpaperRef),
-          const Center(
-              child: Text("AI", style: TextStyle(color: Colors.white))),
+          _buildImageGridFromRef(aiRef),
           _buildImageGridFromRef(illustrationRef),
           _buildImageGridFromRef(carsRef),
           _buildImageGridFromRef(abstractRef),
-          const Center(
-              child: Text("Fantasy", style: TextStyle(color: Colors.white))),
+          _buildImageGridFromRef(fantasyRef),
         ],
       ),
     );

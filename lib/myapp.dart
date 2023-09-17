@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
                 icon: const Icon(
-                  Iconsax.video_vertical,
+                  Iconsax.video_circle,
                   size: 25,
                 ),
                 title: const Text('Live'),
