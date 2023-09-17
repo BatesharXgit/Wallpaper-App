@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:luca_ui/pages/homepage.dart';
+import 'package:luca_ui/pages/util/components.dart';
 import 'package:luca_ui/pages/util/fullscreen.dart';
 import 'package:luca_ui/pages/util/location_list.dart';
 
@@ -72,7 +73,7 @@ class _AmoledWallpaperState extends State<AmoledWallpaper> {
                 future: amoledRef.listAll(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return _buildPlaceholder();
+                    return Components.buildPlaceholder();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else if (snapshot.hasData &&
@@ -93,11 +94,12 @@ class _AmoledWallpaperState extends State<AmoledWallpaper> {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return _buildCircularIndicator();
+                              return Components.buildCircularIndicator();
                             } else if (snapshot.hasError) {
-                              return _buildErrorWidget();
+                              return Components.buildErrorWidget();
                             } else if (snapshot.hasData) {
-                              return _buildImageWidget(snapshot.data!);
+                              return Components.buildImageWidget(
+                                  snapshot.data!);
                             } else {
                               return Container();
                             }
@@ -171,7 +173,7 @@ class _SpaceWallpaperState extends State<SpaceWallpaper> {
                 future: spaceRef.listAll(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return _buildPlaceholder();
+                    return Components.buildPlaceholder();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else if (snapshot.hasData &&
@@ -192,11 +194,12 @@ class _SpaceWallpaperState extends State<SpaceWallpaper> {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return _buildCircularIndicator();
+                              return Components.buildCircularIndicator();
                             } else if (snapshot.hasError) {
-                              return _buildErrorWidget();
+                              return Components.buildErrorWidget();
                             } else if (snapshot.hasData) {
-                              return _buildImageWidget(snapshot.data!);
+                              return Components.buildImageWidget(
+                                  snapshot.data!);
                             } else {
                               return Container();
                             }
@@ -271,7 +274,7 @@ class _StockWallpapersState extends State<StockWallpapers> {
                 future: stockRef.listAll(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return _buildPlaceholder();
+                    return Components.buildPlaceholder();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else if (snapshot.hasData &&
@@ -292,11 +295,12 @@ class _StockWallpapersState extends State<StockWallpapers> {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return _buildCircularIndicator();
+                              return Components.buildCircularIndicator();
                             } else if (snapshot.hasError) {
-                              return _buildErrorWidget();
+                              return Components.buildErrorWidget();
                             } else if (snapshot.hasData) {
-                              return _buildImageWidget(snapshot.data!);
+                              return Components.buildImageWidget(
+                                  snapshot.data!);
                             } else {
                               return Container();
                             }
@@ -370,7 +374,7 @@ class _MinimalistWallpaperState extends State<MinimalistWallpaper> {
                 future: minimalistRef.listAll(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return _buildPlaceholder();
+                    return Components.buildPlaceholder();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else if (snapshot.hasData &&
@@ -391,11 +395,12 @@ class _MinimalistWallpaperState extends State<MinimalistWallpaper> {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return _buildCircularIndicator();
+                              return Components.buildCircularIndicator();
                             } else if (snapshot.hasError) {
-                              return _buildErrorWidget();
+                              return Components.buildErrorWidget();
                             } else if (snapshot.hasData) {
-                              return _buildImageWidget(snapshot.data!);
+                              return Components.buildImageWidget(
+                                  snapshot.data!);
                             } else {
                               return Container();
                             }
@@ -470,7 +475,7 @@ class _NatureWallpaperState extends State<NatureWallpaper> {
                 future: natureRef.listAll(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return _buildPlaceholder();
+                    return Components.buildPlaceholder();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else if (snapshot.hasData &&
@@ -491,11 +496,12 @@ class _NatureWallpaperState extends State<NatureWallpaper> {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return _buildCircularIndicator();
+                              return Components.buildCircularIndicator();
                             } else if (snapshot.hasError) {
-                              return _buildErrorWidget();
+                              return Components.buildErrorWidget();
                             } else if (snapshot.hasData) {
-                              return _buildImageWidget(snapshot.data!);
+                              return Components.buildImageWidget(
+                                  snapshot.data!);
                             } else {
                               return Container();
                             }
@@ -571,7 +577,7 @@ class _AnimalsWallpaperState extends State<AnimalsWallpaper> {
                 future: animalsRef.listAll(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return _buildPlaceholder();
+                    return Components.buildPlaceholder();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else if (snapshot.hasData &&
@@ -592,11 +598,12 @@ class _AnimalsWallpaperState extends State<AnimalsWallpaper> {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return _buildCircularIndicator();
+                              return Components.buildCircularIndicator();
                             } else if (snapshot.hasError) {
-                              return _buildErrorWidget();
+                              return Components.buildErrorWidget();
                             } else if (snapshot.hasData) {
-                              return _buildImageWidget(snapshot.data!);
+                              return Components.buildImageWidget(
+                                  snapshot.data!);
                             } else {
                               return Container();
                             }
@@ -671,7 +678,7 @@ class _ScifiWallpaperState extends State<ScifiWallpaper> {
                 future: scifiRef.listAll(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return _buildPlaceholder();
+                    return Components.buildPlaceholder();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else if (snapshot.hasData &&
@@ -692,11 +699,12 @@ class _ScifiWallpaperState extends State<ScifiWallpaper> {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return _buildCircularIndicator();
+                              return Components.buildCircularIndicator();
                             } else if (snapshot.hasError) {
-                              return _buildErrorWidget();
+                              return Components.buildErrorWidget();
                             } else if (snapshot.hasData) {
-                              return _buildImageWidget(snapshot.data!);
+                              return Components.buildImageWidget(
+                                  snapshot.data!);
                             } else {
                               return Container();
                             }
@@ -770,7 +778,7 @@ class _GamesWallpaperState extends State<GamesWallpaper> {
                 future: gamesRef.listAll(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return _buildPlaceholder();
+                    return Components.buildPlaceholder();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else if (snapshot.hasData &&
@@ -791,11 +799,12 @@ class _GamesWallpaperState extends State<GamesWallpaper> {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return _buildCircularIndicator();
+                              return Components.buildCircularIndicator();
                             } else if (snapshot.hasError) {
-                              return _buildErrorWidget();
+                              return Components.buildErrorWidget();
                             } else if (snapshot.hasData) {
-                              return _buildImageWidget(snapshot.data!);
+                              return Components.buildImageWidget(
+                                  snapshot.data!);
                             } else {
                               return Container();
                             }
@@ -814,64 +823,4 @@ class _GamesWallpaperState extends State<GamesWallpaper> {
       ),
     );
   }
-}
-
-Widget _buildImageWidget(String imageUrl) {
-  return Builder(builder: (context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => FullScreenImagePage(imageUrl: imageUrl),
-          ),
-        );
-      },
-      child: Hero(
-        tag: imageUrl,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: LocationListItem(
-              imageUrl: imageUrl,
-              scrollController: scrollController,
-            ),
-          ),
-        ),
-      ),
-    );
-  });
-}
-
-Widget _buildPlaceholder() {
-  return Builder(builder: (context) {
-    return Center(
-      child: LoadingAnimationWidget.newtonCradle(
-        size: 35,
-        color: Theme.of(context).colorScheme.primary,
-      ),
-    );
-  });
-}
-
-Widget _buildErrorWidget() {
-  return Container(
-    color: Colors.transparent,
-    child: const Icon(
-      Icons.error,
-      color: Colors.red,
-    ),
-  );
-}
-
-Widget _buildCircularIndicator() {
-  return Builder(builder: (context) {
-    return Center(
-      child: LoadingAnimationWidget.fallingDot(
-        size: 35,
-        color: Theme.of(context).colorScheme.primary,
-      ),
-    );
-  });
 }

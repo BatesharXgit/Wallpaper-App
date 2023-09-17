@@ -10,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:luca_ui/pages/util/components.dart';
 import 'package:luca_ui/pages/util/fullscreen.dart';
 import 'package:luca_ui/pages/util/location_list.dart';
 import 'package:luca_ui/pages/util/parallax.dart';
@@ -249,7 +250,7 @@ class MyHomePageState extends State<MyHomePage>
       future: imageRef.listAll(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return _buildPlaceholder();
+          return Components.buildPlaceholder();
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else if (snapshot.hasData && snapshot.data!.items.isNotEmpty) {
@@ -268,11 +269,11 @@ class MyHomePageState extends State<MyHomePage>
                 future: imageRef.getDownloadURL(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return _buildCircularIndicator();
+                    return Components.buildCircularIndicator();
                   } else if (snapshot.hasError) {
-                    return _buildErrorWidget();
+                    return Components.buildErrorWidget();
                   } else if (snapshot.hasData) {
-                    return _buildImageWidget(snapshot.data!);
+                    return Components.buildImageWidget(snapshot.data!);
                   } else {
                     return Container();
                   }
@@ -305,57 +306,30 @@ class MyHomePageState extends State<MyHomePage>
   }
 
   Widget _buildImageWidget(String imageUrl) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => FullScreenImagePage(imageUrl: imageUrl),
-          ),
-        );
-      },
-      child: Hero(
-        tag: imageUrl,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: LocationListItem(
-              imageUrl: imageUrl,
-              scrollController: scrollController,
+    return Builder(builder: (context) {
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => FullScreenImagePage(imageUrl: imageUrl),
+            ),
+          );
+        },
+        child: Hero(
+          tag: imageUrl,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: LocationListItem(
+                imageUrl: imageUrl,
+                scrollController: scrollController,
+              ),
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildPlaceholder() {
-    return Center(
-      child: LoadingAnimationWidget.newtonCradle(
-        size: 35,
-        color: Theme.of(context).colorScheme.primary,
-      ),
-    );
-  }
-
-  Widget _buildErrorWidget() {
-    return Container(
-      color: Colors.transparent,
-      child: const Icon(
-        Icons.error,
-        color: Colors.red,
-      ),
-    );
-  }
-
-  Widget _buildCircularIndicator() {
-    return Center(
-      child: LoadingAnimationWidget.fallingDot(
-        size: 35,
-        color: Theme.of(context).colorScheme.primary,
-      ),
-    );
+      );
+    });
   }
 }
-
