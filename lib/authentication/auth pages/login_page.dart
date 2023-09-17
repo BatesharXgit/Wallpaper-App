@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.035),
 
@@ -57,34 +57,6 @@ class _LoginPageState extends State<LoginPage> {
 
               SizedBox(height: MediaQuery.of(context).size.height * 0.035),
 
-              // or continue with
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        thickness: 0.5,
-                        color: Colors.grey[200],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Text(
-                        'Or continue with',
-                        style: TextStyle(color: Colors.grey[500]),
-                      ),
-                    ),
-                    Expanded(
-                      child: Divider(
-                        thickness: 0.5,
-                        color: Colors.grey[200],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
               SizedBox(height: MediaQuery.of(context).size.height * 0.035),
 
               // google + apple sign in buttons
@@ -94,31 +66,36 @@ class _LoginPageState extends State<LoginPage> {
                   SquareTile(
                       onTap: () => AuthService().signInWithGoogle(),
                       imagePath: 'lib/images/google.png'),
-
-                  const SizedBox(width: 25),
-
-                  // apple button
                 ],
               ),
 
               SizedBox(height: MediaQuery.of(context).size.height * 0.035),
 
               // not a member? register now
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
                 children: [
-                  Text(
-                    'I agree with Luca',
-                    style: TextStyle(color: Colors.grey[500]),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'By Continuing, you agree with Luca',
+                        style: TextStyle(
+                          color: Colors.grey[500],
+                          fontSize: 12,
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                    ],
                   ),
-                  const SizedBox(width: 4),
                   GestureDetector(
                     onTap: () {},
                     child: const Text(
                       'Privacy Policy',
                       style: TextStyle(
+                        decoration: TextDecoration.underline,
                         color: Color(0xFFFE5163),
                         fontWeight: FontWeight.bold,
+                        fontSize: 14,
                       ),
                     ),
                   ),

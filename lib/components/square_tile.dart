@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SquareTile extends StatelessWidget {
   final String imagePath;
@@ -10,15 +11,25 @@ class SquareTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.white),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(30.0),
           color: Colors.grey[200],
         ),
-        child: Image.asset(
-          imagePath,
-          height: 40,
+        child: Row(
+          children: [
+            Image.asset(
+              imagePath,
+              height: 30,
+            ),
+            SizedBox(width: 10),
+            Text(
+              'Sign In with Google',
+              style: GoogleFonts.kanit(
+                fontSize: 20,
+              ),
+            ),
+          ],
         ),
       ),
     );
