@@ -83,8 +83,8 @@ class SearchWallpaperState extends State<SearchWallpaper> {
               ),
               buildSearchBox(context),
               const Divider(
-                thickness: 2.5,
-                color: Color(0xFF131321),
+                thickness: 2.0,
+                color: Colors.transparent,
               ),
               Expanded(
                 child: _isLoading
@@ -148,6 +148,7 @@ class SearchWallpaperState extends State<SearchWallpaper> {
 
   Widget buildSearchBox(BuildContext context) {
     Color primaryColor = Theme.of(context).colorScheme.primary;
+    Color tertiaryColor = Theme.of(context).colorScheme.tertiary;
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: Container(
@@ -175,19 +176,19 @@ class SearchWallpaperState extends State<SearchWallpaper> {
                   onChanged: (query) => _debouncedSearch(query),
                   style: GoogleFonts.kanit(
                     fontSize: 18,
-                    color: primaryColor,
+                    color: tertiaryColor,
                   ),
                   decoration: InputDecoration(
                     hintText: 'What you are looking for...',
                     hintStyle: GoogleFonts.kanit(
-                      color: primaryColor.withOpacity(0.8),
+                      color: tertiaryColor.withOpacity(0.8),
                       fontSize: 16,
                     ),
                     border: InputBorder.none,
                     suffixIcon: IconButton(
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.search_outlined,
-                        color: Colors.grey,
+                        color: tertiaryColor,
                       ),
                       onPressed: () {},
                     ),
@@ -329,6 +330,8 @@ class FullScreenImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color primaryColor = Theme.of(context).colorScheme.primary;
+    Color tertiaryColor = Theme.of(context).colorScheme.tertiary;
     return Center(
       child: Stack(
         children: [

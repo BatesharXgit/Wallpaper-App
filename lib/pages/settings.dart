@@ -29,6 +29,66 @@ class _SettingsPageState extends State<SettingsPage> {
     FirebaseAuth.instance.signOut();
   }
 
+  void deleteAccount(BuildContext context) async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            Color backgroundColor = Theme.of(context).colorScheme.background;
+            Color primaryColor = Theme.of(context).colorScheme.primary;
+            Color secondaryColor = Theme.of(context).colorScheme.secondary;
+            Color tertiaryColor = Theme.of(context).colorScheme.tertiary;
+            return AlertDialog(
+              backgroundColor: backgroundColor,
+              title: Text('Confirm Deletion'),
+              content: Text('Are you sure you want to delete your account?'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the AlertDialog
+                  },
+                  child: Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    await user.delete();
+                    Navigator.of(context).pop(); // Close the AlertDialog
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Account deleted successfully.'),
+                      ),
+                    );
+                    // You can navigate to a different screen or perform other actions after deletion.
+                  },
+                  child: Text(
+                    'Delete',
+                    style: GoogleFonts.kanit(color: Colors.red),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('No user is currently signed in.'),
+          ),
+        );
+      }
+    } catch (e) {
+      print("Error deleting user account: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error deleting user account: $e'),
+        ),
+      );
+      // Handle the error appropriately, e.g., show an error message to the user.
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Color backgroundColor = Theme.of(context).colorScheme.background;
@@ -194,12 +254,14 @@ class _SettingsPageState extends State<SettingsPage> {
                         ListTile(
                           leading: const Icon(Iconsax.trash),
                           title: const Text('Delete Account'),
-                          subtitle: Text('Warning! This cannot be undone',
-                              style: TextStyle(color: Colors.grey)),
+                          subtitle: Text(
+                            'Warning! This cannot be undone',
+                            style: TextStyle(color: Colors.grey),
+                          ),
                           iconColor: Colors.red,
                           textColor: primaryColor,
                           onTap: () {
-                            // Handle App Information menu item tap
+                            deleteAccount(context);
                           },
                         ),
                       ],
