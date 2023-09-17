@@ -499,6 +499,111 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
     });
   }
 
+  void openDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AnimatedOpacity(
+          duration: Duration(milliseconds: 200),
+          opacity: isWidgetsVisible ? 1.0 : 0.0,
+          child: Dialog(
+            backgroundColor: Colors.transparent,
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+              child: AnimatedOpacity(
+                duration: Duration(milliseconds: 500),
+                opacity: isWidgetsVisible ? 1.0 : 0.0,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AnimatedOpacity(
+                          duration: Duration(milliseconds: 500),
+                          opacity: isWidgetsVisible ? 1.0 : 0.0,
+                          child: Container(
+                            height: 50,
+                            width: 200,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Home Screen',
+                                style: GoogleFonts.kanit(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 22,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        AnimatedOpacity(
+                          duration: Duration(milliseconds: 500),
+                          opacity: isWidgetsVisible ? 1.0 : 0.0,
+                          child: Container(
+                            height: 50,
+                            width: 200,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Lock Screen',
+                                style: GoogleFonts.kanit(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 22,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        AnimatedOpacity(
+                          duration: Duration(milliseconds: 500),
+                          opacity: isWidgetsVisible ? 1.0 : 0.0,
+                          child: Container(
+                            height: 50,
+                            width: 200,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Both Screen',
+                                style: GoogleFonts.kanit(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 22,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -587,152 +692,85 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                   ),
                 ),
               ),
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: MediaQuery.of(context).padding.bottom + 10,
-                child: GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return Dialog(
-                          backgroundColor: Colors.transparent,
+              Visibility(
+                visible: isWidgetsVisible,
+                child: Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: MediaQuery.of(context).padding.bottom + 10,
+                  child: GestureDetector(
+                    onTap: openDialog,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        AnimatedOpacity(
+                          duration: Duration(milliseconds: 500),
+                          opacity: isWidgetsVisible ? 1.0 : 0.0,
                           child: Container(
-                            width: 300,
                             decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: BorderRadius.circular(30),
                             ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                BackdropFilter(
-                                  filter: ImageFilter.blur(
-                                      sigmaX: 5,
-                                      sigmaY: 5), // Adjust blur intensity
-                                  child: Container(
-                                    color: Colors.black
-                                        .withOpacity(0.5), // Adjust opacity
-                                    child: Column(
-                                      children: [
-                                        ListTile(
-                                          title: Text(
-                                            'Home',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                          leading: Icon(Icons.home,
-                                              color: Colors.white),
-                                          onTap: () {
-                                            // Handle 'Home' selection
-                                          },
-                                        ),
-                                        ListTile(
-                                          title: Text(
-                                            'Lock',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                          leading: Icon(Icons.lock,
-                                              color: Colors.white),
-                                          onTap: () {
-                                            // Handle 'Lock' selection
-                                          },
-                                        ),
-                                        ListTile(
-                                          title: Text(
-                                            'Both',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                          leading: Icon(Icons.home,
-                                              color: Colors
-                                                  .white), // Customize the icon
-                                          onTap: () {
-                                            // Handle 'Both' selection
-                                          },
-                                        ),
-                                      ],
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Iconsax.heart,
+                                color: Theme.of(context).iconTheme.color,
+                                size: 30,
+                              ),
+                            ),
+                          ),
+                        ),
+                        AnimatedOpacity(
+                          duration: Duration(milliseconds: 500),
+                          opacity: isWidgetsVisible ? 1.0 : 0.0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.download,
+                                color: Theme.of(context).iconTheme.color,
+                                size: 30,
+                              ),
+                            ),
+                          ),
+                        ),
+                        AnimatedOpacity(
+                          duration: Duration(milliseconds: 500),
+                          opacity: isWidgetsVisible ? 1.0 : 0.0,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                height: 50,
+                                width: 200,
+                                decoration: BoxDecoration(
+                                  color:
+                                      Theme.of(context).colorScheme.background,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Apply Wallpaper',
+                                    style: GoogleFonts.kanit(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                      fontSize: 22,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      AnimatedOpacity(
-                        duration: Duration(milliseconds: 500),
-                        opacity: isWidgetsVisible ? 1.0 : 0.0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.background,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Iconsax.heart,
-                              color: Theme.of(context).iconTheme.color,
-                              size: 30,
-                            ),
-                          ),
-                        ),
-                      ),
-                      AnimatedOpacity(
-                        duration: Duration(milliseconds: 500),
-                        opacity: isWidgetsVisible ? 1.0 : 0.0,
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Container(
-                              height: 50,
-                              width: 200,
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.background,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'Apply Wallpaper',
-                                  style: GoogleFonts.kanit(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontSize: 22,
-                                  ),
-                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      AnimatedOpacity(
-                        duration: Duration(milliseconds: 500),
-                        opacity: isWidgetsVisible ? 1.0 : 0.0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.background,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.download,
-                              color: Theme.of(context).iconTheme.color,
-                              size: 30,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
