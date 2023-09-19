@@ -6,31 +6,33 @@ import 'package:luca_ui/pages/util/walls_category.dart';
 
 class Components {
   static Widget buildImageWidget(String imageUrl) {
-    return Builder(builder: (context) {
-      return GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FullScreenImagePage(imageUrl: imageUrl),
-            ),
-          );
-        },
-        child: Hero(
-          tag: imageUrl,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: LocationListItem(
-                imageUrl: imageUrl,
-                scrollController: scrollController,
+    return Builder(
+      builder: (context) {
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FullScreenImagePage(imageUrl: imageUrl),
+              ),
+            );
+          },
+          child: Hero(
+            tag: imageUrl,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: LocationListItem(
+                  imageUrl: imageUrl,
+                  scrollController: scrollController,
+                ),
               ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 
   static Widget buildPlaceholder() {

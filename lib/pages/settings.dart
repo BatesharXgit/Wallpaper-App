@@ -5,6 +5,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -89,6 +90,16 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       );
       // Handle the error appropriately, e.g., show an error message to the user.
+    }
+  }
+
+  final Uri urlPlayStore = Uri.parse(
+      'https://play.google.com/store/apps/dev?id=4846033393809014453');
+
+// ignore: non_constant_identifier_names
+  Future<void> launchUrlPlayStore() async {
+    if (!await launchUrl(urlPlayStore)) {
+      throw Exception('Could not launch $urlPlayStore');
     }
   }
 
@@ -277,10 +288,13 @@ class _SettingsPageState extends State<SettingsPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Icon(
-                          BootstrapIcons.google_play,
-                          color: primaryColor,
-                          size: 34,
+                        GestureDetector(
+                          onTap: launchUrlPlayStore,
+                          child: Icon(
+                            BootstrapIcons.google_play,
+                            color: primaryColor,
+                            size: 34,
+                          ),
                         ),
                         Icon(
                           BootstrapIcons.instagram,
