@@ -8,17 +8,17 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
-class FullScreenImagePage extends StatefulWidget {
+class ApplyWallpaperPage extends StatefulWidget {
   final String imageUrl;
 
-  const FullScreenImagePage({Key? key, required this.imageUrl})
+  const ApplyWallpaperPage({Key? key, required this.imageUrl})
       : super(key: key);
 
   @override
-  _FullScreenImagePageState createState() => _FullScreenImagePageState();
+  _ApplyWallpaperPageState createState() => _ApplyWallpaperPageState();
 }
 
-class _FullScreenImagePageState extends State<FullScreenImagePage> {
+class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
   final ScrollController _scrollController = ScrollController();
 
   @override

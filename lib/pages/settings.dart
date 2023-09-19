@@ -51,20 +51,19 @@ class _SettingsPageState extends State<SettingsPage> {
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop(); // Close the AlertDialog
+                    Navigator.of(context).pop();
                   },
                   child: Text('Cancel'),
                 ),
                 TextButton(
                   onPressed: () async {
                     await user.delete();
-                    Navigator.of(context).pop(); // Close the AlertDialog
+                    Navigator.of(context).pop();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('Account deleted successfully.'),
                       ),
                     );
-                    // You can navigate to a different screen or perform other actions after deletion.
                   },
                   child: Text(
                     'Delete',
@@ -89,14 +88,12 @@ class _SettingsPageState extends State<SettingsPage> {
           content: Text('Error deleting user account: $e'),
         ),
       );
-      // Handle the error appropriately, e.g., show an error message to the user.
     }
   }
 
   final Uri urlPlayStore = Uri.parse(
       'https://play.google.com/store/apps/dev?id=4846033393809014453');
 
-// ignore: non_constant_identifier_names
   Future<void> launchUrlPlayStore() async {
     if (!await launchUrl(urlPlayStore)) {
       throw Exception('Could not launch $urlPlayStore');
@@ -105,7 +102,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   final Uri urlInstagram = Uri.parse('https://www.instagram.com/btr.xd/');
 
-// ignore: non_constant_identifier_names
   Future<void> launchUrlInstagram() async {
     if (!await launchUrl(urlInstagram)) {
       throw Exception('Could not launch $urlInstagram');
@@ -114,16 +110,14 @@ class _SettingsPageState extends State<SettingsPage> {
 
   final Uri urlTwitter = Uri.parse('https://www.instagram.com/btr.xd/');
 
-// ignore: non_constant_identifier_names
   Future<void> launchUrlTwitter() async {
     if (!await launchUrl(urlTwitter)) {
       throw Exception('Could not launch $urlTwitter');
     }
   }
 
-  final Uri urlGithub = Uri.parse('https://www.instagram.com/btr.xd/');
+  final Uri urlGithub = Uri.parse('https://github.com/BatesharXgit');
 
-// ignore: non_constant_identifier_names
   Future<void> launchUrlGithub() async {
     if (!await launchUrl(urlGithub)) {
       throw Exception('Could not launch $urlGithub');

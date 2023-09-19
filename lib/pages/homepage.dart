@@ -6,7 +6,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:luca_ui/pages/util/components.dart';
-import 'package:luca_ui/pages/util/fullscreen.dart';
+import 'package:luca_ui/pages/util/applyWallpaperPage.dart';
 import 'package:luca_ui/pages/util/location_list.dart';
 import 'package:luca_ui/pages/util/searchresult.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -306,7 +306,7 @@ class MyHomePageState extends State<MyHomePage>
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => FullScreenImagePage(imageUrl: imageUrl),
+              builder: (context) => ApplyWallpaperPage(imageUrl: imageUrl),
             ),
           );
         },

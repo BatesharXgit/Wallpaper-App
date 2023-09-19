@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:luca_ui/pages/util/fullscreen.dart';
+import 'package:luca_ui/pages/util/applyWallpaperPage.dart';
 import 'package:luca_ui/pages/util/location_list.dart';
 import 'package:luca_ui/pages/util/walls_category.dart';
 
@@ -13,7 +13,7 @@ class Components {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => FullScreenImagePage(imageUrl: imageUrl),
+                builder: (context) => ApplyWallpaperPage(imageUrl: imageUrl),
               ),
             );
           },
