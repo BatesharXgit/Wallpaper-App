@@ -112,6 +112,24 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
+  final Uri urlTwitter = Uri.parse('https://www.instagram.com/btr.xd/');
+
+// ignore: non_constant_identifier_names
+  Future<void> launchUrlTwitter() async {
+    if (!await launchUrl(urlTwitter)) {
+      throw Exception('Could not launch $urlTwitter');
+    }
+  }
+
+  final Uri urlGithub = Uri.parse('https://www.instagram.com/btr.xd/');
+
+// ignore: non_constant_identifier_names
+  Future<void> launchUrlGithub() async {
+    if (!await launchUrl(urlGithub)) {
+      throw Exception('Could not launch $urlGithub');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Color backgroundColor = Theme.of(context).colorScheme.background;
@@ -318,10 +336,13 @@ class _SettingsPageState extends State<SettingsPage> {
                           color: primaryColor,
                           size: 34,
                         ),
-                        Icon(
-                          BootstrapIcons.github,
-                          color: primaryColor,
-                          size: 34,
+                        GestureDetector(
+                          onTap: launchUrlGithub,
+                          child: Icon(
+                            BootstrapIcons.github,
+                            color: primaryColor,
+                            size: 34,
+                          ),
                         ),
                       ],
                     ),
