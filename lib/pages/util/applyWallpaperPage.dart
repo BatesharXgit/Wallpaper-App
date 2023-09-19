@@ -39,9 +39,12 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
 
   Future<void> applyHomescreen(BuildContext context) async {
     try {
-      showSnackbar(
-        context,
-        'Applying wallpaper to home screen...',
+      Fluttertoast.showToast(
+        msg: 'Applying wallpaper to home screen...',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
       );
 
       bool success = await AsyncWallpaper.setWallpaper(
@@ -84,7 +87,13 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
 
   Future<void> applyLockscreen(BuildContext context) async {
     try {
-      showSnackbar(context, 'Applying wallpaper to lock screen...');
+      Fluttertoast.showToast(
+        msg: 'Applying wallpaper to lock screen...',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+      );
 
       bool success = await AsyncWallpaper.setWallpaper(
         url: widget.imageUrl,
@@ -126,7 +135,13 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
 
   Future<void> applyBoth(BuildContext context) async {
     try {
-      showSnackbar(context, 'Applying wallpaper to both screens...');
+      Fluttertoast.showToast(
+        msg: 'Applying wallpaper to both screens...',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+      );
 
       bool success = await AsyncWallpaper.setWallpaper(
         url: widget.imageUrl,
