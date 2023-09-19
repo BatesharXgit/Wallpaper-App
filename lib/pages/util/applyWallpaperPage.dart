@@ -53,7 +53,7 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
         goToHome: false,
       );
 
-      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+      // ScaffoldMessenger.of(context).removeCurrentSnackBar();
 
       if (success) {
         Fluttertoast.showToast(
@@ -73,7 +73,7 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
         );
       }
     } on PlatformException {
-      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+      // ScaffoldMessenger.of(context).removeCurrentSnackBar();
 
       Fluttertoast.showToast(
         msg: 'Failed to set wallpaper',
@@ -101,7 +101,7 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
         goToHome: false,
       );
 
-      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+      // ScaffoldMessenger.of(context).removeCurrentSnackBar();
 
       if (success) {
         Fluttertoast.showToast(
@@ -121,7 +121,7 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
         );
       }
     } on PlatformException {
-      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+      // ScaffoldMessenger.of(context).removeCurrentSnackBar();
 
       Fluttertoast.showToast(
         msg: 'Failed to set wallpaper',
@@ -149,7 +149,7 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
         goToHome: false,
       );
 
-      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+      // ScaffoldMessenger.of(context).removeCurrentSnackBar();
 
       if (success) {
         Fluttertoast.showToast(
@@ -169,7 +169,7 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
         );
       }
     } on PlatformException {
-      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+      // ScaffoldMessenger.of(context).removeCurrentSnackBar();
 
       Fluttertoast.showToast(
         msg: 'Failed to set wallpaper',
