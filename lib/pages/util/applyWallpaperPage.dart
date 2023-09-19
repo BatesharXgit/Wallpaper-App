@@ -32,14 +32,17 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 5),
       ),
     );
   }
 
   Future<void> applyHomescreen(BuildContext context) async {
     try {
-      showSnackbar(context, 'Applying wallpaper to home screen...');
+      showSnackbar(
+        context,
+        'Applying wallpaper to home screen...',
+      );
 
       bool success = await AsyncWallpaper.setWallpaper(
         url: widget.imageUrl,
@@ -181,91 +184,119 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
           child: Dialog(
             backgroundColor: Colors.transparent,
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+              filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
               child: AnimatedOpacity(
-                duration: Duration(milliseconds: 500),
+                duration: Duration(milliseconds: 200),
                 opacity: isWidgetsVisible ? 1.0 : 0.0,
                 child: Align(
                   alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AnimatedOpacity(
-                          duration: Duration(milliseconds: 500),
-                          opacity: isWidgetsVisible ? 1.0 : 0.0,
-                          child: Container(
-                            height: 50,
-                            width: 200,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.background,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                'Home Screen',
-                                style: GoogleFonts.kanit(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontSize: 22,
+                  child: Stack(
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () => applyHomescreen(context),
+                            child: Container(
+                              height: 50,
+                              width: 200,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.background,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'Home Screen',
+                                  style: GoogleFonts.kanit(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    fontSize: 22,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        AnimatedOpacity(
-                          duration: Duration(milliseconds: 500),
-                          opacity: isWidgetsVisible ? 1.0 : 0.0,
-                          child: Container(
-                            height: 50,
-                            width: 200,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.background,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                'Lock Screen',
-                                style: GoogleFonts.kanit(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontSize: 22,
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () => applyLockscreen(context),
+                            child: Container(
+                              height: 50,
+                              width: 200,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.background,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'Lock Screen',
+                                  style: GoogleFonts.kanit(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    fontSize: 22,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        AnimatedOpacity(
-                          duration: Duration(milliseconds: 500),
-                          opacity: isWidgetsVisible ? 1.0 : 0.0,
-                          child: Container(
-                            height: 50,
-                            width: 200,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.background,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                'Both Screen',
-                                style: GoogleFonts.kanit(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontSize: 22,
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () => applyBoth(context),
+                            child: Container(
+                              height: 50,
+                              width: 200,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.background,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'Both Screen',
+                                  style: GoogleFonts.kanit(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    fontSize: 22,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              height: 50,
+                              width: 200,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.background,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'Cancel',
+                                  style: GoogleFonts.kanit(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
