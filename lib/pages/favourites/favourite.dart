@@ -13,11 +13,17 @@ class FavoriteImagesPage extends StatelessWidget {
         builder: (context, provider, child) {
           final favoriteImages = provider.favoriteImages;
           print('Favorite Images: $favoriteImages'); // Add this line
-          return ListView.builder(
+          return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, // Number of columns in the grid
+              crossAxisSpacing: 8.0, // Spacing between columns
+              mainAxisSpacing: 8.0, // Spacing between rows
+            ),
             itemCount: favoriteImages.length,
             itemBuilder: (context, index) {
               return Image.network(
                 favoriteImages[index],
+                fit: BoxFit.cover, 
                 errorBuilder: (context, error, stackTrace) {
                   return Text('Failed to load image');
                 },
@@ -29,6 +35,3 @@ class FavoriteImagesPage extends StatelessWidget {
     );
   }
 }
-
-
-// }
