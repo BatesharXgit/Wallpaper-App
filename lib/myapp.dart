@@ -2,11 +2,11 @@ import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:luca_ui/pages/favourites/favourite.dart';
 import 'package:luca_ui/pages/homepage.dart';
 import 'package:luca_ui/pages/util/live_category.dart';
 import 'package:luca_ui/pages/wallpapers.dart';
 import 'package:luca_ui/themes/themes.dart';
-import 'pages/util/live.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     const LiveWallCategory(),
     // FavouritePage(),
     // LiveWallpaperPage(),
-    LiveWallpaperPage(),
+    FavouritesWallpaper(likedImages: []),
   ];
 
   @override

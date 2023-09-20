@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:luca_ui/authentication/auth%20pages/auth_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:luca_ui/pages/favourites/favouritesManager.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -12,6 +13,7 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+  await LikedImagesManager().loadLikedImages();
 
   runApp(const MyApp());
 }
