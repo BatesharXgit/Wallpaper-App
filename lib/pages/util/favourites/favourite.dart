@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:luca_ui/pages/util/applyWallpaperPage.dart';
 import 'package:luca_ui/pages/util/favourites/favouritesManager.dart';
 import 'package:provider/provider.dart';
@@ -10,10 +11,17 @@ class FavoriteImagesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Color backgroundColor = Theme.of(context).colorScheme.background;
     Color primaryColor = Theme.of(context).colorScheme.primary;
-    // Color secondaryColor = Theme.of(context).colorScheme.secondary;
-    // Color tertiaryColor = Theme.of(context).colorScheme.tertiary;
+
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              _showClearFavoritesConfirmationDialog(context);
+            },
+            icon: Icon(Iconsax.trash),
+          )
+        ],
         elevation: 0,
         centerTitle: true,
         backgroundColor: backgroundColor,
@@ -63,6 +71,39 @@ class FavoriteImagesPage extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+
+  void _showClearFavoritesConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Clear Favorites?'),
+          content:
+              Text('Are you sure you want to clear all your favorite images?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Clear favorites and close the dialog
+                Provider.of<FavoriteImagesProvider>(context, listen: false)
+                    .clearFavorites();
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'Clear',
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/foundation.dart';
 
 class FavoriteImagesProvider extends ChangeNotifier {
   SharedPreferences _prefs;
@@ -18,6 +18,12 @@ class FavoriteImagesProvider extends ChangeNotifier {
     }
     // Save the updated favorite images to SharedPreferences.
     _prefs.setStringList('favoriteImages', favoriteImages);
+    notifyListeners();
+  }
+
+  void clearFavorites() {
+    favoriteImages.clear();
+    _prefs.remove('favoriteImages');
     notifyListeners();
   }
 }
