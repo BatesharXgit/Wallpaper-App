@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:luca_ui/pages/util/applyWallpaperPage.dart';
 import 'package:luca_ui/pages/util/favourites/favouritesManager.dart';
 import 'package:provider/provider.dart';
 
@@ -38,11 +39,22 @@ class FavoriteImagesPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(5.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: CachedNetworkImage(
-                      imageUrl: favoriteImages[index],
-                      fit: BoxFit.cover,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ApplyWallpaperPage(
+                              imageUrl: favoriteImages[index]),
+                        ),
+                      );
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: CachedNetworkImage(
+                        imageUrl: favoriteImages[index],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 );
