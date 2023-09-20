@@ -7,7 +7,6 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ApplyWallpaperPage extends StatefulWidget {
   final String imageUrl;
@@ -21,37 +20,6 @@ class ApplyWallpaperPage extends StatefulWidget {
 
 class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
   final ScrollController _scrollController = ScrollController();
-
-  List<String> likedImages = [];
-
-  @override
-  void initState() {
-    super.initState();
-    loadLikedImages();
-  }
-
-  void saveLikedImages() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList('liked_images', likedImages);
-  }
-
-  void loadLikedImages() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      likedImages = prefs.getStringList('liked_images') ?? [];
-    });
-  }
-
-  void toggleLikedState(String imageUrl) {
-    setState(() {
-      if (likedImages.contains(imageUrl)) {
-        likedImages.remove(imageUrl);
-      } else {
-        likedImages.add(imageUrl);
-      }
-    });
-    saveLikedImages();
-  }
 
   @override
   void dispose() {
@@ -435,13 +403,9 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: IconButton(
-                              onPressed: () {
-                                toggleLikedState(widget.imageUrl);
-                              },
+                              onPressed: () {},
                               icon: Icon(
-                                likedImages.contains(widget.imageUrl)
-                                    ? Icons.favorite
-                                    : Icons.favorite_border,
+                                Iconsax.heart,
                                 color: Theme.of(context).iconTheme.color,
                                 size: 30,
                               ),
