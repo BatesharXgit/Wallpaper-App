@@ -7,6 +7,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ApplyWallpaperPage extends StatefulWidget {
   final String imageUrl;
@@ -21,7 +22,32 @@ class ApplyWallpaperPage extends StatefulWidget {
 class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
   final ScrollController _scrollController = ScrollController();
 
+  late SharedPreferences _prefs;
   List<String> favoriteImages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadFavoriteImages();
+  }
+
+  Future<void> _loadFavoriteImages() async {
+    _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      favoriteImages = _prefs.getStringList('favoriteImages') ?? [];
+    });
+  }
+
+  void toggleFavorite(String imageUrl) {
+    setState(() {
+      if (favoriteImages.contains(imageUrl)) {
+        favoriteImages.remove(imageUrl);
+      } else {
+        favoriteImages.add(imageUrl);
+      }
+    });
+    _prefs.setStringList('favoriteImages', favoriteImages);
+  }
 
   @override
   void dispose() {
@@ -416,6 +442,8 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
                                     favoriteImages.add(widget.imageUrl);
                                   }
                                 });
+                                _prefs.setStringList(
+                                    'favoriteImages', favoriteImages);
                               },
                               icon: Icon(
                                 favoriteImages.contains(widget.imageUrl)

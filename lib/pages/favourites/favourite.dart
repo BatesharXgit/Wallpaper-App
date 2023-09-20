@@ -12,10 +12,16 @@ class FavoriteImagesPage extends StatelessWidget {
       body: Consumer<FavoriteImagesProvider>(
         builder: (context, provider, child) {
           final favoriteImages = provider.favoriteImages;
+          print('Favorite Images: $favoriteImages'); // Add this line
           return ListView.builder(
             itemCount: favoriteImages.length,
             itemBuilder: (context, index) {
-              return Image.network(favoriteImages[index]);
+              return Image.network(
+                favoriteImages[index],
+                errorBuilder: (context, error, stackTrace) {
+                  return Text('Failed to load image');
+                },
+              );
             },
           );
         },
