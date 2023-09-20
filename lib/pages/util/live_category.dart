@@ -46,76 +46,93 @@ class _LiveWallCategoryState extends State<LiveWallCategory> {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Theme.of(context).colorScheme.background;
+    Color primaryColor = Theme.of(context).colorScheme.primary;
     return Scaffold(
-      appBar: null,
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
+        backgroundColor: backgroundColor,
+        title: Text(
+          'Live Wallpapers',
+          style: GoogleFonts.orbitron(
+            color: primaryColor,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       backgroundColor: Color(0xFF131321),
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 15,
-            ),
-            Row(
-              children: [
-                const SizedBox(width: 20),
-                Text(
-                  'Live Wallpapers',
-                  style: GoogleFonts.orbitron(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            const Divider(thickness: 2),
             Expanded(
-                child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListView.builder(
-                  itemCount: categories.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: AnimationConfiguration.staggeredList(
+                child: ListView.builder(
+                    itemCount: categories.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return AnimationConfiguration.staggeredList(
                         position: index,
                         duration: const Duration(milliseconds: 375),
                         child: SlideAnimation(
                           verticalOffset: 50.0,
                           child: FadeInAnimation(
-                            child: Stack(
-                              children: [
-                                GestureDetector(
-                                  onTap: () => Get.to(LiveWallpaperPage()),
-                                  child: Container(
-                                    height: 250,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          const Color.fromARGB(255, 24, 24, 24),
-                                      borderRadius: BorderRadius.circular(6.0),
-                                      image: DecorationImage(
-                                          image: NetworkImage(images[index]),
-                                          fit: BoxFit.cover),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Stack(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () => Get.to(LiveWallpaperPage()),
+                                    child: Container(
+                                      height: 250,
+                                      decoration: BoxDecoration(
+                                        color: const Color.fromARGB(
+                                            255, 24, 24, 24),
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                        image: DecorationImage(
+                                            image: NetworkImage(images[index]),
+                                            fit: BoxFit.cover),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: Color(0xFF131321),
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Text(
-                                    categories[index],
-                                    style: TextStyle(color: Colors.white),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                        right: 60,
+                                        left: 60,
+                                        top:
+                                            MediaQuery.of(context).padding.top +
+                                                200,
+                                      ),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: Color(0xFF131321),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            categories[index],
+                                            style: GoogleFonts.kanit(
+                                                color: Colors.white,
+                                                fontSize: 22),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                )
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
-            )),
+                      );
+                    })),
           ],
         ),
       ),
