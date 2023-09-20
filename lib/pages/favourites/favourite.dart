@@ -1,45 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:luca_ui/pages/favourites/favouritesManager.dart';
+import 'package:provider/provider.dart';
 
-class FavouritesWallpaper extends StatelessWidget {
-  final List<String> likedImages;
-
-  const FavouritesWallpaper({Key? key, required this.likedImages})
-      : super(key: key);
-
+class FavoriteImagesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Liked Images'),
+        title: Text('Favorite Images'),
       ),
-      body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Number of columns in the grid
-        ),
-        itemCount: likedImages.length,
-        itemBuilder: (context, index) {
-          return Card(
-            elevation: 5,
-            margin: EdgeInsets.all(10),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Image.network(
-                    likedImages[index],
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Liked Image ${index + 1}'),
-                ),
-              ],
-            ),
+      body: Consumer<FavoriteImagesProvider>(
+        builder: (context, provider, child) {
+          final favoriteImages = provider.favoriteImages;
+          return ListView.builder(
+            itemCount: favoriteImages.length,
+            itemBuilder: (context, index) {
+              return Image.network(favoriteImages[index]);
+            },
           );
         },
       ),
     );
   }
 }
+
 
 // }

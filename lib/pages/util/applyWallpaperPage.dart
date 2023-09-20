@@ -21,6 +21,8 @@ class ApplyWallpaperPage extends StatefulWidget {
 class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
   final ScrollController _scrollController = ScrollController();
 
+  List<String> favoriteImages = [];
+
   @override
   void dispose() {
     _scrollController.dispose();
@@ -403,9 +405,24 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  if (favoriteImages
+                                      .contains(widget.imageUrl)) {
+                                    // If the image is already a favorite, remove it
+                                    favoriteImages.remove(widget.imageUrl);
+                                  } else {
+                                    // If the image is not a favorite, add it
+                                    favoriteImages.add(widget.imageUrl);
+                                  }
+                                });
+                              },
                               icon: Icon(
-                                Iconsax.heart,
+                                favoriteImages.contains(widget.imageUrl)
+                                    ? Icons
+                                        .favorite // If it's a favorite, show a filled heart
+                                    : Icons
+                                        .favorite_border, // If not, show an outline heart
                                 color: Theme.of(context).iconTheme.color,
                                 size: 30,
                               ),

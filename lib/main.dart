@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:luca_ui/authentication/auth%20pages/auth_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:luca_ui/pages/favourites/favouritesManager.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -13,9 +15,13 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  await LikedImagesManager().loadLikedImages();
-
-  runApp(const MyApp());
+  final prefs = await SharedPreferences.getInstance();
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => FavoriteImagesProvider(prefs),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

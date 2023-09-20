@@ -1,30 +1,23 @@
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LikedImagesManager {
-  List<String> _likedImages = [];
+class FavoriteImagesProvider extends ChangeNotifier {
+  SharedPreferences _prefs;
+  List<String> favoriteImages = [];
 
-  static final LikedImagesManager _instance = LikedImagesManager._internal();
-
-  factory LikedImagesManager() {
-    return _instance;
+  FavoriteImagesProvider(this._prefs) {
+    // Load favorite images from SharedPreferences when the provider is created.
+    favoriteImages = _prefs.getStringList('favoriteImages') ?? [];
   }
 
-  LikedImagesManager._internal();
-
-  Future<void> loadLikedImages() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _likedImages = prefs.getStringList('liked_images') ?? [];
-  }
-
-  List<String> getLikedImages() {
-    return _likedImages;
-  }
-
-  Future<void> addLikedImage(String imageUrl) async {
-    if (!_likedImages.contains(imageUrl)) {
-      _likedImages.add(imageUrl);
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setStringList('liked_images', _likedImages);
+  void toggleFavorite(String imageUrl) {
+    if (favoriteImages.contains(imageUrl)) {
+      favoriteImages.remove(imageUrl);
+    } else {
+      favoriteImages.add(imageUrl);
     }
+    // Save the updated favorite images to SharedPreferences.
+    _prefs.setStringList('favoriteImages', favoriteImages);
+    notifyListeners();
   }
 }
