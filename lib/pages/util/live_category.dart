@@ -19,8 +19,7 @@ class _LiveWallCategoryState extends State<LiveWallCategory> {
     'CyberWorld',
     'Games',
     'Fantasy',
-    'Landscape',
-    'Cityscapes',
+    'Environments',
     'Abstract',
     'Aquatic',
     'Space',
@@ -36,7 +35,6 @@ class _LiveWallCategoryState extends State<LiveWallCategory> {
     'https://i.pinimg.com/564x/c7/6c/26/c76c26fd2c0ec8bcbaa7bb7ebb68881c.jpg',
     'https://i.pinimg.com/564x/19/4a/37/194a37a3b214b113aedccaaac4f70956.jpg',
     'https://i.pinimg.com/564x/fe/d4/54/fed454e0dca948c101c8b84658767126.jpg',
-    'https://i.pinimg.com/564x/c7/5d/e1/c75de1208bf12c355ad1ba4264787b18.jpg',
     'https://i.pinimg.com/564x/1b/77/3f/1b773f7322c4512076b0140c30ddf36c.jpg',
     'https://i.pinimg.com/564x/9a/d8/c1/9ad8c1eb0e8a829768053011cc191723.jpg',
     'https://i.pinimg.com/564x/5e/54/54/5e5454fb45337d754aa77c5d3807b3e1.jpg',
@@ -96,32 +94,27 @@ class _LiveWallCategoryState extends State<LiveWallCategory> {
                                       ),
                                     ),
                                   ),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                        right: 60,
-                                        left: 60,
-                                        top:
-                                            MediaQuery.of(context).padding.top +
-                                                200,
-                                      ),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                            color: Color(0xFF131321),
-                                            borderRadius:
-                                                BorderRadius.circular(10.0)),
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            categories[index],
-                                            style: GoogleFonts.kanit(
-                                                color: Colors.white,
-                                                fontSize: 22),
-                                          ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      right: 60,
+                                      left: 60,
+                                      top: MediaQuery.of(context).padding.top +
+                                          200,
+                                    ),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xFF131321),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0)),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          categories[index],
+                                          style: GoogleFonts.kanit(
+                                              color: Colors.white,
+                                              fontSize: 22),
                                         ),
                                       ),
                                     ),
