@@ -20,37 +20,17 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.035),
-
+              const SizedBox(height: 20),
               SizedBox(
                 height: 150,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(6),
-                  // child: Image.asset('assets/images/logo.png'),
+                  child: Image.asset('lib/images/luca.png'),
                 ),
               ),
-
-              SizedBox(height: MediaQuery.of(context).size.height * 0.035),
-
-              // const SizedBox(height: 25),
-
-              // username textfield
-
-              // const SizedBox(height: 10),
-
-              // password textfield
-
-              // const SizedBox(height: 10),
-
-              // forgot password?
-
-              SizedBox(height: MediaQuery.of(context).size.height * 0.035),
-
-              SizedBox(height: MediaQuery.of(context).size.height * 0.035),
-
-              // google + apple sign in buttons
+              SizedBox(height: MediaQuery.of(context).size.height * 0.3),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -59,10 +39,9 @@ class _LoginPageState extends State<LoginPage> {
                       imagePath: 'lib/images/google.png'),
                 ],
               ),
-
-              SizedBox(height: MediaQuery.of(context).size.height * 0.035),
-
-              // not a member? register now
+              const SizedBox(
+                height: 10,
+              ),
               Column(
                 children: [
                   Row(
@@ -89,6 +68,9 @@ class _LoginPageState extends State<LoginPage> {
                         fontSize: 14,
                       ),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                 ],
               )
