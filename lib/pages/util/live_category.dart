@@ -60,7 +60,7 @@ class _LiveWallCategoryState extends State<LiveWallCategory> {
           ),
         ),
       ),
-      backgroundColor: Color(0xFF131321),
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -86,8 +86,7 @@ class _LiveWallCategoryState extends State<LiveWallCategory> {
                                       decoration: BoxDecoration(
                                         color: const Color.fromARGB(
                                             255, 24, 24, 24),
-                                        borderRadius:
-                                            BorderRadius.circular(6.0),
+                                        borderRadius: BorderRadius.circular(20),
                                         image: DecorationImage(
                                             image: NetworkImage(images[index]),
                                             fit: BoxFit.cover),
@@ -105,7 +104,7 @@ class _LiveWallCategoryState extends State<LiveWallCategory> {
                                       width: MediaQuery.of(context).size.width,
                                       height: 40,
                                       decoration: BoxDecoration(
-                                          color: Color(0xFF131321),
+                                          color: backgroundColor,
                                           borderRadius:
                                               BorderRadius.circular(10.0)),
                                       child: Align(
@@ -113,7 +112,7 @@ class _LiveWallCategoryState extends State<LiveWallCategory> {
                                         child: Text(
                                           categories[index],
                                           style: GoogleFonts.kanit(
-                                              color: Colors.white,
+                                              color: primaryColor,
                                               fontSize: 22),
                                         ),
                                       ),
