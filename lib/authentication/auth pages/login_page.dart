@@ -21,22 +21,32 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               const SizedBox(height: 20),
               SizedBox(
-                height: 200,
+                height: 180,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(6),
                   child: Image.asset('lib/images/luca.png'),
                 ),
               ),
-              const SizedBox(height: 5),
+              Center(
+                child: Text(
+                  'LUCA',
+                  style: TextStyle(
+                    fontFamily: 'Anurati',
+                    color: Colors.white,
+                    fontSize: 50,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 2),
               Align(
                 alignment: Alignment.center,
                 child: Text(
                   ('"Step into a World of Wall Artistry: \n       Your Screens, Our Canvas!"'),
-                  style: GoogleFonts.kanit(color: Colors.white, fontSize: 20),
+                  style: GoogleFonts.kanit(color: Colors.white, fontSize: 18),
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.1),
