@@ -8,15 +8,15 @@ import 'package:luca_ui/pages/util/live_category.dart';
 import 'package:luca_ui/pages/wallpapers.dart';
 import 'package:luca_ui/themes/themes.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
+class LucaHome extends StatefulWidget {
+  const LucaHome({super.key, required this.title});
   final String title;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<LucaHome> createState() => _LucaHomeState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _LucaHomeState extends State<LucaHome> {
   int _selectedIndex = 0;
   final colour = Colors.white;
   final List<Widget> _pages = [
