@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luca_ui/components/square_tile.dart';
 import 'package:luca_ui/authentication/services/auth_service.dart';
 
@@ -24,13 +25,21 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               const SizedBox(height: 20),
               SizedBox(
-                height: 150,
+                height: 200,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(6),
                   child: Image.asset('lib/images/luca.png'),
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.3),
+              const SizedBox(height: 5),
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  ('"Step into a World of Wall Artistry: \n       Your Screens, Our Canvas!"'),
+                  style: GoogleFonts.kanit(color: Colors.white, fontSize: 20),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.1),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
