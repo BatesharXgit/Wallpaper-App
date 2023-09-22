@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:luca_ui/pages/util/live.dart';
+import 'package:luca_ui/pages/dynamic/live.dart';
 
 class LiveWallCategory extends StatefulWidget {
   const LiveWallCategory({super.key});

@@ -4,7 +4,6 @@ import 'package:luca_ui/components/square_tile.dart';
 import 'package:luca_ui/authentication/services/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
-  // final Function()? onTap;
   const LoginPage({
     super.key,
   });

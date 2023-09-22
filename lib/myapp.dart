@@ -2,10 +2,10 @@ import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:luca_ui/pages/util/favourites/favourite.dart';
+import 'package:luca_ui/pages/favourite.dart';
 import 'package:luca_ui/pages/homepage.dart';
-import 'package:luca_ui/pages/util/live_category.dart';
-import 'package:luca_ui/pages/wallpapers.dart';
+import 'package:luca_ui/pages/dynamic/live_category.dart';
+import 'package:luca_ui/pages/static/wallpapers.dart';
 import 'package:luca_ui/themes/themes.dart';
 
 class LucaHome extends StatefulWidget {

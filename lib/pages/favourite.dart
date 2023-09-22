@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:luca_ui/pages/util/applyWallpaperPage.dart';
-import 'package:luca_ui/pages/util/favourites/favouritesManager.dart';
+import 'package:luca_ui/pages/util/favouritesManager.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteImagesPage extends StatelessWidget {
