@@ -413,23 +413,26 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
                 onTap: toggleWidgetsVisibility,
                 child: Hero(
                   tag: widget.imageUrl,
-                  child: Image.network(
-                    widget.imageUrl,
-                    fit: BoxFit.cover,
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    filterQuality: FilterQuality.high,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      );
-                    },
+                  child: RepaintBoundary(
+                    key: _globalKey,
+                    child: Image.network(
+                      widget.imageUrl,
+                      fit: BoxFit.cover,
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      filterQuality: FilterQuality.high,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -517,7 +520,7 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: IconButton(
-                              onPressed: () {},
+                              onPressed: () => savetoGallery(context),
                               icon: Icon(
                                 Icons.download,
                                 color: Theme.of(context).iconTheme.color,
