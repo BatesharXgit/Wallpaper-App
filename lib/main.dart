@@ -15,12 +15,13 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  final prefs = await SharedPreferences.getInstance();
+  // final prefs = await SharedPreferences.getInstance();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => FavoriteImagesProvider(prefs),
-      child: MyApp(),
-    ),
+    // ChangeNotifierProvider(
+    // create: (context) => FavoriteImagesProvider(prefs),
+    // child:
+    MyApp(),
+    // ),
   );
 }
 

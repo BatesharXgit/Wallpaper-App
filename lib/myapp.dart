@@ -2,6 +2,7 @@ import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:luca_ui/pages/dynamic/live.dart';
 import 'package:luca_ui/pages/favourite.dart';
 import 'package:luca_ui/pages/homepage.dart';
 import 'package:luca_ui/pages/dynamic/live_category.dart';
@@ -28,8 +29,8 @@ class _LucaHomeState extends State<LucaHome> {
     ),
     const LiveWallCategory(),
     // FavouritePage(),
-    // LiveWallpaperPage(),
-    FavoriteImagesPage(),
+    LiveWallpaperPage(),
+    // FavoriteImagesPage(),
   ];
 
   @override
