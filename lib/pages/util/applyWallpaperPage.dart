@@ -1,6 +1,7 @@
-import 'dart:ui';
+import 'dart:io';
 
 import 'package:async_wallpaper/async_wallpaper.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -8,6 +9,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/rendering.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:ui' as ui;
 
 class ApplyWallpaperPage extends StatefulWidget {
   final String imageUrl;
@@ -21,6 +27,7 @@ class ApplyWallpaperPage extends StatefulWidget {
 
 class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
   final ScrollController _scrollController = ScrollController();
+  final GlobalKey _globalKey = GlobalKey();
 
   late SharedPreferences _prefs;
   List<String> favoriteImages = [];
@@ -54,6 +61,50 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
     _scrollController.dispose();
 
     super.dispose();
+  }
+
+  void savetoGallery(BuildContext context) async {
+    try {
+      RenderRepaintBoundary boundary = _globalKey.currentContext!
+          .findRenderObject() as RenderRepaintBoundary;
+      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+      ByteData? byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
+
+      if (byteData != null) {
+        Uint8List pngBytes = byteData.buffer.asUint8List();
+        final externalDir = await getExternalStorageDirectory();
+        final filePath = '${externalDir!.path}/InspirioImage.png';
+        final file = File(filePath);
+        await file.writeAsBytes(pngBytes);
+        final result = await ImageGallerySaver.saveFile(filePath);
+
+        if (result['isSuccess']) {
+          if (kDebugMode) {
+            print('Screenshot saved to gallery.');
+          }
+
+          // ignore: use_build_context_synchronously
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              backgroundColor: Color(0xFF131321),
+              content: Text(
+                'Successfully saved to gallery 😊',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        } else {
+          if (kDebugMode) {
+            print('Failed to save screenshot to gallery.');
+          }
+        }
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error: $e');
+      }
+    }
   }
 
   void showSnackbar(BuildContext context, String message) {
@@ -227,7 +278,7 @@ class _ApplyWallpaperPageState extends State<ApplyWallpaperPage> {
           child: Dialog(
             backgroundColor: Colors.transparent,
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+              filter: ui.ImageFilter.blur(sigmaX: 15, sigmaY: 15),
               child: AnimatedOpacity(
                 duration: Duration(milliseconds: 200),
                 opacity: isWidgetsVisible ? 1.0 : 0.0,
